@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "会子本",
+  "usingComponents": {
+    "uni-fab": "/components/uni-fab/uni-fab",
+    "huizi-deatil": "/components/huizi-deatil/huizi-detail"
+  }
+}

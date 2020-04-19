@@ -1,0 +1,1 @@
+<view class="calendar-list"><view><dark-calendar vue-id="1" signeddates="{{signeddates}}" data-event-opts="{{[['^click',[['change']]]]}}" bind:click="__e" bind:__l="__l"></dark-calendar></view><view class="calendar-list-item">11111</view></view>
