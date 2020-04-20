@@ -7,23 +7,22 @@
 			}
 		},
 		{
-			"path": "pages/items/index",
-			"style": {
-				"navigationBarTitleText": "会子项目记录"
-			}
+			"path": "pages/items/index"
 		},
 		{
-			"path": "pages/calendar/index",
-			"style": {
-				"navigationBarTitleText": "日历表"
-			}
+			"path": "pages/calendar/index"
+		},
+		{
+			"path": "pages/user/index"
+
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "会子本",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle":"custom"  
 	},
 	"tabBar": {
 		"color": "#7A7E83",
@@ -36,7 +35,7 @@
 			"selectedIconPath": "static/logo.png",
 			"text": "首页"
 		}, {
-			"pagePath": "pages/items/index",
+			"pagePath": "pages/user/index",
 			"iconPath": "static/logo.png",
 			"selectedIconPath": "static/logo.png",
 			"text": "会子详情"

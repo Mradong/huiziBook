@@ -1,7 +1,7 @@
 <template>
 	<view class="huizi">
 		<view class="huizi-none" v-if="isHaveData">
-			<view class="message">暂无缴费记录<br></view>
+			<view class="message">今日暂无新增缴费记录，<br>请继续保持</view>
 		</view>
 		<view class="huizi-data" v-if=" !isHaveData">
 			
@@ -12,7 +12,7 @@
 							项目(名称)：{{ item.projectName}}
 						</view>
 						<view class="">
-							需支出（元）：{{ item.payment}}
+							实际支出（元）：{{ item.actualPayment}}
 						</view>
 						<view class="">
 							当前期数(期)/总期数(期)：{{ item.currentPeriod}}/{{ item.totalPeriods}}
@@ -46,10 +46,14 @@
 			};
 		},
 		mounted(){
-			
 			this.isHaveData =  this.huiziData.length == 0? true:false;
 		},
-
+		watch:{
+			huiziData( newdata ){
+				this.isHaveData =  newdata.length == 0? true:false;
+			}
+			
+		}
 	}
 </script>
 

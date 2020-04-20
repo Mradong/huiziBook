@@ -1,5 +1,4 @@
 {
-  "navigationBarTitleText": "日历表",
   "usingComponents": {
     "dark-calendar": "/components/dark-calendar/dark-calendar",
     "huizi-deatil": "/components/huizi-deatil/huizi-detail"

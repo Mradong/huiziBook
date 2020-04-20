@@ -1,0 +1,1 @@
+<view class="data"><nav-bar vue-id="1" fontColor="#000" backState="1000" home="{{false}}" titleCenter="{{true}}" type="fixed" title="数据中心" bind:__l="__l" vue-slots="{{['right']}}"><view class="icon_setUp data-nav-add" slot="right">+</view></nav-bar></view>

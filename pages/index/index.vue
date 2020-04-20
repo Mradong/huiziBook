@@ -1,5 +1,8 @@
 <template>
 	<view class="home">
+		<nav-bar fontColor="#000" backState="2000" :home='false' :titleCenter="true" type="fixed" title="会子本">
+		 
+		</nav-bar>
 		<view class="home-nav">
 			<view class="home-nav-l">
 				<view>本月需支出</view>
@@ -27,6 +30,7 @@
 <script>
 	import uniFab from '@/components/uni-fab/uni-fab.vue';
 	import huiziDeatil from '@/components/huizi-deatil/huizi-detail.vue';
+	import navBar from "@/components/zhouWei-navBar";
 	export default {
 		data() {
 			return {
@@ -109,7 +113,8 @@
 		},
 		components: {
 			uniFab,
-			huiziDeatil
+			huiziDeatil,
+			navBar
 		}
 	};
 </script>
@@ -119,14 +124,12 @@
 		font-size: 16px;
 		font-weight: 600;
 	}
-
 	.home {
 		width: 100%;
 		height: 100%;
 		color: #ffffff;
 		display: flex;
 		flex-direction: column;
-
 		&-nav {
 			box-sizing: border-box;
 			display: flex;
@@ -137,7 +140,6 @@
 			background-color: #ea6566;
 			background-image: linear-gradient(top left, #ea6566, #e69495);
 			padding: 10rpx 25rpx 50rpx;
-
 			&-r {
 				flex: 1;
 				text-align: right;

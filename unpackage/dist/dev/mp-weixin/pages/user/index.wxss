@@ -1,0 +1,33 @@
+.data-nav {
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: 1px #C0C0C0;
+  box-shadow: 0 5px 5px #F1F1F1;
+  text-align: center;
+  position: relative;
+}
+.data-nav-add {
+  margin-right: 10px;
+  width: 60rpx;
+  text-align: center;
+  font-size: 28px;
+}
+.data-user-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 105rpx;
+  box-shadow: 5px 5px 5px #999999;
+  margin-top: 5px;
+}
+.data-user-item-logo {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.data-user-item-detail {
+  -webkit-box-flex: 4;
+  -webkit-flex: 4;
+          flex: 4;
+}
+
