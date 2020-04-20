@@ -50,9 +50,14 @@
   font-size: 16px;
   font-weight: 600;
 }
-.home .huiz-com {
-  -webkit-box-flex: 1;
-          flex-grow: 1;
-  -webkit-flex-grow: 1;
+.home .huizi-title {
+  text-align: center;
+  font-size: 18px;
+  color: #0b64e8;
+  font-weight: bold;
+  height: 45px;
+  line-height: 45px;
+  background-color: #f8f8f8;
+  box-shadow: 0 3px 5px #3F536E;
 }
 

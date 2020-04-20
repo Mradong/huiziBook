@@ -2,119 +2,169 @@
 	<view class="home">
 		<view class="home-nav">
 			<view class="home-nav-l">
-				<view>本月支出</view>
+				<view>本月需支出</view>
 				<view class="expend">00.00</view>
-				<view>本月收入：00.00</view>
+				<view>本月已支付：00.00</view>
 			</view>
-			<view class="home-nav-r font-c"><view class="budget">本月预算：00.00</view></view>
+			<view class="home-nav-r font-c">
+				<view class="budget">本月未支付：00.00</view>
+			</view>
 		</view>
-		<huizi-deatil class='huiz-com'></huizi-deatil>
+		<view class="clearfix">
+		</view>
+		<view class="huizi-title">
+			本月会子详情
+		</view>
+		<huizi-deatil class='huiz-com' :huiziData='huiziData'></huizi-deatil>
 		<!-- 悬浮组件-->
-		<view><uni-fab :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction" @trigger="trigger"></uni-fab></view>
+		<view>
+			<uni-fab :pattern="pattern" :content="content" :horizontal="horizontal" :vertical="vertical" :direction="direction"
+			 @trigger="trigger"></uni-fab>
+		</view>
 	</view>
 </template>
 
 <script>
-import uniFab from '@/components/uni-fab/uni-fab.vue';
-import huiziDeatil from '@/components/huizi-deatil/huizi-detail.vue';
-export default {
-	data() {
-		return {
-			title: 'Hello',
-			pattern: {
-				color: '#3c3e49',
-				selectedColor: '#007AFF',
-				backgroundColor: '#ffffff',
-				buttonColor: '#EA6566'
-			},
-			content: [
-				{
-					iconPath: '/static/logo.png',
-					selectedIconPath: '/static/logo.png',
-					text: '首页',
-					model: 'home',
-					active: true
+	import uniFab from '@/components/uni-fab/uni-fab.vue';
+	import huiziDeatil from '@/components/huizi-deatil/huizi-detail.vue';
+	export default {
+		data() {
+			return {
+				title: 'Hello',
+				pattern: {
+					color: '#3c3e49',
+					selectedColor: '#007AFF',
+					backgroundColor: '#fff',
+					buttonColor: '#e80e09'
 				},
-				{
-					iconPath: '/static/logo.png',
-					selectedIconPath: '/static/logo.png',
-					text: '汇总',
-					model: 'calendar',
-					active: false
-				}
-			],
-			horizontal: 'right',
-			vertical: 'bottom',
-			direction: 'vertical',
-			popMenu: true
-		};
-	},
-	onLoad() {},
-	methods: {
-		trigger(e) {
-			let model = e.item.model;
+				content: [{
+						iconPath: '/static/logo.png',
+						selectedIconPath: '/static/logo.png',
+						text: '首页',
+						model: 'home',
+						active: true
+					},
+					{
+						iconPath: '/static/logo.png',
+						selectedIconPath: '/static/logo.png',
+						text: '汇总',
+						model: 'calendar',
+						active: false
+					}
+				],
+				huiziData:[],
+				horizontal: 'right',
+				vertical: 'bottom',
+				direction: 'vertical',
+				popMenu: true
+			};
+		},
+		onLoad() {
+			this.huiziData = [{
+				id:1,
+				projectName:'嘻嘻500',
+				currentPeriod:2,
+				totalPeriods:50,
+				payment:500,
+				isPay:true,
+				payTime:'2020-04-12'
+			},{
+				id:2,
+				projectName:'哈哈1000',
+				currentPeriod:9,
+				totalPeriods:50,
+				payment:1000,
+				isPay:true,
+				payTime:'2020-03-23'
+			},{
+				id:3,
+				projectName:'呵呵1500',
+				currentPeriod:6,
+				totalPeriods:30,
+				payment:1500,
+				isPay:true,
+				payTime:'2020-02-22'
+			}]
+			
+			
+		},
+		methods: {
+			trigger(e) {
+				let model = e.item.model;
 
-			switch (model) {
-				case 'calendar':
-					console.log('11');
-					uni.navigateTo({
-						url: '/pages/calendar/index',
-						success: res => {},
-						fail: () => {},
-						complete: () => {}
-					});
-					break;
-				default:
-					console.log('butiao');
+				switch (model) {
+					case 'calendar':
+						console.log('11');
+						uni.navigateTo({
+							url: '/pages/calendar/index',
+							success: res => {},
+							fail: () => {},
+							complete: () => {}
+						});
+						break;
+					default:
+						console.log('butiao');
+				}
 			}
+		},
+		components: {
+			uniFab,
+			huiziDeatil
 		}
-	},
-	components: {
-		uniFab,
-		huiziDeatil
-	}
-};
+	};
 </script>
 
 <style lang="less">
-.font-c {
-	font-size: 16px;
-	font-weight: 600;
-}
-.home {
-	width: 100%;
-	height: 100%;
-	color: #ffffff;
-	display: flex;
-	flex-direction: column;
-	&-nav {
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
+	.font-c {
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	.home {
 		width: 100%;
-		height: 307rpx;
-		background-color: #ea6566;
-		background-image: linear-gradient(top left, #ea6566, #e69495);
-		padding: 10rpx 25rpx 50rpx;
-		&-r {
-			flex: 1;
-			text-align: right;
-			.budget {
+		height: 100%;
+		color: #ffffff;
+		display: flex;
+		flex-direction: column;
+
+		&-nav {
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: row;
+			align-items: flex-end;
+			width: 100%;
+			height: 307rpx;
+			background-color: #ea6566;
+			background-image: linear-gradient(top left, #ea6566, #e69495);
+			padding: 10rpx 25rpx 50rpx;
+
+			&-r {
+				flex: 1;
+				text-align: right;
+
+				.budget {}
+			}
+
+			&-l {
+				flex: 1;
+				text-align: left;
+
+				.expend {
+					margin: 5px 0;
+					.font-c;
+				}
 			}
 		}
-		&-l {
-			flex: 1;
-			text-align: left;
-			.expend {
-				margin: 5px 0;
-				.font-c;
-			}
+		
+		.huizi-title {
+			text-align: center;
+			font-size: 18px;
+			color: #0b64e8;
+			font-weight: bold;
+			height: 45px;
+			line-height: 45px;
+			background-color: #f8f8f8;
+			box-shadow: 0 3px 5px #3F536E;
 		}
 	}
-	.huiz-com{
-		flex-grow:1;
-		-webkit-flex-grow:1; 
-	}
-}
 </style>

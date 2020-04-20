@@ -1,31 +1,55 @@
 <template>
 	<view class="huizi">
-		<view class="huizi-none" v-if=" isHaveDaata">
-			<view class="message">Good,您今天没有新增缴费记录<br>请继续保持</view>
+		<view class="huizi-none" v-if="isHaveData">
+			<view class="message">暂无缴费记录<br></view>
 		</view>
-		<view class="huizi-data" v-if=" !isHaveDaata">
-			<view class="huizi-data-items">
+		<view class="huizi-data" v-if=" !isHaveData">
+			
+			<view class="huizi-data-items"  v-for=" (item,index) in huiziData" :key= index>
 				<view class="huizi-data-items-item">
-					
-				</view>
-				<view class="huizi-data-items-item-r">
-					$450.00
-				</view>
-				<view class="huizi-data-items-item-r">
-					
+					<view class="huizi-data-items-item-r">
+						<view class="">
+							项目(名称)：{{ item.projectName}}
+						</view>
+						<view class="">
+							需支出（元）：{{ item.payment}}
+						</view>
+						<view class="">
+							当前期数(期)/总期数(期)：{{ item.currentPeriod}}/{{ item.totalPeriods}}
+						</view>
+						<view class="">
+							支付日期：{{ item.payTime}}
+						</view>
+					</view>
+					<view class="huizi-data-items-item-l" v-text=" item.isPay?'已支付' : '未支付'">
+						已支付
+					</view>
 				</view>
 			</view>
+		
 		</view>
 	</view>
 </template>
 
 <script>
 	export default {
+		props: {
+			// 本月或者本日会子详情
+			huiziData: {
+				type: Array,
+				default: () => []
+			},
+		},
 		data() {
 			return {
-				isHaveDaata:false,
+				isHaveData:false,
 			};
-		}
+		},
+		mounted(){
+			
+			this.isHaveData =  this.huiziData.length == 0? true:false;
+		},
+
 	}
 </script>
 
@@ -41,6 +65,8 @@
 			display: flex;
 			flex-direction: row;
 			align-items:center ;
+			box-sizing: content-box;
+			padding-top: 150rpx;
 			.message{
 				flex: 1;
 				text-align: center;
@@ -48,10 +74,10 @@
 		}
 		&-data{
 			&-items{
-				height: 121rpx;
+				height: 300rpx;
 				position: relative;
 				// box-shadow: 0 0 10px #808080;
-				margin: 5rpx;
+				
 				&::before{
 					content: '';
 					display: block;
@@ -76,12 +102,31 @@
 					left: 6px;
 				}
 				&-item{
-					height: 90rpx;
-					width: 95%;
+					height: 80%;
+					width: 90%;
+					background-color: #ea6566;
+					margin: 0 auto ;
+					position: relative;
+					top: 15%;
+					box-shadow: 0 0  5px #555555;
+					border-radius: 5px;
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					box-sizing: border-box;
+					padding: 10px;
+					display: flex;
+					
 					&-r{
-						
+						font-size: 14px;
+						flex:4;
+						view{
+							margin: 10rpx;
+						}
 					}
 					&-l{
+						flex: 1;
+						text-align: center;
+						line-height: 260rpx *0.8;
 						
 					}
 				}
