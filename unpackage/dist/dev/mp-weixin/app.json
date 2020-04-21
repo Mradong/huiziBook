@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/items/index",
+    "pages/additems/index",
     "pages/calendar/index",
     "pages/user/index"
   ],
@@ -10,8 +10,7 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "会子本",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8",
-    "navigationStyle": "custom"
+    "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
     "color": "#7A7E83",
@@ -32,12 +31,14 @@
         "text": "会子详情"
       },
       {
-        "pagePath": "pages/calendar/index",
+        "pagePath": "pages/additems/index",
         "iconPath": "static/logo.png",
         "selectedIconPath": "static/logo.png",
         "text": "个人信息"
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {
+    "nav-bar": "/components/zhouWei-navBar/index"
+  }
 }

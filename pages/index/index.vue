@@ -1,8 +1,5 @@
 <template>
 	<view class="home">
-		<nav-bar fontColor="#000" backState="2000" :home='false' :titleCenter="true" type="fixed" title="会子本">
-		 
-		</nav-bar>
 		<view class="home-nav">
 			<view class="home-nav-l">
 				<view>本月需支出</view>
@@ -140,6 +137,8 @@
 			background-color: #ea6566;
 			background-image: linear-gradient(top left, #ea6566, #e69495);
 			padding: 10rpx 25rpx 50rpx;
+			position: fixed;
+			z-index: 9999;
 			&-r {
 				flex: 1;
 				text-align: right;
@@ -167,6 +166,7 @@
 			line-height: 45px;
 			background-color: #f8f8f8;
 			box-shadow: 0 3px 5px #3F536E;
+			margin-top: 307rpx;
 		}
 	}
 </style>

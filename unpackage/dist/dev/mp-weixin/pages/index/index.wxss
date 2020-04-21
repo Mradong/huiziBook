@@ -32,6 +32,8 @@
   background-image: -webkit-linear-gradient(top left, #ea6566, #e69495);
   background-image: linear-gradient(top left, #ea6566, #e69495);
   padding: 10rpx 25rpx 50rpx;
+  position: fixed;
+  z-index: 9999;
 }
 .home-nav-r {
   -webkit-box-flex: 1;
@@ -59,5 +61,6 @@
   line-height: 45px;
   background-color: #f8f8f8;
   box-shadow: 0 3px 5px #3F536E;
+  margin-top: 307rpx;
 }
 

@@ -11,19 +11,45 @@
   width: 60rpx;
   text-align: center;
   font-size: 28px;
+  background-color: #FFFFFF;
+}
+.data-user-item:first-child {
+  border-bottom: 0;
 }
 .data-user-item {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  height: 105rpx;
-  box-shadow: 5px 5px 5px #999999;
-  margin-top: 5px;
+  height: 140rpx;
+  line-height: 140rpx;
+  border-top: 1px solid #C0C0C0;
+  border-bottom: 1px solid #C0C0C0;
 }
 .data-user-item-logo {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
+  text-align: center;
+  position: relative;
+}
+.data-user-item-logo-ball {
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 40rpx;
+  background-color: red;
+  position: absolute;
+  right: 15rpx;
+  top: 15rpx;
+  border-radius: 50%;
+  z-index: 9;
+  color: #fff;
+}
+.data-user-item-logo image {
+  margin-top: 20rpx;
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
 }
 .data-user-item-detail {
   -webkit-box-flex: 4;
