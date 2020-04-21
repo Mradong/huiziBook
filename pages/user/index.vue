@@ -4,31 +4,19 @@
 		    <view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData">+</view>
 		</nav-bar>
 		
-		<view class="data-user">
+		<view class="data-user" v-for=" (item,index) in userData" :key=item.id>
 			<view class="data-user-item">
 				<view class="data-user-item-logo">
 					<view class="data-user-item-logo-ball">
-						2
+						{{ item.selfHuzi.length + 1 }}
 					</view>
 					<image src="../../static/logo.png"  mode=""></image>
 				</view>
 				<view class="data-user-item-detail">
-					<text>嘻嘻嘻</text>
+					<text>{{ item.name }}</text>
 				</view>
 			</view>
-			
-			<view class="data-user-item">
-				<view class="data-user-item-logo">
-					<view class="data-user-item-logo-ball">
-						2
-					</view>
-					<image src="../../static/logo.png"  mode=""></image>
-				</view>
-				<view class="data-user-item-detail">
-					<text>嘻嘻嘻</text>
-				</view>
-			</view>
-			
+						
 		</view>
 	</view>
 </template>
@@ -39,7 +27,8 @@
 		data() {
 			return {
 				animationData: {},
-				animation: {}
+				animation: {},
+				userData:[]
 			}
 		},
 		methods:{
@@ -63,10 +52,31 @@
 					complete: () => {}
 				});
 			},
+			getHuiData(){
+				try {
+				    let keysArray = uni.getStorageSync('huizi_keys');
+					let len = keysArray.length;
+					let huizi_data = [] ;
+				    if ( keysArray ) {
+						for( let i = 0 ; i < len; i++ ){
+							uni.getStorage({
+							    key: i+'_key',
+							    success: function (res) {
+									//huizi_data[i] = res.data;小程序中无法使用！
+									huizi_data.push( res.data );
+							    }
+							});
+						}
+						this.userData = huizi_data ;
+				    }
+				} catch (e) {
+				    // error
+				}
+			}
 			
 		},
-		onShow: function() {
-
+		onShow() {
+			this.getHuiData();
 		},
 	    components: {navBar}
 	}
