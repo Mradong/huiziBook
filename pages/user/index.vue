@@ -1,22 +1,22 @@
 <template>
 	<view class="data">
 		<nav-bar fontColor="#000" backState="1000" :shadow='true' :home='false' :titleCenter="true" type="fixed" title="数据中心">
-		    <view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData">+</view>
+			<view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData">+</view>
 		</nav-bar>
-		
+
 		<view class="data-user" v-for=" (item,index) in userData" :key=item.id>
-			<view class="data-user-item">
+			<view class="data-user-item" @click="toDetail(item.id)">
 				<view class="data-user-item-logo">
 					<view class="data-user-item-logo-ball">
 						{{ item.selfHuzi.length + 1 }}
 					</view>
-					<image src="../../static/logo.png"  mode=""></image>
+					<image src="../../static/logo.png" mode=""></image>
 				</view>
 				<view class="data-user-item-detail">
 					<text>{{ item.name }}</text>
 				</view>
 			</view>
-						
+
 		</view>
 	</view>
 </template>
@@ -28,11 +28,11 @@
 			return {
 				animationData: {},
 				animation: {},
-				userData:[]
+				userData: []
 			}
 		},
-		methods:{
-			butAimation(){
+		methods: {
+			butAimation() {
 				var animation = uni.createAnimation({
 					duration: 150,
 					timingFunction: "ease",
@@ -43,55 +43,63 @@
 				this.animation.opacity('1').step()
 				this.animationData = this.animation.export()
 			},
-			add(){
+			add() {
 				this.butAimation();
 				uni.navigateTo({
-					url: '/pages/calendar/index',
-					success: res => {},
-					fail: () => {},
-					complete: () => {}
+					url: '/pages/user/adduser/index',
+					animationType: 'pop-in',
+					animationDuration: 200,
 				});
 			},
-			getHuiData(){
+			getHuiData() {
 				try {
-				    let keysArray = uni.getStorageSync('huizi_keys');
+					let keysArray = uni.getStorageSync('huizi_keys');
 					let len = keysArray.length;
-					let huizi_data = [] ;
-				    if ( keysArray ) {
-						for( let i = 0 ; i < len; i++ ){
+					let huizi_data = [];
+					if (keysArray) {
+						for (let i = 0; i < len; i++) {
 							uni.getStorage({
-							    key: i+'_key',
-							    success: function (res) {
+								key: i + '_key',
+								success: function(res) {
 									//huizi_data[i] = res.data;小程序中无法使用！
-									huizi_data.push( res.data );
-							    }
+									huizi_data.push(res.data);
+								}
 							});
 						}
-						this.userData = huizi_data ;
-				    }
+						this.userData = huizi_data;
+					}
 				} catch (e) {
-				    // error
+					// error
 				}
+			},
+			toDetail(id) {
+				uni.navigateTo({
+					url: '/pages/user/userdetail/index?id=' + id,
+					animationType: 'pop-in',
+					animationDuration: 200,
+				});
 			}
-			
 		},
 		onShow() {
 			this.getHuiData();
 		},
-	    components: {navBar}
+		components: {
+			navBar
+		}
 	}
 </script>
 
 <style lang="less">
-	.data{
-		&-nav{
+	.data {
+		&-nav {
 			height: 120rpx;
 			line-height: 120rpx;
 			border-bottom: 1px #C0C0C0;
 			box-shadow: 0 5px 5px #F1F1F1;
 			text-align: center;
 			position: relative;
-			&-add{
+
+			&-add {
 				margin-right: 10px;
 				width: 60rpx;
 				text-align: center;
@@ -99,21 +107,25 @@
 				background-color: #FFFFFF;
 			}
 		}
-		&-user{
-			&-item:first-child{
+
+		&-user {
+			&-item:first-child {
 				border-bottom: 0;
 			}
-			&-item{
+
+			&-item {
 				display: flex;
 				height: 140rpx;
 				line-height: 140rpx;
 				border-top: 1px solid #C0C0C0;
 				border-bottom: 1px solid #C0C0C0;
-				&-logo{
+
+				&-logo {
 					flex: 1;
 					text-align: center;
 					position: relative;
-					&-ball{
+
+					&-ball {
 						width: 50rpx;
 						height: 50rpx;
 						text-align: center;
@@ -126,14 +138,16 @@
 						z-index: 9;
 						color: #fff;
 					}
-					image{ 
+
+					image {
 						margin-top: 20rpx;
 						border-radius: 50%;
 						width: 100rpx;
 						height: 100rpx;
 					}
 				}
-				&-detail{
+
+				&-detail {
 					flex: 4;
 				}
 			}

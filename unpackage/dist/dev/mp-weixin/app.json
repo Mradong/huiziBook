@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/additems/index",
-    "pages/calendar/index",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/message/index",
+    "pages/user/adduser/index",
+    "pages/user/userdetail/index",
+    "pages/calendar/index"
   ],
   "subPackages": [],
   "window": {
@@ -31,7 +33,7 @@
         "text": "会子详情"
       },
       {
-        "pagePath": "pages/additems/index",
+        "pagePath": "pages/message/index",
         "iconPath": "static/logo.png",
         "selectedIconPath": "static/logo.png",
         "text": "个人信息"
@@ -39,6 +41,7 @@
     ]
   },
   "usingComponents": {
-    "nav-bar": "/components/zhouWei-navBar/index"
+    "nav-bar": "/components/zhouWei-navBar/index",
+    "m-table": "/components/p-table/table/table"
   }
 }

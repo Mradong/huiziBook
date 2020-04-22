@@ -7611,9 +7611,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
-  \************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8518,20 +8518,20 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 
 /***/ }),
 /* 7 */
-/*!*****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \*****************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子本" }, "pages/additems/index": { "navigationStyle": "custom" }, "pages/calendar/index": { "navigationStyle": "custom" }, "pages/user/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子本", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子本" }, "pages/user/index": { "navigationStyle": "custom" }, "pages/message/index": { "navigationStyle": "custom" }, "pages/user/adduser/index": { "navigationStyle": "custom" }, "pages/user/userdetail/index": { "navigationStyle": "custom" }, "pages/calendar/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子本", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
-/*!****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \****************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

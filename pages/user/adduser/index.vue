@@ -82,6 +82,13 @@ export default {
 				} catch (e) {
 					console.log(e);
 				}
+				uni.switchTab({
+					url: '/pages/user/index',
+					animationType: 'pop-in',
+					animationDuration: 200,
+				});
+				
+				
 			}
 			else{
 				console.log( ' 请完善资料')

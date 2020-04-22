@@ -1,7 +1,6 @@
 <template>
 	<view class="calendar-list">
 		<nav-bar fontColor="#000" backState="1000" :home='false' :titleCenter="true" type="fixed" title="会子本">
-		 
 		</nav-bar>
 		<view><dark-calendar :signeddates="signeddates" @on-click="getDayData"></dark-calendar></view>
 

@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/zhouWei-navBar/index":1,"components/huizi-deatil/huizi-detail":1,"components/uni-fab/uni-fab":1,"components/dark-calendar/dark-calendar":1};
+/******/ 		var cssChunks = {"components/p-table/table/table":1,"components/zhouWei-navBar/index":1,"components/huizi-deatil/huizi-detail":1,"components/uni-fab/uni-fab":1,"components/dark-calendar/dark-calendar":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/zhouWei-navBar/index":"components/zhouWei-navBar/index","components/huizi-deatil/huizi-detail":"components/huizi-deatil/huizi-detail","components/uni-fab/uni-fab":"components/uni-fab/uni-fab","components/dark-calendar/dark-calendar":"components/dark-calendar/dark-calendar"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/p-table/table/table":"components/p-table/table/table","components/zhouWei-navBar/index":"components/zhouWei-navBar/index","components/huizi-deatil/huizi-detail":"components/huizi-deatil/huizi-detail","components/uni-fab/uni-fab":"components/uni-fab/uni-fab","components/dark-calendar/dark-calendar":"components/dark-calendar/dark-calendar"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
