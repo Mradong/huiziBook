@@ -41,4 +41,10 @@
   border-radius: 10rpx;
   box-shadow: 0 0 3px #C8C7CC;
 }
+.create {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #DD524D;
+}
 

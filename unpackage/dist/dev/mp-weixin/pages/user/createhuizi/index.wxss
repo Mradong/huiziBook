@@ -1,0 +1,36 @@
+.form-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  border-bottom: 1px solid #c8c7cc;
+  margin: 10rpx 20rpx;
+  position: relative;
+}
+.form-row .warn {
+  position: absolute;
+  right: 60rpx;
+  top: 0;
+  font-size: 14px;
+  color: #dd524d;
+  display: block;
+}
+.form-row-title {
+  -webkit-box-flex: 3;
+  -webkit-flex: 3;
+          flex: 3;
+}
+.form-row-input {
+  -webkit-box-flex: 5;
+  -webkit-flex: 5;
+          flex: 5;
+  height: 100rpx;
+  text-align: left;
+}
+.but {
+  margin-top: 200rpx;
+  width: 80%;
+}
+

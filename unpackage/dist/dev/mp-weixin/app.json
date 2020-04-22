@@ -5,6 +5,7 @@
     "pages/message/index",
     "pages/user/adduser/index",
     "pages/user/userdetail/index",
+    "pages/user/createhuizi/index",
     "pages/calendar/index"
   ],
   "subPackages": [],
@@ -41,6 +42,7 @@
     ]
   },
   "usingComponents": {
+    "lb-picker": "/components/lb-picker/index",
     "nav-bar": "/components/zhouWei-navBar/index",
     "m-table": "/components/p-table/table/table"
   }

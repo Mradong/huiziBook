@@ -10,19 +10,19 @@
 					<view class="">
 						{{ item.name }}
 					</view>
-					<view class="">
+					<view class="fbColor">
+						已缴纳{{ item.payment }}期
+					</view>
+				</view>
+				<view class="item-3 hsColor">
+					+{{ item.upYield }}
+					<view class="fbColor">
 						{{ item.name }}
 					</view>
 				</view>
-				<view class="item-3">
-					{{ item.upYield }}
-					<view class="">
-						{{ item.name }}
-					</view>
-				</view>
-				<view class="item-3">
-					{{ item.sumYield }}
-					<view class="">
+				<view class="item-3 hsColor">
+					+{{ item.sumUpYield }}
+					<view class="fbColor">
 						{{ item.name }}
 					</view>
 				</view>
@@ -120,12 +120,17 @@
 </script>
 
 <style lang="scss">
+	.fbColor{
+		color: #C8C7CC;
+	}
+	.hsColor{
+		color: #DD524D;
+	}
 	$color:#e0e0e0;
 	.content {
 		display: flex;
 		flex: 1;
 		flex-direction: column;
-		
 	}
 	
 	.flex-box {
@@ -175,7 +180,6 @@
 				justify-content: center;
 				align-items: center;
 				box-sizing: border-box;
-				
 			}
 		}
 	}

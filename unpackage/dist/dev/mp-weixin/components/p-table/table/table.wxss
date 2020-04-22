@@ -24,6 +24,12 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.fbColor {
+  color: #C8C7CC;
+}
+.hsColor {
+  color: #DD524D;
+}
 .content {
   display: -webkit-box;
   display: -webkit-flex;

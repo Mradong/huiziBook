@@ -21,6 +21,7 @@
 		<view>
 			<m-table :theadData='theadData' :tableData="tableData"/>
 		</view>
+		<button type="default" class="create" @click="createHuizi">新建会子</button>
 	</view>
 
 </template>
@@ -65,7 +66,15 @@
 			this.id = option.id;
 
 		},
-
+		methods:{
+			createHuizi(){
+				uni.navigateTo({
+					url: '/pages/user/createhuizi/index',
+					animationType: 'pop-in',
+					animationDuration: 200,
+				});
+			}
+		},
 	}
 </script>
 
@@ -112,5 +121,11 @@
 			border-radius: 10rpx;
 			box-shadow: 0 0 3px #C8C7CC;
 		}
+	}
+	.create{
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		color: #DD524D;
 	}
 </style>
