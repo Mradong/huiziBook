@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1551,25 +1551,6 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 121:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/lb-picker/utils.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.isObject = isObject;exports.getIndicatorHeight = getIndicatorHeight;function isObject(val) {
-  return Object.prototype.toString.call(val) === '[object Object]';
-}
-
-function getIndicatorHeight() {
-  return Math.round(uni.getSystemInfoSync().screenWidth / (750 / 100));
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 14:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -1688,6 +1669,38 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 154:
+/*!********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/e-picker/e-picker.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDayArr = getDayArr;exports.getArr = getArr;exports.checkDefaultValue = checkDefaultValue;exports.getDateTimeValue = getDateTimeValue;function getDayArr(y, m) {var flag = y % 4 == 0 && y % 100 != 0 && y % 400 != 0;
+  var nums = [31, flag ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var arr = [];
+  for (var i = 0; i < nums[m - 1]; i++) {arr.push(fmt(i + 1) + '日');}
+  return arr;}
+function getArr(index) {var arr = [],s = 1,len = 13,tag = '月';if (index > 2) {s = 0;
+    if (index == 3) {len = 24;
+      tag = '时';}
+    if (index > 3) {len = 60;
+      if (index == 4) {tag = '分';}
+      if (index == 5) {tag = '秒';}}}
+  for (var i = s; i < len; i++) {arr.push(fmt(i) + tag);}
+  return arr;}
+function fmt(t) {return t > 9 ? t : '0' + t;}
+function checkDefaultValue(m, d) {if (m == 'date' || m == 'dateTime' || m == 'time') {if (!d) {throw Error("'defaultValue'为必填属性");}
+    if (m == 'date' && d.length != 10 || m == 'time' && d.length != 8 || m == 'dateTime' && d.length != 19) {throw Error("'defaultValue'有误，请根据当前mode 正确设置格式");}
+    return;}
+  throw Error("mode\u65E0".concat(m, "\u8BE5\u9009\u9879\u914D\u7F6E"));}
+function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(parseInt(arr[1])),d = fmt(parseInt(arr[2])),h = fmt(parseInt(arr[3])),m = fmt(parseInt(arr[4])),s = fmt(parseInt(arr[5]));
+  if (mode != 'dateTime') return "".concat(y, "-").concat(M, "-").concat(d);
+  return "".concat(y, "-").concat(M, "-").concat(d, " ").concat(h, ":").concat(m, ":").concat(s);}
 
 /***/ }),
 
@@ -7223,7 +7236,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7244,14 +7257,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7327,7 +7340,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7754,9 +7767,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
-  \************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8664,26 +8677,45 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!*****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \*****************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子本", "usingComponents": { "uni-fab": "/components/uni-fab/uni-fab", "huizi-deatil": "/components/huizi-deatil/huizi-detail", "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": { "uni-fab": "/components/uni-fab/uni-fab" } }, "pages/user/index": { "navigationStyle": "custom", "usingComponents": { "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": {} }, "pages/message/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/adduser/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/calendar/index": { "navigationStyle": "custom", "usingComponents": { "dark-calendar": "/components/dark-calendar/dark-calendar", "huizi-deatil": "/components/huizi-deatil/huizi-detail" }, "usingAutoImportComponents": { "dark-calendar": "/components/dark-calendar/dark-calendar" } }, "pages/user/createhuizi/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子本", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子本", "usingComponents": { "uni-fab": "/components/uni-fab/uni-fab", "huizi-deatil": "/components/huizi-deatil/huizi-detail", "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": {} }, "pages/user/index": { "navigationStyle": "custom", "usingComponents": { "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": {} }, "pages/message/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/adduser/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/createhuizi/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/calendar/index": { "navigationStyle": "custom", "usingComponents": { "dark-calendar": "/components/dark-calendar/dark-calendar", "huizi-deatil": "/components/huizi-deatil/huizi-detail" }, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子本", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \****************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "" };exports.default = _default;
+
+/***/ }),
+
+/***/ 88:
+/*!******************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/lb-picker/utils.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.isObject = isObject;exports.getIndicatorHeight = getIndicatorHeight;function isObject(val) {
+  return Object.prototype.toString.call(val) === '[object Object]';
+}
+
+function getIndicatorHeight() {
+  return Math.round(uni.getSystemInfoSync().screenWidth / (750 / 100));
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

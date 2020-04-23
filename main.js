@@ -4,7 +4,6 @@ import zhouWeiNavBar from "@/components/zhouWei-navBar";
 import table from '@/components/p-table/table/table.vue';
 import LbPicker from '@/components/lb-picker'
 
-
 Vue.component("lb-picker", LbPicker)
 Vue.component("nav-bar", zhouWeiNavBar);
 Vue.component('m-table',table);

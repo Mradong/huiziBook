@@ -1,4 +1,6 @@
 {
   "navigationStyle": "custom",
-  "usingComponents": {}
+  "usingComponents": {
+    "e-picker": "/components/e-picker/e-picker"
+  }
 }
