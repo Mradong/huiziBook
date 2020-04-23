@@ -71,7 +71,9 @@ export default {
 							description: this.description,
 							phone: this.phone,
 							site: this.site,
-							selfHuzi:[]
+							selfHuzi:[{
+								
+							}]
 						};
 				
 						try {

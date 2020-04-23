@@ -18,8 +18,11 @@
 				编辑
 			</view>
 		</view>
-		<view>
+		<view v-if=" isHaveData">
 			<m-table :theadData='theadData' :tableData="tableData"/>
+		</view>
+		<view class="noData" v-if=" !isHaveData">
+			没有查询到相关数据-_-||，请尽快录入
 		</view>
 		<button type="default" class="create" @click="createHuizi">新建会子</button>
 	</view>
@@ -33,38 +36,21 @@
 		data() {
 			return {
 				id: null,
+				isHaveData:false,
 				title: '详情',
-				theadData:[{
-					name:'会子名称'
-				},{
-					name:'会子名称'
-				},{
-					name:'会子名称'
-				}],
-				tableData:[{
-					name:'会子名称',
-					upYield:2000,
-					sumYield:200000
-				},
-				{
-					name:'会子名称',
-					upYield:2000,
-					sumYield:200000
-				},
-				{
-					name:'会子名称',
-					upYield:2000,
-					sumYield:200000
-				},{
-					name:'会子名称',
-					upYield:2000,
-					sumYield:200000
-				}]
+				theadData:[]
 			}
 		},
 		onLoad: function(option) {
+			//获取具体用户ID，用于查询具体会子
 			this.id = option.id;
-
+			uni.getStorage({
+			    key: this.id + '_key',
+			    success: function (res) {
+			       this.isHaveData = res.data.selfHuzi.length == 0? false : true ;
+				   this.theadData = res.data.selfHuzi;
+			    }
+			});
 		},
 		methods:{
 			createHuizi(){
@@ -121,6 +107,11 @@
 			border-radius: 10rpx;
 			box-shadow: 0 0 3px #C8C7CC;
 		}
+	}
+	.noData{
+		margin-top: 400rpx;
+		text-align: center;
+		color:#555555;
 	}
 	.create{
 		position: fixed;

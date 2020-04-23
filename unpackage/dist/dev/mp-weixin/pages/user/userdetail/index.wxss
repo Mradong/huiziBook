@@ -41,6 +41,11 @@
   border-radius: 10rpx;
   box-shadow: 0 0 3px #C8C7CC;
 }
+.noData {
+  margin-top: 400rpx;
+  text-align: center;
+  color: #555555;
+}
 .create {
   position: fixed;
   bottom: 0;

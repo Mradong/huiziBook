@@ -71,13 +71,14 @@
 				</view>
 				<view class="form-row">
 					<label class="form-row-title">子项目结束时间</label>
-					<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="end_time" @btnConfirm="endconfirm" class="form-row-select">
-						<view class="time">{{ end_time }}<text> > </text></view>
+					<view class="form-row-select"> {{ end_time }} <text style="color: #fff;"> > </text> </view>
+						
 					</ePicker>
 				</view>
 
 			</view>
 		</view>
+		<button type="warn" class="create" @click="createHuizi">完成</button>
 	</view>
 </template>
 
@@ -133,14 +134,17 @@
 			},
 			confirm( date ) {
 				if( this.subitems_periods != '' &&  this.subitems_monthnum == "1次"){
+					let integer = parseInt(this.subitems_periods/ 12 ) 
+					let remainder  = this.subitems_periods % 12 ;
+					let endTimeArr = date.split('-');
 					
+					let end_timeY = Number(endTimeArr[0]) + integer;
+					let end_timeM =  ( Number(endTimeArr[1]) + remainder )< 10 ? '0' + ( Number(endTimeArr[1]) + remainder ):( Number(endTimeArr[1]) + remainder );
+					this.end_time = end_timeY + '-'+ end_timeM + '-'+ endTimeArr[2];
+					console.log( this.end_time );
 				}
 				this.start_time= date;
-				
-			},
-			endconfirm( date){
-				
-				this.end_time = date;
+
 			},
 			formatDate( date ){
 				var y = date.getFullYear(); 
@@ -149,10 +153,18 @@
 				var d = date.getDate(); 
 				d = d < 10 ? ('0' + d) : d; 
 				return y + '-' + m + '-' + d; 
+			},
+			createHuizi(){
+				console.log( '11')
 			}
 		},
 		components: {
 			ePicker
+		},
+		watch:{
+			subitems_monthnum( num ){
+				console.log( num )
+			}
 		}
 	}
 </script>
@@ -212,9 +224,10 @@
 			}
 		}
 	}
-
-	.but {
+	.create{
+		
 		margin-top: 200rpx;
-		width: 80%;
+		width: 90%;
+		color: #fff;
 	}
 </style>

@@ -74,6 +74,7 @@
 			},
 			toDetail(id) {
 				uni.navigateTo({
+					//唯一ID值传入userdetail页面
 					url: '/pages/user/userdetail/index?id=' + id,
 					animationType: 'pop-in',
 					animationDuration: 200,

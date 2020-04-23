@@ -52,8 +52,9 @@
   padding-right: 20rpx;
   display: inline-block;
 }
-.but {
+.create {
   margin-top: 200rpx;
-  width: 80%;
+  width: 90%;
+  color: #fff;
 }
 
