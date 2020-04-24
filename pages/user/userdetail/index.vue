@@ -18,10 +18,10 @@
 				编辑
 			</view>
 		</view>
-		<view v-if=" isHaveData">
+		<view v-if=" isHaveHuizi">
 			<m-table :theadData='theadData' :tableData="tableData"/>
 		</view>
-		<view class="noData" v-if=" !isHaveData">
+		<view class="noData" v-if=" !isHaveHuizi">
 			没有查询到相关数据-_-||，请尽快录入
 		</view>
 		<button type="default" class="create" @click="createHuizi">新建会子</button>
@@ -36,7 +36,7 @@
 		data() {
 			return {
 				id: null,
-				isHaveData:false,
+				isHaveHuizi:false,
 				title: '详情',
 				theadData:[]
 			}
@@ -46,8 +46,8 @@
 			this.id = option.id;
 			uni.getStorage({
 			    key: this.id + '_key',
-			    success: function (res) {
-			       this.isHaveData = res.data.selfHuzi.length == 0? false : true ;
+			    success:( res ) => {
+			       this.isHaveHuizi = res.data.selfHuzi.length == 0? false : true ;
 				   this.theadData = res.data.selfHuzi;
 			    }
 			});
@@ -55,7 +55,7 @@
 		methods:{
 			createHuizi(){
 				uni.navigateTo({
-					url: '/pages/user/createhuizi/index',
+					url: '/pages/user/createhuizi/index?id='+ this.id,
 					animationType: 'pop-in',
 					animationDuration: 200,
 				});

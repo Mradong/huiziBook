@@ -90,6 +90,11 @@ export default {
 			let firstDayOfMonth = new Date(y, m, 1).getDay(); // 当月第一天星期几
 			let lastDateOfMonth = new Date(y, m + 1, 0).getDate(); // 当月最后一天
 			let lastDayOfLastMonth = new Date(y, m, 0).getDate(); // 上一月的最后一天
+			
+			console.log( firstDayOfMonth)
+				console.log( lastDateOfMonth)
+					console.log( lastDayOfLastMonth)
+					
 			let dates = []; // 所有渲染日历
 			let weekstart = this.weekstart == 7 ? 0 : this.weekstart; // 方便进行日期计算，默认星期从0开始
 			let startDay = (() => {
@@ -100,6 +105,7 @@ export default {
 					return firstDayOfMonth - weekstart;
 				} else {
 					return 7 - weekstart + firstDayOfMonth;
+					
 				}
 			})();
 			let endDay = 7 - ((startDay + lastDateOfMonth) % 7); // 结束还有几天是下个月的
@@ -111,6 +117,7 @@ export default {
 					year: m - 1 >= 0 ? y : y - 1
 				});
 			}
+			console.log( dates )
 			for (let j = 1; j <= lastDateOfMonth; j++) {
 				dates.push({
 					date: j,
