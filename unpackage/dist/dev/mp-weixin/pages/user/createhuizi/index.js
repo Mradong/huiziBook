@@ -133,7 +133,49 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var ePicker = function ePicker() {return Promise.all(/*! import() | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then(__webpack_require__.bind(null, /*! @/components/e-picker/e-picker.vue */ 105));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var ePicker = function ePicker() {return Promise.all(/*! import() | components/e-picker/e-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/e-picker/e-picker")]).then(__webpack_require__.bind(null, /*! @/components/e-picker/e-picker.vue */ 105));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -235,19 +277,24 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       subitems_periods: '',
       subitems_profit: '',
       subitems_fixation: '不定投',
+      subitems_fixation_cost: null,
       subitems_fixation_list: ['不定投', '定投'],
       subitems_share: "1名",
       subitems_share_list: ["1名", "2名"],
       subitems_num: '1期',
       subitems_num_list: ["1期", "2期"],
-      subitems_timemodel: '新历',
-      subitems_timemodel_list: ["新历", "农历"],
       subitems_monthnum: '1次',
       subitems_monthnum_list: ["1次", "2次"],
-      subitems_onetime: 1,
+      subitems_timemodel: '新历',
+      subitems_timemodel_list: ["新历", "农历"],
+      subitems_onetime: '一',
       subitems_twotime: null,
-      ssubitems_time_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-      27, 28],
+      subitems_time_list: ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十', '十一', '十二', '十三', '十四', '十五', '十六',
+      '十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'],
+
+      subitems_newtime_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+      26,
+      27, 28, 29, 30, 31],
 
       start_time: this.formatDate(new Date()),
       end_time: this.formatDate(new Date()) };
@@ -261,25 +308,25 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
   methods: {
     selectFixation: function selectFixation() {
-      this.$refs.fixation.show(); // 定投选择显示
+      this.$refs.fixation.show();
     },
     selectShare: function selectShare() {
-      this.$refs.share.show(); // 缴纳期数显示
+      this.$refs.share.show();
     },
     selectNum: function selectNum() {
-      this.$refs.num.show(); // 缴纳期数显示
+      this.$refs.num.show();
     },
     selectMonthnum: function selectMonthnum() {
-      this.$refs.monthnum.show(); // 缴纳期数显示
+      this.$refs.monthnum.show();
     },
     selectTimemodel: function selectTimemodel() {
-      this.$refs.timemodel.show(); // 缴纳期数显示
+      this.$refs.timemodel.show();
     },
     selectOnetime: function selectOnetime() {
-      this.$refs.onetime.show(); // 缴纳期数显示
+      this.$refs.onetime.show();
     },
     selectTwotime: function selectTwotime() {
-      this.$refs.twotime.show(); // 缴纳期数显示
+      this.$refs.twotime.show();
     },
     confirm: function confirm(date) {
       if (this.subitems_periods != '' && this.subitems_monthnum == "1次") {
@@ -288,7 +335,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
         var endTimeArr = date.split('-');
 
         var end_timeY = Number(endTimeArr[0]) + integer;
-        var end_timeM = Number(endTimeArr[1]) + remainder < 10 ? '0' + (Number(endTimeArr[1]) + remainder) : Number(endTimeArr[1]) + remainder;
+        var end_timeM = Number(endTimeArr[1]) + remainder < 10 ? '0' + (Number(endTimeArr[1]) + remainder) : Number(
+        endTimeArr[1]) + remainder;
         this.end_time = end_timeY + '-' + end_timeM + '-' + endTimeArr[2];
         console.log(this.end_time);
       }
@@ -303,8 +351,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       d = d < 10 ? '0' + d : d;
       return y + '-' + m + '-' + d;
     },
-    createHuizi: function createHuizi() {
-      if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time != this.formatDate(new Date())) {
+    createHuizi: function createHuizi() {var _this = this;
+      if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time !=
+      this.formatDate(new Date())) {
         var dataArr = {
           subitems_name: this.subitems_name,
           subitems_description: this.subitems_description,
@@ -312,6 +361,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
           subitems_profit: this.subitems_profit,
           subitems_share: this.subitems_share,
           subitems_num: this.subitems_num,
+          subitems_timemodel: this.subitems_timemodel,
           subitems_monthnum: this.subitems_monthnum,
           subitems_new_onetime: this.subitems_onetime,
           subitems_new_twotime: this.subitems_twotime,
@@ -319,8 +369,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
           end_time: this.end_time,
           isfull: true };
 
+        uni.getStorage({
+          key: this.id + '_key',
+          success: function success(res) {
+            res.data.self_huzi.push(dataArr);
+            uni.setStorageSync(_this.id + '_key', res.data);
+            uni.navigateTo({
+              url: '/pages/user/userdetail/index?id=' + _this.id,
+              animationType: 'pop-in',
+              animationDuration: 200 });
 
-
+          } });
 
       }
     } },
@@ -332,6 +391,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     subitems_monthnum: function subitems_monthnum(num) {
       console.log(num);
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

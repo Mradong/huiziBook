@@ -26,11 +26,35 @@
 					<view class="warn" v-if="subitems_profit == '' ? true : false">必填</view>
 				</view>
 
-				<view class="form-row">
+				<view class="form-row fixation">
 					<label class="form-row-title">子项目是否定投</label>
 					<view class="form-row-select" @click="selectFixation"> {{ subitems_fixation }} <text> > </text> </view>
 					<lb-picker ref="fixation" v-model="subitems_fixation" :list="subitems_fixation_list"></lb-picker>
+					<view class="red fixation-dec">
+						智能生成往期数据(不定投模式，随机取最高与最低缴费之间值)
+					</view>
 				</view>
+
+				<view class="form-row">
+					<label class="form-row-title">每期定投(元)</label>
+					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="请输入子项目名称" class="form-row-input " />
+					<view class="warn" v-if="subitems_fixation_cost == '' ? true : false">必填</view>
+				</view>
+
+
+				<view class="form-row">
+					<label class="form-row-title form-fixation-title">每期最低缴费(元)</label>
+					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="请输入子项目名称" class="form-row-input " />
+					<view class="warn" v-if="subitems_fixation_cost == '' ? true : false">必填</view>
+				</view>
+
+				<view class="form-row form-fixation">
+					<label class="form-row-title form-fixation-title">每期最高缴费(元)</label>
+					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="请输入子项目名称" class="form-row-input " />
+					<view class="warn" v-if="subitems_fixation_cost == '' ? true : false">必填</view>
+				</view>
+
+
 
 				<view class="form-row">
 					<label class="form-row-title">缴纳份额</label>
@@ -42,29 +66,47 @@
 					<view class="form-row-select" @click="selectNum"> {{ subitems_num }} <text> > </text> </view>
 					<lb-picker ref="num" v-model="subitems_num" :list="subitems_num_list"></lb-picker>
 				</view>
+
 				<view class="form-row">
 					<label class="form-row-title">每月缴纳次数</label>
 					<view class="form-row-select" @click="selectMonthnum"> {{ subitems_monthnum }} <text> > </text> </view>
-					<lb-picker ref="timemodel" v-model="subitems_monthnum" :list="subitems_monthnum_list"></lb-picker>
+					<lb-picker ref="monthnum" v-model="subitems_monthnum" :list="subitems_monthnum_list"></lb-picker>
 				</view>
-				
+
 				<view class="form-row">
 					<label class="form-row-title">缴纳时间模式</label>
 					<view class="form-row-select" @click="selectTimemodel"> {{ subitems_timemodel }} <text> > </text> </view>
-					<lb-picker ref="monthnum" v-model="subitems_timemodel" :list="subitems_timemodel_list"></lb-picker>
+					<lb-picker ref="timemodel" v-model="subitems_timemodel" :list="subitems_timemodel_list "></lb-picker>
 				</view>
-				
-				<view class="form-row">
+				<!-- 选择模式为新历时 -->
+				<view class="form-row" v-if=" subitems_timemodel == '新历' ">
 					<label class="form-row-title">首次缴纳时间</label>
-					<view class="form-row-select" @click="selectOnetime" v-if=" subitems_timemodel == '新历' ">
+					<view class="form-row-select" @click="selectOnetime">
 						<view class="form-row-select-time">(新历)</view> {{ subitems_onetime }} 号<text> > </text>
 					</view>
-					<lb-picker ref="onetime" v-model="subitems_onetime" :list="ssubitems_time_list"></lb-picker>
+					<lb-picker ref="onetime" v-model="subitems_onetime" :list="subitems_newtime_list"></lb-picker>
 				</view>
-				<view class="form-row" v-if=" subitems_monthnum == '2次'">
+				<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '新历'">
 					<label class="form-row-title">再次缴纳时间</label>
 					<view class="form-row-select" @click="selectTwotime">
 						<view class="form-row-select-time">(新历)</view> {{ subitems_twotime }} 号<text> > </text>
+					</view>
+					<lb-picker ref="twotime" v-model="subitems_twotime" :list="subitems_newtime_list"></lb-picker>
+				</view>
+
+				<!-- 选择模式为农历时 -->
+				<view class="form-row" v-if=" subitems_timemodel == '农历' ">
+					<label class="form-row-title">首次缴纳时间</label>
+					<view class="form-row-select" @click="selectOnetime">
+						<view class="form-row-select-time"></view> {{ subitems_onetime }} <text> > </text>
+					</view>
+					<lb-picker ref="onetime" v-model="subitems_onetime" :list="subitems_time_list"></lb-picker>
+				</view>
+
+				<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '农历'">
+					<label class="form-row-title">再次缴纳时间</label>
+					<view class="form-row-select" @click="selectTwotime">
+						<view class="form-row-select-time"></view> {{ subitems_twotime }} <text> > </text>
 					</view>
 					<lb-picker ref="twotime" v-model="subitems_twotime" :list="ssubitems_time_list"></lb-picker>
 				</view>
@@ -78,7 +120,7 @@
 				<view class="form-row">
 					<label class="form-row-title">子项目结束时间</label>
 					<view class="form-row-select"> {{ end_time }} <text style="color: #fff;"> > </text> </view>
-						
+
 					</ePicker>
 				</view>
 
@@ -94,108 +136,125 @@
 	export default {
 		data() {
 			return {
-				id:null,
+				id: null,
 				subitems_name: '',
 				subitems_description: '',
 				subitems_periods: '',
 				subitems_profit: '',
 				subitems_fixation: '不定投',
+				subitems_fixation_cost: null,
 				subitems_fixation_list: ['不定投', '定投'],
 				subitems_share: "1名",
 				subitems_share_list: ["1名", "2名"],
 				subitems_num: '1期',
 				subitems_num_list: ["1期", "2期"],
-				subitems_timemodel:'新历',
-				subitems_timemodel_list: ["新历", "农历"],
 				subitems_monthnum: '1次',
 				subitems_monthnum_list: ["1次", "2次"],
-				subitems_onetime: 1,
+				subitems_timemodel: '新历',
+				subitems_timemodel_list: ["新历", "农历"],
+				subitems_onetime: '一',
 				subitems_twotime: null,
-				ssubitems_time_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-					27, 28
+				subitems_time_list: ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十', '十一', '十二', '十三', '十四', '十五', '十六',
+					'十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'
 				],
-				start_time: this.formatDate ( new Date() ),
-				end_time: this.formatDate ( new Date() ),
+				subitems_newtime_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+					26,
+					27, 28, 29, 30, 31
+				],
+				start_time: this.formatDate(new Date()),
+				end_time: this.formatDate(new Date()),
 
 			}
 		},
 		onLoad: function(option) {
 			//获取具体用户ID，用于关联创建的会子
 			this.id = option.id;
-			
+
 		},
 		methods: {
 			selectFixation() {
-				this.$refs.fixation.show() // 定投选择显示
+				this.$refs.fixation.show()
 			},
 			selectShare() {
-				this.$refs.share.show() // 缴纳期数显示
+				this.$refs.share.show()
 			},
 			selectNum() {
-				this.$refs.num.show() // 缴纳期数显示
+				this.$refs.num.show()
 			},
 			selectMonthnum() {
-				this.$refs.monthnum.show() // 缴纳期数显示
+				this.$refs.monthnum.show()
 			},
-			selectTimemodel(){
-				this.$refs.timemodel.show() // 缴纳期数显示
+			selectTimemodel() {
+				this.$refs.timemodel.show()
 			},
 			selectOnetime() {
-				this.$refs.onetime.show() // 缴纳期数显示
+				this.$refs.onetime.show()
 			},
 			selectTwotime() {
-				this.$refs.twotime.show() // 缴纳期数显示
+				this.$refs.twotime.show()
 			},
-			confirm( date ) {
-				if( this.subitems_periods != '' &&  this.subitems_monthnum == "1次"){
-					let integer = parseInt(this.subitems_periods/ 12 ) 
-					let remainder  = this.subitems_periods % 12 ;
+			confirm(date) {
+				if (this.subitems_periods != '' && this.subitems_monthnum == "1次") {
+					let integer = parseInt(this.subitems_periods / 12)
+					let remainder = this.subitems_periods % 12;
 					let endTimeArr = date.split('-');
-					
+
 					let end_timeY = Number(endTimeArr[0]) + integer;
-					let end_timeM =  ( Number(endTimeArr[1]) + remainder )< 10 ? '0' + ( Number(endTimeArr[1]) + remainder ):( Number(endTimeArr[1]) + remainder );
-					this.end_time = end_timeY + '-'+ end_timeM + '-'+ endTimeArr[2];
-					console.log( this.end_time );
+					let end_timeM = (Number(endTimeArr[1]) + remainder) < 10 ? '0' + (Number(endTimeArr[1]) + remainder) : (Number(
+						endTimeArr[1]) + remainder);
+					this.end_time = end_timeY + '-' + end_timeM + '-' + endTimeArr[2];
+					console.log(this.end_time);
 				}
-				this.start_time= date;
+				this.start_time = date;
 
 			},
-			formatDate( date ){
-				var y = date.getFullYear(); 
-				var m = date.getMonth() + 1; 
-				m = m < 10 ? '0' + m : m; 
-				var d = date.getDate(); 
-				d = d < 10 ? ('0' + d) : d; 
-				return y + '-' + m + '-' + d; 
+			formatDate(date) {
+				var y = date.getFullYear();
+				var m = date.getMonth() + 1;
+				m = m < 10 ? '0' + m : m;
+				var d = date.getDate();
+				d = d < 10 ? ('0' + d) : d;
+				return y + '-' + m + '-' + d;
 			},
-			createHuizi(){
-				if( this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time !=this.formatDate ( new Date() )){
-					let dataArr ={
-						subitems_name:this.subitems_name,
-						subitems_description:this.subitems_description,
+			createHuizi() {
+				if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time !=
+					this.formatDate(new Date())) {
+					let dataArr = {
+						subitems_name: this.subitems_name,
+						subitems_description: this.subitems_description,
 						subitems_periods: this.subitems_periods,
-						subitems_profit :this.subitems_profit,
-						subitems_share:this.subitems_share,
-						subitems_num:this.subitems_num,
-						subitems_monthnum:this.subitems_monthnum,
-						subitems_new_onetime:this.subitems_onetime,
-						subitems_new_twotime:this.subitems_twotime,
-						start_time:this.start_time,
-						end_time:this.end_time,
-						isfull:true
+						subitems_profit: this.subitems_profit,
+						subitems_share: this.subitems_share,
+						subitems_num: this.subitems_num,
+						subitems_timemodel: this.subitems_timemodel,
+						subitems_monthnum: this.subitems_monthnum,
+						subitems_new_onetime: this.subitems_onetime,
+						subitems_new_twotime: this.subitems_twotime,
+						start_time: this.start_time,
+						end_time: this.end_time,
+						isfull: true
 					}
-					
-					
-					
+					uni.getStorage({
+						key: this.id + '_key',
+						success: (res) => {
+							res.data.self_huzi.push(dataArr);
+							uni.setStorageSync(this.id + '_key', res.data);
+							uni.navigateTo({
+								url: '/pages/user/userdetail/index?id=' + this.id,
+								animationType: 'pop-in',
+								animationDuration: 200,
+							});
+						}
+					});
 				}
 			}
 		},
 		components: {
 			ePicker
 		},
-		watch:{
-			subitems_monthnum( num ){
-				console.log( num )
+		watch: {
+			subitems_monthnum(num) {
+				console.log(num)
 			}
 		}
 	}
@@ -236,7 +295,7 @@
 			&-select {
 				flex: 2;
 				text-align: left;
-				
+
 				text {
 					color: grey;
 					position: absolute;
@@ -245,9 +304,11 @@
 					font-size: 60rpx;
 
 				}
-				view.time{
+
+				view.time {
 					color: #000;
 				}
+
 				view {
 					color: grey;
 					padding-right: 20rpx;
@@ -255,9 +316,26 @@
 				}
 			}
 		}
+		&-fixation{
+			&-title {
+				flex: 4 !important;
+			}
+		}
+		.fixation {
+			height: 140rpx;
+
+			&-dec {
+				position: absolute;
+				top: 56rpx;
+				font-size: 6px;
+				color: #DD524D;
+			}
+		}
+
 	}
-	.create{
-		
+
+	.create {
+
 		margin-top: 200rpx;
 		width: 90%;
 		color: #fff;

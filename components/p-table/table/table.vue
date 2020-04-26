@@ -6,9 +6,9 @@
 				<view class="item-3"  v-for=" (item,index) in theadData" :key=index >{{ item.name }}</view>
 			</view>
 			<view class="flex-box table tc" v-for=" (item,index) in tableData" :key=index >
-				<view class="item-3">
+				<view class="item-3"> 
 					<view class="">
-						{{ item.name }}
+						{{ item.subitems_name }}
 					</view>
 					<view class="fbColor">
 						已缴纳{{ item.payment }}期

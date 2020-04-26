@@ -90,11 +90,7 @@ export default {
 			let firstDayOfMonth = new Date(y, m, 1).getDay(); // 当月第一天星期几
 			let lastDateOfMonth = new Date(y, m + 1, 0).getDate(); // 当月最后一天
 			let lastDayOfLastMonth = new Date(y, m, 0).getDate(); // 上一月的最后一天
-			
-			console.log( firstDayOfMonth)
-				console.log( lastDateOfMonth)
-					console.log( lastDayOfLastMonth)
-					
+								
 			let dates = []; // 所有渲染日历
 			let weekstart = this.weekstart == 7 ? 0 : this.weekstart; // 方便进行日期计算，默认星期从0开始
 			let startDay = (() => {
@@ -109,7 +105,7 @@ export default {
 				}
 			})();
 			let endDay = 7 - ((startDay + lastDateOfMonth) % 7); // 结束还有几天是下个月的
-			for (let i = 1; i <= startDay; i++) {
+			for (let i = 1; i <= startDay; i++) { //上一个月剩余天数的数据
 				dates.push({
 					date: lastDayOfLastMonth - startDay + i,
 					day: weekstart + i - 1 || 7,
@@ -117,7 +113,7 @@ export default {
 					year: m - 1 >= 0 ? y : y - 1
 				});
 			}
-			console.log( dates )
+			
 			for (let j = 1; j <= lastDateOfMonth; j++) {
 				dates.push({
 					date: j,
@@ -127,8 +123,10 @@ export default {
 					lm: true
 				});
 			}
+			console.log( dates )
+			
 			for (let k = 1; k <= endDay; k++) {
-				dates.push({
+				dates.push({//下一个月剩余天数的数据
 					date: k,
 					day: (lastDateOfMonth + startDay + weekstart + k - 1) % 7 || 7,
 					month: m + 1 <= 11 ? m + 1 : 0,
@@ -136,12 +134,14 @@ export default {
 				});
 			}
 			return dates;
+			
 		},
 		// 已经签到处理
 		isSigned(y, m, d) {
 			let flag = false;
 			for (let i = 0; i < this.signeddates.length; i++) {
 				let dy = `${y}-${m}-${d}`;
+				
 				if (this.signeddates[i] == dy) {
 					flag = true;
 					break;

@@ -52,6 +52,20 @@
   padding-right: 20rpx;
   display: inline-block;
 }
+.form-fixation-title {
+  -webkit-box-flex: 4 !important;
+  -webkit-flex: 4 !important;
+          flex: 4 !important;
+}
+.form .fixation {
+  height: 140rpx;
+}
+.form .fixation-dec {
+  position: absolute;
+  top: 56rpx;
+  font-size: 6px;
+  color: #DD524D;
+}
 .create {
   margin-top: 200rpx;
   width: 90%;

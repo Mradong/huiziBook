@@ -55,7 +55,7 @@ export default {
 							description: this.description,
 							phone: this.phone,
 							site: this.site,
-							selfHuzi:[]
+							self_huzi:[]
 						};
 						try {
 							uni.setStorageSync('huizi_keys', keysArray); //创建本地会子KEY值数组，用于后续遍历查询
@@ -71,9 +71,7 @@ export default {
 							description: this.description,
 							phone: this.phone,
 							site: this.site,
-							selfHuzi:[{
-								
-							}]
+							self_huzi:[]
 						};
 				
 						try {

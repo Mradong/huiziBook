@@ -38,19 +38,33 @@
 				id: null,
 				isHaveHuizi:false,
 				title: '详情',
-				theadData:[]
+				theadData:[{name:'会子名称'},{name:'上期收益'},{name:'总收益'}],
+				tableData:[],
 			}
 		},
 		onLoad: function(option) {
 			//获取具体用户ID，用于查询具体会子
 			this.id = option.id;
+			
 			uni.getStorage({
 			    key: this.id + '_key',
 			    success:( res ) => {
-			       this.isHaveHuizi = res.data.selfHuzi.length == 0? false : true ;
-				   this.theadData = res.data.selfHuzi;
+			       this.isHaveHuizi = res.data.self_huzi.length == 0 ? false : true ;
+				   let date = new Date();
+				   for(let i = 0; i <res.data.self_huzi.length;i++ ){
+					   let endTimeArr = res.data.self_huzi[i].start_time.toString().split('-');
+					   let payment_num_y =  date.getFullYear() - endTimeArr[0];
+					   let payment_num_m =  date.getDate() >= endTimeArr[2]  ?  date.getMonth() +1  - endTimeArr[1] : date.getMonth()  - endTimeArr[1];
+					   let tableData = {
+						   name:res.data.self_huzi.subitems_name,
+						   payment: payment_num_y*12 + payment_num_m,
+					   }; 
+				   }
+
 			    }
 			});
+			
+
 		},
 		methods:{
 			createHuizi(){

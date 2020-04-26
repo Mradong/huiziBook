@@ -15,7 +15,7 @@ export default {
 	data() {
 		return {
 			title: 'Hello',
-			signeddates: ['2020-4-15', '2020-4-17'],
+			signeddates: ['2020-3-15','2020-3-30','2020-4-15', '2020-4-17','2020-5-1'],
 			huiziData: [],
 			huizi: {
 				//模拟会子数据

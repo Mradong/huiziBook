@@ -173,18 +173,32 @@ var _default =
       id: null,
       isHaveHuizi: false,
       title: '详情',
-      theadData: [] };
+      theadData: [{ name: '会子名称' }, { name: '上期收益' }, { name: '总收益' }],
+      tableData: [] };
 
   },
   onLoad: function onLoad(option) {var _this = this;
     //获取具体用户ID，用于查询具体会子
     this.id = option.id;
+
     uni.getStorage({
       key: this.id + '_key',
       success: function success(res) {
-        _this.isHaveHuizi = res.data.selfHuzi.length == 0 ? false : true;
-        _this.theadData = res.data.selfHuzi;
+        _this.isHaveHuizi = res.data.self_huzi.length == 0 ? false : true;
+        var date = new Date();
+        for (var i = 0; i < res.data.self_huzi.length; i++) {
+          var endTimeArr = res.data.self_huzi[i].start_time.toString().split('-');
+          var payment_num_y = date.getFullYear() - endTimeArr[0];
+          var payment_num_m = date.getDate() >= endTimeArr[2] ? date.getMonth() + 1 - endTimeArr[1] : date.getMonth() - endTimeArr[1];
+          var tableData = {
+            name: res.data.self_huzi.subitems_name,
+            payment: payment_num_y * 12 + payment_num_m };
+
+        }
+
       } });
+
+
 
   },
   methods: {
