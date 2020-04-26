@@ -30,28 +30,31 @@
 					<label class="form-row-title">子项目是否定投</label>
 					<view class="form-row-select" @click="selectFixation"> {{ subitems_fixation }} <text> > </text> </view>
 					<lb-picker ref="fixation" v-model="subitems_fixation" :list="subitems_fixation_list"></lb-picker>
-					<view class="red fixation-dec">
-						智能生成往期数据(不定投模式，随机取最高与最低缴费之间值)
+					<view class="red fixation-dec" v-if="subitems_fixation == '定投' ">
+						将智能生成往期数据
+					</view>
+					<view class="red fixation-dec" v-if="subitems_fixation == '不定投' ">
+						智能生成往期数据,随机取最高与最低缴费之间的值
 					</view>
 				</view>
 
-				<view class="form-row">
+				<view class="form-row" v-if="subitems_fixation == '定投' ">
 					<label class="form-row-title">每期定投(元)</label>
-					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="请输入子项目名称" class="form-row-input " />
+					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="00.00" class="form-row-input " />
 					<view class="warn" v-if="subitems_fixation_cost == '' ? true : false">必填</view>
 				</view>
 
 
-				<view class="form-row">
+				<view class="form-row" v-if="subitems_fixation == '不定投' ">
 					<label class="form-row-title form-fixation-title">每期最低缴费(元)</label>
-					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="请输入子项目名称" class="form-row-input " />
-					<view class="warn" v-if="subitems_fixation_cost == '' ? true : false">必填</view>
+					<input type="text" maxlength="11" v-model="subitems_fixation_low_cost" placeholder="00.00" class="form-row-input " />
+					<view class="warn" v-if="subitems_fixation_low_cost == '' ? true : false">必填</view>
 				</view>
 
-				<view class="form-row form-fixation">
+				<view class="form-row form-fixation" v-if="subitems_fixation == '不定投' ">
 					<label class="form-row-title form-fixation-title">每期最高缴费(元)</label>
-					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="请输入子项目名称" class="form-row-input " />
-					<view class="warn" v-if="subitems_fixation_cost == '' ? true : false">必填</view>
+					<input type="text" maxlength="11" v-model="subitems_fixation_high_cost" placeholder="00.00" class="form-row-input " />
+					<view class="warn" v-if="subitems_fixation_high_cost == '' ? true : false">必填</view>
 				</view>
 
 
@@ -108,7 +111,7 @@
 					<view class="form-row-select" @click="selectTwotime">
 						<view class="form-row-select-time"></view> {{ subitems_twotime }} <text> > </text>
 					</view>
-					<lb-picker ref="twotime" v-model="subitems_twotime" :list="ssubitems_time_list"></lb-picker>
+					<lb-picker ref="twotime" v-model="subitems_twotime" :list="subitems_time_list"></lb-picker>
 				</view>
 
 				<view class="form-row">
@@ -142,7 +145,9 @@
 				subitems_periods: '',
 				subitems_profit: '',
 				subitems_fixation: '不定投',
-				subitems_fixation_cost: null,
+				subitems_fixation_cost:'',
+				subitems_fixation_low_cost: '',
+				subitems_fixation_high_cost: '',
 				subitems_fixation_list: ['不定投', '定投'],
 				subitems_share: "1名",
 				subitems_share_list: ["1名", "2名"],
@@ -158,8 +163,7 @@
 					'十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'
 				],
 				subitems_newtime_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
-					26,
-					27, 28, 29, 30, 31
+					26,27, 28, 29, 30, 31
 				],
 				start_time: this.formatDate(new Date()),
 				end_time: this.formatDate(new Date()),
@@ -194,6 +198,7 @@
 				this.$refs.twotime.show()
 			},
 			confirm(date) {
+				//自动生成结束时间
 				if (this.subitems_periods != '' && this.subitems_monthnum == "1次") {
 					let integer = parseInt(this.subitems_periods / 12)
 					let remainder = this.subitems_periods % 12;
@@ -216,22 +221,62 @@
 				d = d < 10 ? ('0' + d) : d;
 				return y + '-' + m + '-' + d;
 			},
+			
+			random(min, max) {
+			  return Math.floor(Math.random() * (max - min)) + min;
+			},
+
 			createHuizi() {
 				if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time !=
 					this.formatDate(new Date())) {
+					let date = new Date();
+					let endTimeArr = this.start_time.toString().split('-');
+					let payment_num_y =  date.getFullYear() - endTimeArr[0]; //当结束时间小于当前时间，存着bug
+					let payment_num_m =  date.getDate() >= endTimeArr[2]  ?  date.getMonth() +1  - endTimeArr[1] : date.getMonth()  - endTimeArr[1];	
+					let payment_num = payment_num_y*12 + payment_num_m;
+					let huizi_arr = [];
+					if( this.subitems_fixation == '不定投' && this.subitems_monthnum == "1次"){
+							for( let i = 0 ; i < payment_num ; i++){
+								huizi_arr[i]={
+									year:  +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[0] +  parseInt( i /12) ) + 1 : +endTimeArr[0] +  parseInt( i /12),
+									month: +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[1]  + i % 12 ) - 12 : +endTimeArr[1] + i % 12,
+									day:endTimeArr[2],
+									cost:this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
+								}
+							}
+					}
+					else if ( this.subitems_fixation == '不定投' && this.subitems_monthnum == "2次" ){
+						subitems_time_list
+						subitems_newtime_list
+						
+						for( let i = 0 ; i < payment_num ; i++){
+							huizi_arr[i]={
+								year:  +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[0] +  parseInt( i /12) ) + 1 : +endTimeArr[0] +  parseInt( i /12),
+								month: +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[1]  + i % 12 ) - 12 : +endTimeArr[1] + i % 12,
+								day:endTimeArr[2],
+								cost:this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
+							}
+						}
+					}
+					console.log(  huizi_arr )
 					let dataArr = {
-						subitems_name: this.subitems_name,
-						subitems_description: this.subitems_description,
-						subitems_periods: this.subitems_periods,
-						subitems_profit: this.subitems_profit,
-						subitems_share: this.subitems_share,
-						subitems_num: this.subitems_num,
-						subitems_timemodel: this.subitems_timemodel,
-						subitems_monthnum: this.subitems_monthnum,
-						subitems_new_onetime: this.subitems_onetime,
-						subitems_new_twotime: this.subitems_twotime,
-						start_time: this.start_time,
-						end_time: this.end_time,
+						subitems_name: this.subitems_name,//项目名称
+						subitems_description: this.subitems_description,//项目描述
+						subitems_periods: this.subitems_periods,//项目描述
+						subitems_profit: this.subitems_profit,//项目总期数
+						subitems_share: this.subitems_share,//项目回报
+						subitems_fixation:this.subitems_fixation,//项目是否定投，
+						subitems_fixation_cost:this.subitems_fixation_cost,//项目定投模式下，每月缴费
+						subitems_fixation_low_cost: this.subitems_fixation_low_cost,//项目不定投模式下，每月最低缴费
+						subitems_fixation_high_cost: this.subitems_fixation_high_cost,//项目不定投模式下，每月最高缴费
+						subitems_num: this.subitems_num,//会头缴纳期数
+						subitems_timemodel: this.subitems_timemodel,//项目时间模式
+						subitems_monthnum: this.subitems_monthnum,//月缴费期数
+						subitems_new_onetime: this.subitems_onetime,//第一次缴费时间
+						subitems_new_twotime: this.subitems_twotime,//第二次缴费时间
+						start_time: this.start_time,//项目开始时间
+						end_time: this.end_time,//项目结束时间
+						payment_num:payment_num,//项目创建时，已缴纳的期数
 						isfull: true
 					}
 					uni.getStorage({
