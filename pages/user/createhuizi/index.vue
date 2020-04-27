@@ -21,7 +21,7 @@
 					<view class="warn" v-if="subitems_periods == '' ? true : false">必填</view>
 				</view>
 				<view class="form-row">
-					<label class="form-row-title">子项目回报</label>
+					<label class="form-row-title">子项目死期</label>
 					<input type="text" maxlength="11" v-model="subitems_profit" placeholder="请输入子项目回报" class="form-row-input " />
 					<view class="warn" v-if="subitems_profit == '' ? true : false">必填</view>
 				</view>
@@ -245,20 +245,17 @@
 								}
 							}
 					}
-					else if ( this.subitems_fixation == '不定投' && this.subitems_monthnum == "2次" ){
-						subitems_time_list
-						subitems_newtime_list
-						
-						for( let i = 0 ; i < payment_num ; i++){
-							huizi_arr[i]={
-								year:  +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[0] +  parseInt( i /12) ) + 1 : +endTimeArr[0] +  parseInt( i /12),
-								month: +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[1]  + i % 12 ) - 12 : +endTimeArr[1] + i % 12,
-								day:endTimeArr[2],
-								cost:this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
-							}
-						}
-					}
-					console.log(  huizi_arr )
+					// else if ( this.subitems_fixation == '不定投' && this.subitems_monthnum == "2次" ){						
+					// 	for( let i = 0 ; i < payment_num ; i++){
+					// 		huizi_arr[i]={
+					// 			year:  +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[0] +  parseInt( i /12) ) + 1 : +endTimeArr[0] +  parseInt( i /12),
+					// 			month: +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[1]  + i % 12 ) - 12 : +endTimeArr[1] + i % 12,
+					// 			day:endTimeArr[2],
+					// 			cost:this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
+					// 		}
+					// 	}
+					// }
+					
 					let dataArr = {
 						subitems_name: this.subitems_name,//项目名称
 						subitems_description: this.subitems_description,//项目描述
@@ -276,13 +273,26 @@
 						subitems_new_twotime: this.subitems_twotime,//第二次缴费时间
 						start_time: this.start_time,//项目开始时间
 						end_time: this.end_time,//项目结束时间
-						payment_num:payment_num,//项目创建时，已缴纳的期数
+						payment_num:payment_num,//项目创建时，已缴纳的期数，
+						huizi_arr:huizi_arr,
 						isfull: true
 					}
+					let id_huizi = { };
 					uni.getStorage({
 						key: this.id + '_key',
 						success: (res) => {
-							res.data.self_huzi.push(dataArr);
+							if( res.data.self_huzi.length == 0 ){
+								id_huizi = {
+									id:this.id + 'a2020b' + 1 ,
+								}
+							}
+							else{
+								id_huizi = {
+									id: this.id + 'a2020b' + ( res.data.self_huzi.length + 1 ),
+								}
+							}
+							
+							res.data.self_huzi.push( Object.assign( id_huizi  , dataArr ) );
 							uni.setStorageSync(this.id + '_key', res.data);
 							uni.navigateTo({
 								url: '/pages/user/userdetail/index?id=' + this.id,

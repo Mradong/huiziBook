@@ -5,7 +5,7 @@
 		<view class="user-message">
 			<view class="user-message-l">
 				<view class="user-message-l-top">
-					娃哈哈 | 12345678
+					{{ uesr_huizi_data.name }} | {{ uesr_huizi_data.phone }}
 				</view>
 				<view class="user-message-l-con">
 					<text>预计总收入（元）</text>
@@ -38,6 +38,7 @@
 				id: null,
 				isHaveHuizi:false,
 				title: '详情',
+				uesr_huizi_data:{},
 				theadData:[{name:'会子名称'},{name:'上期收益'},{name:'总收益'}],
 				tableData:[],
 			}
@@ -45,22 +46,23 @@
 		onLoad: function(option) {
 			//获取具体用户ID，用于查询具体会子
 			this.id = option.id;
-			
+			let tableData =[];
 			uni.getStorage({
 			    key: this.id + '_key',
 			    success:( res ) => {
 			       this.isHaveHuizi = res.data.self_huzi.length == 0 ? false : true ;
-				   let date = new Date();
-				   for(let i = 0; i <res.data.self_huzi.length;i++ ){
-					   let endTimeArr = res.data.self_huzi[i].start_time.toString().split('-');
-					   let payment_num_y =  date.getFullYear() - endTimeArr[0];
-					   let payment_num_m =  date.getDate() >= endTimeArr[2]  ?  date.getMonth() +1  - endTimeArr[1] : date.getMonth()  - endTimeArr[1];
-					   let tableData = {
-						   name:res.data.self_huzi.subitems_name,
-						   payment: payment_num_y*12 + payment_num_m,
-					   }; 
+				   this.uesr_huizi_data = {
+					   name : res.data.name,
+					   phone : res.data.phone,
 				   }
-
+				   for(let i = 0 ;  i< res.data.self_huzi.length ;i++){
+					   tableData.push({
+						   subitems_name:res.data.self_huzi[i].subitems_name,
+						   payment:res.data.self_huzi[i].payment_num,
+					   })
+				   }
+				   this.tableData = tableData;
+				   
 			    }
 			});
 			

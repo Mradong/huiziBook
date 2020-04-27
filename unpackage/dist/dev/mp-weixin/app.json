@@ -45,6 +45,5 @@
     "lb-picker": "/components/lb-picker/index",
     "nav-bar": "/components/zhouWei-navBar/index",
     "m-table": "/components/p-table/table/table"
-  },
-  "sitemapLocation": "sitemap10.json"
+  }
 }

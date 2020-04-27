@@ -15,15 +15,15 @@
 					</view>
 				</view>
 				<view class="item-3 hsColor">
-					+{{ item.upYield }}
+					+{{ item.subitems_name }}
 					<view class="fbColor">
-						{{ item.name }}
+						{{ item.subitems_name }}
 					</view>
 				</view>
 				<view class="item-3 hsColor">
-					+{{ item.sumUpYield }}
+					+{{ item.subitems_name }}
 					<view class="fbColor">
-						{{ item.name }}
+						{{ item.subitems_name }}
 					</view>
 				</view>
 			</view>

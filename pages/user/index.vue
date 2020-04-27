@@ -8,7 +8,7 @@
 			<view class="data-user-item" @click="toDetail(item.id)">
 				<view class="data-user-item-logo">
 					<view class="data-user-item-logo-ball">
-						{{ item.self_huzi.length + 1 }}
+						{{ item.self_huzi.length }} 
 					</view>
 					<image src="../../static/logo.png" mode=""></image>
 				</view>
