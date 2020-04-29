@@ -2,7 +2,7 @@
 	<view class="calendar-list">
 		<nav-bar fontColor="#000" backState="1000" :home='false' :titleCenter="true" type="fixed" title="会子本">
 		</nav-bar>
-		<view><dark-calendar :signeddates="signeddates" @on-click="getDayData"></dark-calendar></view>
+		<view><dark-calendar  @on-click="getDayData"></dark-calendar></view>
 
 		<huizi-deatil class="huiz-com" :huiziData="huiziData"></huizi-deatil>
 	</view>
@@ -15,7 +15,6 @@ export default {
 	data() {
 		return {
 			title: 'Hello',
-			signeddates: ['2020-3-15','2020-3-30','2020-4-15', '2020-4-17','2020-5-1'],
 			huiziData: [],
 			huizi: {
 				//模拟会子数据

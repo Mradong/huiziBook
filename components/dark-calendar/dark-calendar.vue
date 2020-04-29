@@ -16,6 +16,7 @@
 					<view class="day" @click="selectOne(item, $event)" :class="{ choose: choose == `${item.year}-${item.month + 1}-${item.date}`, nolm: !item.lm }">
 						{{ item.date }}
 					</view>
+					<view class='old-time' v-if="!isSigned(item.year, item.month + 1, item.date)">初一</view>
 					<view class="sign" v-if="isSigned(item.year, item.month + 1, item.date)"></view>
 					<view class="today-text" v-if="isToday(item.year, item.month, item.date)">今</view>
 				</view>
@@ -27,6 +28,9 @@
 </template>
 
 <script>
+	
+import publicFnc from '@/static/js/public.js';
+	
 export default {
 	name: 'dark-calendar',
 	props: {
@@ -35,11 +39,7 @@ export default {
 			type: Number,
 			default: 7
 		},
-		// 已经签到的日期
-		signeddates: {
-			type: Array,
-			default: () => []
-		},
+		
 		// 是否展开
 		open: {
 			type: Boolean,
@@ -59,12 +59,14 @@ export default {
 			dates: [], // 当前月日期集合
 			positionTop: 0,
 			monthOpen: true,
-			choose: ''
+			choose: '',
+			signeddates:[]
 		};
 	},
 	created() {
 		this.dates = this.monthDay(this.y, this.m);
 		!this.open && this.trgWeek();
+		this.getSignedDates(this.y, this.m);
 	},
 	mounted() {
 		let date = new Date();
@@ -72,8 +74,6 @@ export default {
 		let m = date.getMonth();
 		let d = date.getDate();
 		this.choose = `${y}-${m + 1}-${d}`;
-
-		console.log(this.choose);
 	},
 	computed: {
 		// 顶部星期栏目
@@ -123,8 +123,6 @@ export default {
 					lm: true
 				});
 			}
-			console.log( dates )
-			
 			for (let k = 1; k <= endDay; k++) {
 				dates.push({//下一个月剩余天数的数据
 					date: k,
@@ -194,9 +192,68 @@ export default {
 					this.m = this.m - 1;
 				}
 			}
-
+           
 			this.dates = this.monthDay(this.y, this.m);
+			this.getSignedDates(this.y, this.m);
+		},
+		//获取本月及前后打点数据
+		getSignedDates(y,m){
+			let keysArray = uni.getStorageSync('huizi_keys');
+			let len = keysArray.length;
+			let signed_data = [];
+			if (keysArray) {
+				for (let i = 0; i < len; i++) {
+					uni.getStorage({
+						key: i + '_key',
+						success: (res) =>{
+							let huiziLen =  res.data.self_huzi.length;
+							for( let j = 0; j < huiziLen; j++){
+								let startTime = res.data.self_huzi[i].start_time.toString().split('-');
+								let endTime = res.data.self_huzi[i].end_time.toString().split('-');
+								let onetime = null;
+								let twotime = null;
+								if( startTime[0] <= y && y <= endTime[0]){
+									if( res.data.self_huzi[j].subitems_timemodel == '新历' ){
+										console.log(res.data.self_huzi[j].subitems_timemodel)
+										onetime = res.data.self_huzi[j].subitems_new_onetime;
+										twotime = res.data.self_huzi[j].subitems_new_twotime == null? false: res.data.self_huzi[j].subitems_new_twotime;
+										signed_data.push( y+'-' + (m +1) +'-' + onetime);
+										signed_data.push( y+'-' + (m +1) +'-' + twotime);
+										
+									}
+									else{
+										if( res.data.self_huzi[j].subitems_old_twotime ==null){
+											//第一次缴费时间打点
+										  for(let index=0;index<3;index++){
+											let tempTimeArr= publicFnc.Lunar.toSolar(y, m+index , res.data.self_huzi[j].subitems_old_onetime );
+											signed_data.push(tempTimeArr[0] +'-' + tempTimeArr[1]+ '-' +tempTimeArr[2] );
+										  }
+
+										}
+										else{
+											//第一次缴费时间打点
+										  for(let index=0;index<3;index++){
+											let tempTimeArr= publicFnc.Lunar.toSolar(y, m+index , res.data.self_huzi[j].subitems_old_onetime );
+											signed_data.push(tempTimeArr[0] +'-' + tempTimeArr[1]+ '-' +tempTimeArr[2] );
+										  }
+											
+											//第二次缴费时间打点
+										  for(let index=0;index<3;index++){
+											let tempTimeArr= publicFnc.Lunar.toSolar(y, m+index , res.data.self_huzi[j].subitems_old_twotime );
+											signed_data.push(tempTimeArr[0] +'-' + tempTimeArr[1]+ '-' +tempTimeArr[2] );
+										  }
+										}
+									}
+								}
+							}
+						}
+					});
+				}
+				console.log( signed_data )
+				this.signeddates = signed_data;	
+			}
 		}
+		
 	}
 };
 </script>
@@ -274,7 +331,12 @@ export default {
 						opacity: 0.3;
 					}
 				}
-
+                .old-time{
+					position: absolute;
+					top: 28rpx;
+					right: 20rpx;
+					font-size: 12rpx;
+				}
 				.sign {
 					font-style: normal;
 					width: 20upx;
@@ -286,6 +348,7 @@ export default {
 					margin-left: -10upx;
 					bottom: 0;
 					pointer-events: none;
+					z-index: 9;
 				}
 
 				.today-text {
