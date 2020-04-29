@@ -16,7 +16,9 @@
 					<view class="day" @click="selectOne(item, $event)" :class="{ choose: choose == `${item.year}-${item.month + 1}-${item.date}`, nolm: !item.lm }">
 						{{ item.date }}
 					</view>
-					<view class='old-time' v-if="!isSigned(item.year, item.month + 1, item.date)">初一</view>
+					<view class="old-time" :class="{ oldnolm: !item.lm }" v-if="!isSigned(item.year, item.month + 1, item.date)" >
+						{{ item.lunar }}
+					</view>
 					<view class="sign" v-if="isSigned(item.year, item.month + 1, item.date)"></view>
 					<view class="today-text" v-if="isToday(item.year, item.month, item.date)">今</view>
 				</view>
@@ -28,9 +30,8 @@
 </template>
 
 <script>
-	
 import publicFnc from '@/static/js/public.js';
-	
+
 export default {
 	name: 'dark-calendar',
 	props: {
@@ -39,7 +40,7 @@ export default {
 			type: Number,
 			default: 7
 		},
-		
+
 		// 是否展开
 		open: {
 			type: Boolean,
@@ -60,13 +61,15 @@ export default {
 			positionTop: 0,
 			monthOpen: true,
 			choose: '',
-			signeddates:[]
+			signeddates: [],
+			
 		};
 	},
 	created() {
 		this.dates = this.monthDay(this.y, this.m);
 		!this.open && this.trgWeek();
 		this.getSignedDates(this.y, this.m);
+		this.getToLunar();
 	},
 	mounted() {
 		let date = new Date();
@@ -90,7 +93,7 @@ export default {
 			let firstDayOfMonth = new Date(y, m, 1).getDay(); // 当月第一天星期几
 			let lastDateOfMonth = new Date(y, m + 1, 0).getDate(); // 当月最后一天
 			let lastDayOfLastMonth = new Date(y, m, 0).getDate(); // 上一月的最后一天
-								
+
 			let dates = []; // 所有渲染日历
 			let weekstart = this.weekstart == 7 ? 0 : this.weekstart; // 方便进行日期计算，默认星期从0开始
 			let startDay = (() => {
@@ -101,45 +104,49 @@ export default {
 					return firstDayOfMonth - weekstart;
 				} else {
 					return 7 - weekstart + firstDayOfMonth;
-					
 				}
 			})();
 			let endDay = 7 - ((startDay + lastDateOfMonth) % 7); // 结束还有几天是下个月的
-			for (let i = 1; i <= startDay; i++) { //上一个月剩余天数的数据
+			for (let i = 1; i <= startDay; i++) {
+				//上一个月剩余天数的数据
 				dates.push({
 					date: lastDayOfLastMonth - startDay + i,
 					day: weekstart + i - 1 || 7,
 					month: m - 1 >= 0 ? m - 1 : 12,
-					year: m - 1 >= 0 ? y : y - 1
+					year: m - 1 >= 0 ? y : y - 1,
+					lunar:''
 				});
 			}
-			
+
 			for (let j = 1; j <= lastDateOfMonth; j++) {
 				dates.push({
 					date: j,
 					day: (j % 7) + firstDayOfMonth - 1 || 7,
 					month: m,
 					year: y,
+					lunar:'',
 					lm: true
 				});
 			}
 			for (let k = 1; k <= endDay; k++) {
-				dates.push({//下一个月剩余天数的数据
+				dates.push({
+					//下一个月剩余天数的数据
 					date: k,
 					day: (lastDateOfMonth + startDay + weekstart + k - 1) % 7 || 7,
 					month: m + 1 <= 11 ? m + 1 : 0,
-					year: m + 1 <= 11 ? y : y + 1
+					year: m + 1 <= 11 ? y : y + 1,
+					lunar:''
 				});
 			}
+			console.log(dates);
 			return dates;
-			
 		},
 		// 已经签到处理
 		isSigned(y, m, d) {
 			let flag = false;
 			for (let i = 0; i < this.signeddates.length; i++) {
 				let dy = `${y}-${m}-${d}`;
-				
+
 				if (this.signeddates[i] == dy) {
 					flag = true;
 					break;
@@ -192,12 +199,13 @@ export default {
 					this.m = this.m - 1;
 				}
 			}
-           
+
 			this.dates = this.monthDay(this.y, this.m);
 			this.getSignedDates(this.y, this.m);
+			this.getToLunar ( this.dates );
 		},
 		//获取本月及前后打点数据
-		getSignedDates(y,m){
+		getSignedDates(y, m) {
 			let keysArray = uni.getStorageSync('huizi_keys');
 			let len = keysArray.length;
 			let signed_data = [];
@@ -205,43 +213,39 @@ export default {
 				for (let i = 0; i < len; i++) {
 					uni.getStorage({
 						key: i + '_key',
-						success: (res) =>{
-							let huiziLen =  res.data.self_huzi.length;
-							for( let j = 0; j < huiziLen; j++){
+						success: res => {
+							let huiziLen = res.data.self_huzi.length;
+							for (let j = 0; j < huiziLen; j++) {
 								let startTime = res.data.self_huzi[i].start_time.toString().split('-');
 								let endTime = res.data.self_huzi[i].end_time.toString().split('-');
 								let onetime = null;
 								let twotime = null;
-								if( startTime[0] <= y && y <= endTime[0]){
-									if( res.data.self_huzi[j].subitems_timemodel == '新历' ){
-										console.log(res.data.self_huzi[j].subitems_timemodel)
+								if (startTime[0] <= y && y <= endTime[0]) {
+									if (res.data.self_huzi[j].subitems_timemodel == '新历') {
+										console.log(res.data.self_huzi[j].subitems_timemodel);
 										onetime = res.data.self_huzi[j].subitems_new_onetime;
-										twotime = res.data.self_huzi[j].subitems_new_twotime == null? false: res.data.self_huzi[j].subitems_new_twotime;
-										signed_data.push( y+'-' + (m +1) +'-' + onetime);
-										signed_data.push( y+'-' + (m +1) +'-' + twotime);
-										
-									}
-									else{
-										if( res.data.self_huzi[j].subitems_old_twotime ==null){
+										twotime = res.data.self_huzi[j].subitems_new_twotime == null ? false : res.data.self_huzi[j].subitems_new_twotime;
+										signed_data.push(y + '-' + (m + 1) + '-' + onetime);
+										signed_data.push(y + '-' + (m + 1) + '-' + twotime);
+									} else {
+										if (res.data.self_huzi[j].subitems_old_twotime == null) {
 											//第一次缴费时间打点
-										  for(let index=0;index<3;index++){
-											let tempTimeArr= publicFnc.Lunar.toSolar(y, m+index , res.data.self_huzi[j].subitems_old_onetime );
-											signed_data.push(tempTimeArr[0] +'-' + tempTimeArr[1]+ '-' +tempTimeArr[2] );
-										  }
+											for (let index = 0; index < 3; index++) {
+												let tempTimeArr = publicFnc.Lunar.toSolar(y, m + index, res.data.self_huzi[j].subitems_old_onetime);
+												signed_data.push(tempTimeArr[0] + '-' + tempTimeArr[1] + '-' + tempTimeArr[2]);
+											}
+										} else {
+											//第一次缴费时间打点
+											for (let index = 0; index < 3; index++) {
+												let tempTimeArr = publicFnc.Lunar.toSolar(y, m + index, res.data.self_huzi[j].subitems_old_onetime);
+												signed_data.push(tempTimeArr[0] + '-' + tempTimeArr[1] + '-' + tempTimeArr[2]);
+											}
 
-										}
-										else{
-											//第一次缴费时间打点
-										  for(let index=0;index<3;index++){
-											let tempTimeArr= publicFnc.Lunar.toSolar(y, m+index , res.data.self_huzi[j].subitems_old_onetime );
-											signed_data.push(tempTimeArr[0] +'-' + tempTimeArr[1]+ '-' +tempTimeArr[2] );
-										  }
-											
 											//第二次缴费时间打点
-										  for(let index=0;index<3;index++){
-											let tempTimeArr= publicFnc.Lunar.toSolar(y, m+index , res.data.self_huzi[j].subitems_old_twotime );
-											signed_data.push(tempTimeArr[0] +'-' + tempTimeArr[1]+ '-' +tempTimeArr[2] );
-										  }
+											for (let index = 0; index < 3; index++) {
+												let tempTimeArr = publicFnc.Lunar.toSolar(y, m + index, res.data.self_huzi[j].subitems_old_twotime);
+												signed_data.push(tempTimeArr[0] + '-' + tempTimeArr[1] + '-' + tempTimeArr[2]);
+											}
 										}
 									}
 								}
@@ -249,11 +253,19 @@ export default {
 						}
 					});
 				}
-				console.log( signed_data )
-				this.signeddates = signed_data;	
+
+				this.signeddates = signed_data;
 			}
+		},
+		getToLunar( ) {
+			let len = this.dates.length;
+			for (let i = 0; i < len; i++) {
+				let lunar = publicFnc.Lunar.toLunar(this.dates[i].year, this.dates[i].month + 1, this.dates[i].date);
+				this.dates[i].lunar = (lunar[6]);
+			}
+			
+			// Lunar.toLunar(2016, 7, 6);
 		}
-		
 	}
 };
 </script>
@@ -326,16 +338,21 @@ export default {
 						box-shadow: 0 0 15px #477acc;
 					}
 
-					&.nolm {
+					&.nolm{
 						color: #fff;
 						opacity: 0.3;
 					}
 				}
-                .old-time{
+				.old-time {
 					position: absolute;
-					top: 28rpx;
-					right: 20rpx;
-					font-size: 12rpx;
+					top: 13px;
+					right: 14px;
+					font-size: 12px;
+					
+				}
+				.oldnolm{
+					color: #fff;
+					opacity: 0.3;
 				}
 				.sign {
 					font-style: normal;

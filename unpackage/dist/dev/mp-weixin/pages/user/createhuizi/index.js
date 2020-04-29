@@ -291,12 +291,56 @@ __webpack_require__.r(__webpack_exports__);
       subitems_monthnum: '1次',
       subitems_monthnum_list: ["1次", "2次"],
       subitems_timemodel: '新历',
+      subitems_new_onetime: 1,
+      subitems_new_twotime: null,
       subitems_timemodel_list: ["新历", "农历"],
-      subitems_onetime: '一',
-      subitems_twotime: null,
-      subitems_time_list: ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十', '十一', '十二', '十三', '十四', '十五', '十六',
-      '十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'],
+      subitems_old_show_onetime: '初一',
+      subitems_old_show_twotime: '初一',
+      subitems_old_onetime: null,
+      subitems_old_twotime: null,
+      subitems_time_list: [{
+        label: '初一',
+        value: '1' },
 
+      {
+        label: '初二',
+        value: '2' },
+
+      {
+        label: '初三',
+        value: '3' },
+
+      {
+        label: '初四',
+        value: '4' },
+
+      {
+        label: '初五',
+        value: '5' },
+
+      {
+        label: '初六',
+        value: '6' },
+
+      {
+        label: '初七',
+        value: '7' },
+      {
+        label: '初八',
+        value: '8' },
+
+      {
+        label: '初九',
+        value: '9' },
+      {
+        label: '初十',
+        value: '10' }],
+
+
+
+      // ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十', '十一', '十二', '十三', '十四', '十五', '十六',
+      // 	'十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'
+      // ],
       subitems_newtime_list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
       26, 27, 28, 29, 30, 31],
 
@@ -332,7 +376,16 @@ __webpack_require__.r(__webpack_exports__);
     selectTwotime: function selectTwotime() {
       this.$refs.twotime.show();
     },
-    confirm: function confirm(date) {
+    getOneOldTime: function getOneOldTime(data) {
+      console.log(data);
+      this.subitems_old_show_onetime = data.item.label;
+      this.subitems_old_onetime = data.item.value;
+    },
+    getTwoOldTime: function getTwoOldTime(data) {
+      this.subitems_old_show_twotime = data.item.label;
+      this.subitems_old_twotime = data.item.value;
+    },
+    getEndtime: function getEndtime(date) {
       //自动生成结束时间
       if (this.subitems_periods != '' && this.subitems_monthnum == "1次") {
         var integer = parseInt(this.subitems_periods / 12);
@@ -367,13 +420,15 @@ __webpack_require__.r(__webpack_exports__);
         var date = new Date();
         var endTimeArr = this.start_time.toString().split('-');
         var payment_num_y = date.getFullYear() - endTimeArr[0]; //当结束时间小于当前时间，存着bug
-        var payment_num_m = date.getDate() >= endTimeArr[2] ? date.getMonth() + 1 - endTimeArr[1] : date.getMonth() - endTimeArr[1];
+        var payment_num_m = date.getDate() >= endTimeArr[2] ? date.getMonth() + 1 - endTimeArr[1] : date.getMonth() -
+        endTimeArr[1];
         var payment_num = payment_num_y * 12 + payment_num_m;
         var huizi_arr = [];
         if (this.subitems_fixation == '不定投' && this.subitems_monthnum == "1次") {
           for (var i = 0; i < payment_num; i++) {
             huizi_arr[i] = {
-              year: +endTimeArr[1] + i % 12 > 12 ? +endTimeArr[0] + parseInt(i / 12) + 1 : +endTimeArr[0] + parseInt(i / 12),
+              year: +endTimeArr[1] + i % 12 > 12 ? +endTimeArr[0] + parseInt(i / 12) + 1 : +endTimeArr[0] + parseInt(i /
+              12),
               month: +endTimeArr[1] + i % 12 > 12 ? +endTimeArr[1] + i % 12 - 12 : +endTimeArr[1] + i % 12,
               day: endTimeArr[2],
               cost: this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost) };
@@ -404,8 +459,10 @@ __webpack_require__.r(__webpack_exports__);
           subitems_num: this.subitems_num, //会头缴纳期数
           subitems_timemodel: this.subitems_timemodel, //项目时间模式
           subitems_monthnum: this.subitems_monthnum, //月缴费期数
-          subitems_new_onetime: this.subitems_onetime, //第一次缴费时间
-          subitems_new_twotime: this.subitems_twotime, //第二次缴费时间
+          subitems_new_onetime: this.subitems_new_onetime, //新历第一次缴费时间
+          subitems_new_twotime: this.subitems_new_twotime, //新历第二次缴费时间
+          subitems_old_onetime: this.subitems_old_onetime, //农历第一次缴费时间
+          subitems_old_twotime: this.subitems_old_twotime, //农历第二次缴费时间
           start_time: this.start_time, //项目开始时间
           end_time: this.end_time, //项目结束时间
           payment_num: payment_num, //项目创建时，已缴纳的期数，
@@ -420,8 +477,7 @@ __webpack_require__.r(__webpack_exports__);
               id_huizi = {
                 id: _this.id + 'a2020b' + 1 };
 
-            } else
-            {
+            } else {
               id_huizi = {
                 id: _this.id + 'a2020b' + (res.data.self_huzi.length + 1) };
 

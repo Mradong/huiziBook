@@ -106,6 +106,16 @@
             color: #fff;
             opacity: 0.3;
 }
+.sign-calendar .content .days .item .old-time.data-v-1b52b89e {
+          position: absolute;
+          top: 13px;
+          right: 14px;
+          font-size: 12px;
+}
+.sign-calendar .content .days .item .oldnolm.data-v-1b52b89e {
+          color: #fff;
+          opacity: 0.3;
+}
 .sign-calendar .content .days .item .sign.data-v-1b52b89e {
           font-style: normal;
           width: 20rpx;
@@ -117,6 +127,7 @@
           margin-left: -10rpx;
           bottom: 0;
           pointer-events: none;
+          z-index: 9;
 }
 .sign-calendar .content .days .item .today-text.data-v-1b52b89e {
           position: absolute;

@@ -116,7 +116,7 @@
 
 				<view class="form-row">
 					<label class="form-row-title">子项目开始时间</label>
-					<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="start_time" @btnConfirm="confirm" class="form-row-select">
+					<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="start_time" @btnConfirm="getEndtime" class="form-row-select">
 						<view class="time">{{ start_time }}<text> > </text></view>
 					</ePicker>
 				</view>
@@ -250,7 +250,7 @@
 				this.subitems_old_show_twotime = data.item.label;
 				this.subitems_old_twotime = data.item.value;
 			},
-			confirm(date) {
+			getEndtime(date) {
 				//自动生成结束时间
 				if (this.subitems_periods != '' && this.subitems_monthnum == "1次") {
 					let integer = parseInt(this.subitems_periods / 12)

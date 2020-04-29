@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "dark-calendar": () =>
-    __webpack_require__.e(/*! import() | components/dark-calendar/dark-calendar */ "components/dark-calendar/dark-calendar").then(__webpack_require__.bind(null, /*! @/components/dark-calendar/dark-calendar.vue */ 111))
+    Promise.all(/*! import() | components/dark-calendar/dark-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/dark-calendar/dark-calendar")]).then(__webpack_require__.bind(null, /*! @/components/dark-calendar/dark-calendar.vue */ 111))
 }
 var render = function() {
   var _vm = this
@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var darkCalendar = function darkCalendar() {return __webpack_require__.e(/*! import() | components/dark-calendar/dark-calendar */ "components/dark-calendar/dark-calendar").then(__webpack_require__.bind(null, /*! @/components/dark-calendar/dark-calendar.vue */ 111));};var huiziDeatil = function huiziDeatil() {return __webpack_require__.e(/*! import() | components/huizi-deatil/huizi-detail */ "components/huizi-deatil/huizi-detail").then(__webpack_require__.bind(null, /*! @/components/huizi-deatil/huizi-detail.vue */ 98));};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var darkCalendar = function darkCalendar() {return Promise.all(/*! import() | components/dark-calendar/dark-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/dark-calendar/dark-calendar")]).then(__webpack_require__.bind(null, /*! @/components/dark-calendar/dark-calendar.vue */ 111));};var huiziDeatil = function huiziDeatil() {return __webpack_require__.e(/*! import() | components/huizi-deatil/huizi-detail */ "components/huizi-deatil/huizi-detail").then(__webpack_require__.bind(null, /*! @/components/huizi-deatil/huizi-detail.vue */ 98));};var _default =
 
 
 
@@ -153,7 +153,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   data: function data() {
     return {
       title: 'Hello',
-      signeddates: ['2020-3-15', '2020-3-30', '2020-4-15', '2020-4-17', '2020-5-1'],
       huiziData: [],
       huizi: {
         //模拟会子数据
