@@ -62,7 +62,7 @@ export default {
 			monthOpen: true,
 			choose: '',
 			signeddates: [],
-			
+			dateDetail:[],
 		};
 	},
 	created() {
@@ -138,7 +138,6 @@ export default {
 					lunar:''
 				});
 			}
-			console.log(dates);
 			return dates;
 		},
 		// 已经签到处理
@@ -173,6 +172,7 @@ export default {
 		},
 		// 点击回调
 		selectOne(i, event) {
+			console.log( i)
 			let date = `${i.year}-${i.month + 1}-${i.date}`;
 			let selectD = new Date(date);
 			if (selectD.getMonth() != this.m) {
@@ -220,31 +220,34 @@ export default {
 								let endTime = res.data.self_huzi[i].end_time.toString().split('-');
 								let onetime = null;
 								let twotime = null;
+								this.dateDetail.push(res.data.self_huzi[j])
+								console.log( this.dateDetail )
 								if (startTime[0] <= y && y <= endTime[0]) {
 									if (res.data.self_huzi[j].subitems_timemodel == '新历') {
-										console.log(res.data.self_huzi[j].subitems_timemodel);
 										onetime = res.data.self_huzi[j].subitems_new_onetime;
 										twotime = res.data.self_huzi[j].subitems_new_twotime == null ? false : res.data.self_huzi[j].subitems_new_twotime;
 										signed_data.push(y + '-' + (m + 1) + '-' + onetime);
 										signed_data.push(y + '-' + (m + 1) + '-' + twotime);
+										
 									} else {
 										if (res.data.self_huzi[j].subitems_old_twotime == null) {
 											//第一次缴费时间打点
+											let tempTimeArr = publicFnc.calendar.lunar2solar(y, m + 1, +res.data.self_huzi[j].subitems_old_onetime);
 											for (let index = 0; index < 3; index++) {
-												let tempTimeArr = publicFnc.Lunar.toSolar(y, m + index, res.data.self_huzi[j].subitems_old_onetime);
-												signed_data.push(tempTimeArr[0] + '-' + tempTimeArr[1] + '-' + tempTimeArr[2]);
+												let tempTimeArr = publicFnc.calendar.lunar2solar(y, m + index, +res.data.self_huzi[j].subitems_old_onetime);
+												signed_data.push(tempTimeArr.cYear + '-' + tempTimeArr.cMonth + '-' + tempTimeArr.cDay);
 											}
+											
 										} else {
 											//第一次缴费时间打点
 											for (let index = 0; index < 3; index++) {
-												let tempTimeArr = publicFnc.Lunar.toSolar(y, m + index, res.data.self_huzi[j].subitems_old_onetime);
-												signed_data.push(tempTimeArr[0] + '-' + tempTimeArr[1] + '-' + tempTimeArr[2]);
+												let tempTimeArr = publicFnc.calendar.lunar2solar(y, m + index, +res.data.self_huzi[j].subitems_old_onetime);
+												signed_data.push(tempTimeArr.cYear + '-' + tempTimeArr.cMonth + '-' + tempTimeArr.cDay);
 											}
-
-											//第二次缴费时间打点
+											// //第二次缴费时间打点
 											for (let index = 0; index < 3; index++) {
-												let tempTimeArr = publicFnc.Lunar.toSolar(y, m + index, res.data.self_huzi[j].subitems_old_twotime);
-												signed_data.push(tempTimeArr[0] + '-' + tempTimeArr[1] + '-' + tempTimeArr[2]);
+												let tempTimeArr = publicFnc.calendar.lunar2solar(y, m + index, +res.data.self_huzi[j].subitems_old_twotime);
+												signed_data.push(tempTimeArr.cYear + '-' + tempTimeArr.cMonth + '-' + tempTimeArr.cDay);
 											}
 										}
 									}
@@ -260,11 +263,9 @@ export default {
 		getToLunar( ) {
 			let len = this.dates.length;
 			for (let i = 0; i < len; i++) {
-				let lunar = publicFnc.Lunar.toLunar(this.dates[i].year, this.dates[i].month + 1, this.dates[i].date);
-				this.dates[i].lunar = (lunar[6]);
+				let lunar = publicFnc.calendar.solar2lunar(this.dates[i].year, this.dates[i].month + 1, this.dates[i].date);
+				this.dates[i].lunar = (lunar.IDayCn);
 			}
-			
-			// Lunar.toLunar(2016, 7, 6);
 		}
 	}
 };

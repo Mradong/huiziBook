@@ -257,9 +257,9 @@
 					let remainder = this.subitems_periods % 12;
 					let endTimeArr = date.split('-');
 
-					let end_timeY = Number(endTimeArr[0]) + integer;
-					let end_timeM = (Number(endTimeArr[1]) + remainder) < 10 ? '0' + (Number(endTimeArr[1]) + remainder) : (Number(
-						endTimeArr[1]) + remainder);
+					let end_timeY = Number(endTimeArr[1]) + remainder > 12 ?  Number(endTimeArr[0]) + integer +1 :Number(endTimeArr[0]) + integer;
+					let end_timeM =  ( Number(endTimeArr[1]) + remainder ) % 12 == 0 ? 12 : ( Number(endTimeArr[1]) + remainder ) % 12;
+					end_timeM = end_timeM > 9? end_timeM : '0'+ end_timeM ;
 					this.end_time = end_timeY + '-' + end_timeM + '-' + endTimeArr[2];
 					console.log(this.end_time);
 				}
@@ -326,6 +326,8 @@
 						subitems_monthnum: this.subitems_monthnum, //月缴费期数
 						subitems_new_onetime: this.subitems_new_onetime, //新历第一次缴费时间
 						subitems_new_twotime: this.subitems_new_twotime, //新历第二次缴费时间
+						subitems_old_show_onetime: this.subitems_old_show_onetime,//农历显示第一次缴费时间
+						subitems_old_show_twotime:  this.subitems_old_show_twotime,//农历显示农历第二次缴费时间
 						subitems_old_onetime: this.subitems_old_onetime, //农历第一次缴费时间
 						subitems_old_twotime: this.subitems_old_twotime, //农历第二次缴费时间
 						start_time: this.start_time, //项目开始时间
