@@ -103,7 +103,7 @@
 					<view class="form-row-select" @click="selectOnetime">
 						<view class="form-row-select-time"></view> {{ subitems_old_show_onetime }} <text> > </text>
 					</view>
-					<lb-picker ref="onetime"  :list="subitems_time_list" @confirm="getOneOldTime"></lb-picker>
+					<lb-picker ref="onetime" :list="subitems_time_list" @confirm="getOneOldTime"></lb-picker>
 				</view>
 
 				<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '农历'">
@@ -111,7 +111,7 @@
 					<view class="form-row-select" @click="selectTwotime">
 						<view class="form-row-select-time"></view> {{ subitems_old_show_twotime }} <text> > </text>
 					</view>
-					<lb-picker ref="twotime"  :list="subitems_time_list" @confirm="getTwoOldTime"></lb-picker>
+					<lb-picker ref="twotime" :list="subitems_time_list" @confirm="getTwoOldTime"></lb-picker>
 				</view>
 
 				<view class="form-row">
@@ -156,8 +156,8 @@
 				subitems_monthnum: '1次',
 				subitems_monthnum_list: ["1次", "2次"],
 				subitems_timemodel: '新历',
-				subitems_new_onetime:1,
-				subitems_new_twotime:null,
+				subitems_new_onetime: 1,
+				subitems_new_twotime: null,
 				subitems_timemodel_list: ["新历", "农历"],
 				subitems_old_show_onetime: '初一',
 				subitems_old_show_twotime: '初一',
@@ -190,18 +190,98 @@
 					{
 						label: '初七',
 						value: '7'
-					},					{
+					}, {
 						label: '初八',
 						value: '8'
 					},
 					{
 						label: '初九',
 						value: '9'
-					},					{
+					}, 
+					{
 						label: '初十',
 						value: '10'
+					}, 
+					{
+						label: '十一',
+						value: '11'
+					}, 
+					{
+						label: '十二',
+						value: '12'
+					}, 
+					{
+						label: '十三',
+						value: '13'
+					}, 
+					{
+						label: '十四',
+						value: '14'
+					}, 
+					{
+						label: '十五',
+						value: '15'
+					}, 
+					{
+						label: '十六',
+						value: '16'
+					}, 
+					{
+						label: '十七',
+						value: '17'
+					}, 
+					{
+						label: '十八',
+						value: '18'
+					},
+					{
+						label: '十九',
+						value: '19'
+					}, 
+					{
+						label: '二十',
+						value: '20'
+					}, 
+					{
+						label: '廿一',
+						value: '21'
+					}, 
+					{
+						label: '廿二',
+						value: '22'
+					}, 
+					{
+						label: '廿三',
+						value: '23'
+					}, {
+						label: '廿四',
+						value: '24'
+					}, 
+					{
+						label: '廿五',
+						value: '25'
+					}, 
+					{
+						label: '廿六',
+						value: '26'
+					},
+					{
+						label: '廿七',
+						value: '27'
+					}, 
+					{
+						label: '廿八',
+						value: '28'
+					}, 
+					{
+						label: '廿九',
+						value: '29'
+					}, 
+					{
+						label: '三十',
+						value: '30'
 					}
-					
+
 				],
 				// ['初一', '初二', '初三', '初四', '初五', '初六', '初七', '初八', '初九', '初十', '十一', '十二', '十三', '十四', '十五', '十六',
 				// 	'十七', '十八', '十九', '二十', '廿一', '廿二', '廿三', '廿四', '廿五', '廿六', '廿七', '廿八', '廿九', '三十'
@@ -241,12 +321,12 @@
 			selectTwotime() {
 				this.$refs.twotime.show()
 			},
-			getOneOldTime( data ){
-				console.log( data)
+			getOneOldTime(data) {
+				console.log(data)
 				this.subitems_old_show_onetime = data.item.label;
 				this.subitems_old_onetime = data.item.value;
 			},
-			getTwoOldTime( data ){
+			getTwoOldTime(data) {
 				this.subitems_old_show_twotime = data.item.label;
 				this.subitems_old_twotime = data.item.value;
 			},
@@ -257,9 +337,10 @@
 					let remainder = this.subitems_periods % 12;
 					let endTimeArr = date.split('-');
 
-					let end_timeY = Number(endTimeArr[1]) + remainder > 12 ?  Number(endTimeArr[0]) + integer +1 :Number(endTimeArr[0]) + integer;
-					let end_timeM =  ( Number(endTimeArr[1]) + remainder ) % 12 == 0 ? 12 : ( Number(endTimeArr[1]) + remainder ) % 12;
-					end_timeM = end_timeM > 9? end_timeM : '0'+ end_timeM ;
+					let end_timeY = Number(endTimeArr[1]) + remainder > 12 ? Number(endTimeArr[0]) + integer + 1 : Number(endTimeArr[0]) +
+						integer;
+					let end_timeM = (Number(endTimeArr[1]) + remainder) % 12 == 0 ? 12 : (Number(endTimeArr[1]) + remainder) % 12;
+					end_timeM = end_timeM > 9 ? end_timeM : '0' + end_timeM;
 					this.end_time = end_timeY + '-' + end_timeM + '-' + endTimeArr[2];
 					console.log(this.end_time);
 				}
@@ -280,8 +361,8 @@
 			},
 
 			createHuizi() {
-				if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time !=
-					this.formatDate(new Date())) {
+				if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time >
+					this.formatDate( new Date() ) ) {
 					let date = new Date();
 					let endTimeArr = this.start_time.toString().split('-');
 					let payment_num_y = date.getFullYear() - endTimeArr[0]; //当结束时间小于当前时间，存着bug
@@ -295,7 +376,7 @@
 								year: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[0] + parseInt(i / 12)) + 1 : +endTimeArr[0] + parseInt(i /
 									12),
 								month: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[1] + i % 12) - 12 : +endTimeArr[1] + i % 12,
-								day: endTimeArr[2],
+								day:endTimeArr[2],//是否保留？数据结构有待优化
 								cost: this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
 							}
 						}
@@ -326,8 +407,8 @@
 						subitems_monthnum: this.subitems_monthnum, //月缴费期数
 						subitems_new_onetime: this.subitems_new_onetime, //新历第一次缴费时间
 						subitems_new_twotime: this.subitems_new_twotime, //新历第二次缴费时间
-						subitems_old_show_onetime: this.subitems_old_show_onetime,//农历显示第一次缴费时间
-						subitems_old_show_twotime:  this.subitems_old_show_twotime,//农历显示农历第二次缴费时间
+						subitems_old_show_onetime: this.subitems_old_show_onetime, //农历显示第一次缴费时间
+						subitems_old_show_twotime: this.subitems_old_show_twotime, //农历显示农历第二次缴费时间
 						subitems_old_onetime: this.subitems_old_onetime, //农历第一次缴费时间
 						subitems_old_twotime: this.subitems_old_twotime, //农历第二次缴费时间
 						start_time: this.start_time, //项目开始时间

@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var darkCalendar = function darkCalendar() {return Promise.all(/*! import() | components/dark-calendar/dark-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/dark-calendar/dark-calendar")]).then(__webpack_require__.bind(null, /*! @/components/dark-calendar/dark-calendar.vue */ 111));};var huiziDeatil = function huiziDeatil() {return __webpack_require__.e(/*! import() | components/huizi-deatil/huizi-detail */ "components/huizi-deatil/huizi-detail").then(__webpack_require__.bind(null, /*! @/components/huizi-deatil/huizi-detail.vue */ 98));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var darkCalendar = function darkCalendar() {return Promise.all(/*! import() | components/dark-calendar/dark-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/dark-calendar/dark-calendar")]).then(__webpack_require__.bind(null, /*! @/components/dark-calendar/dark-calendar.vue */ 111));};var huiziDeatil = function huiziDeatil() {return __webpack_require__.e(/*! import() | components/huizi-deatil/huizi-detail */ "components/huizi-deatil/huizi-detail").then(__webpack_require__.bind(null, /*! @/components/huizi-deatil/huizi-detail.vue */ 98));};var _default =
 
 
 
@@ -158,13 +158,72 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
   onLoad: function onLoad() {},
   methods: {
-    getDayData: function getDayData(date) {
-      console.log(date);
+    getDayData: function getDayData(i) {
+      console.log(i);
+      var keysArray = uni.getStorageSync('huizi_keys');
+      var len = keysArray.length;
+      var date = "".concat(i.year, "-").concat(i.month + 1, "-").concat(i.date);
+      var dateData = {};
+      if (keysArray) {var _loop = function _loop(
+        _i) {
+          uni.getStorage({
+            key: _i + '_key',
+            success: function success(res) {
+              var huiziLen = res.data.self_huzi.length;
+              var day = null;
+              for (var _j = 0; _j < huiziLen; _j++) {
+                if (res.data.self_huzi[_j].subitems_timemodel == '新历') {
+                  day = res.data.self_huzi[_j].subitems_new_onetime;
+                  for (var index in res.data.self_huzi[_j].huizi_arr) {
+                    var time = "".concat(
+                    res.data.self_huzi[_j].huizi_arr[index].year, "-").concat(res.data.self_huzi[_j].huizi_arr[index].month, "-").concat(day);
+                    if (date == time) {
+                      dateData = res.data.self_huzi[_j].huizi_arr[index];
+                      res.data.self_huzi[_j].huizi_arr = [];
+                      res.data.self_huzi[_j].huizi_arr.push(dateData);
+                    }
+
+                  }
+                } else
+                {
+                  day = res.data.self_huzi[_j].subitems_old_show_onetime;
+                  if (day == _i.lunar) {
+                    for (var _index in res.data.self_huzi[_j].huizi_arr) {
+                      if (res.data.self_huzi[_j].huizi_arr[_index].year == _i.year && res.data.self_huzi[_j].huizi_arr[_index].month == _i.month)
+                      console.log(res.data.self_huzi[_j].huizi_arr[_index]);
+                    }
+                  }
+                }
+              }
+              console.log(res.data.self_huzi[j]);
+            } });};for (var _i = 0; _i < len; _i++) {_loop(_i);
+
+        }
+
+
+      }
+
+
+      // for (let i in this.dateDetail) {
+      // 	if( this.dateDetail[i].subitems_timemodel == '新历' ){
+      // 		day = this.dateDetail[i].subitems_new_onetime;
+      // 	}
+      // 	else {
+      // 		day = this.dateDetail[i].subitems_old_show_onetime;
+      // 	}
+      // 	for (let j in this.dateDetail[i].huizi_arr) {
+      // 		let time =
+      // 			`${this.dateDetail[i].huizi_arr[j].year}-${this.dateDetail[i].huizi_arr[j].month}-${day}`;
+      // 		date == time ? console.log( this.dateDetail[i].huizi_arr[j] ) : false;
+
+      // 	}
+      // }
     } },
 
   components: {
     darkCalendar: darkCalendar,
     huiziDeatil: huiziDeatil } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

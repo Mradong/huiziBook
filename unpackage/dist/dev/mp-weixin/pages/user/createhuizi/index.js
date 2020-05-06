@@ -332,9 +332,89 @@ __webpack_require__.r(__webpack_exports__);
       {
         label: '初九',
         value: '9' },
+
       {
         label: '初十',
-        value: '10' }],
+        value: '10' },
+
+      {
+        label: '十一',
+        value: '11' },
+
+      {
+        label: '十二',
+        value: '12' },
+
+      {
+        label: '十三',
+        value: '13' },
+
+      {
+        label: '十四',
+        value: '14' },
+
+      {
+        label: '十五',
+        value: '15' },
+
+      {
+        label: '十六',
+        value: '16' },
+
+      {
+        label: '十七',
+        value: '17' },
+
+      {
+        label: '十八',
+        value: '18' },
+
+      {
+        label: '十九',
+        value: '19' },
+
+      {
+        label: '二十',
+        value: '20' },
+
+      {
+        label: '廿一',
+        value: '21' },
+
+      {
+        label: '廿二',
+        value: '22' },
+
+      {
+        label: '廿三',
+        value: '23' },
+      {
+        label: '廿四',
+        value: '24' },
+
+      {
+        label: '廿五',
+        value: '25' },
+
+      {
+        label: '廿六',
+        value: '26' },
+
+      {
+        label: '廿七',
+        value: '27' },
+
+      {
+        label: '廿八',
+        value: '28' },
+
+      {
+        label: '廿九',
+        value: '29' },
+
+      {
+        label: '三十',
+        value: '30' }],
 
 
 
@@ -392,7 +472,8 @@ __webpack_require__.r(__webpack_exports__);
         var remainder = this.subitems_periods % 12;
         var endTimeArr = date.split('-');
 
-        var end_timeY = Number(endTimeArr[1]) + remainder > 12 ? Number(endTimeArr[0]) + integer + 1 : Number(endTimeArr[0]) + integer;
+        var end_timeY = Number(endTimeArr[1]) + remainder > 12 ? Number(endTimeArr[0]) + integer + 1 : Number(endTimeArr[0]) +
+        integer;
         var end_timeM = (Number(endTimeArr[1]) + remainder) % 12 == 0 ? 12 : (Number(endTimeArr[1]) + remainder) % 12;
         end_timeM = end_timeM > 9 ? end_timeM : '0' + end_timeM;
         this.end_time = end_timeY + '-' + end_timeM + '-' + endTimeArr[2];
@@ -415,7 +496,7 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     createHuizi: function createHuizi() {var _this = this;
-      if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time !=
+      if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time >
       this.formatDate(new Date())) {
         var date = new Date();
         var endTimeArr = this.start_time.toString().split('-');
@@ -430,7 +511,7 @@ __webpack_require__.r(__webpack_exports__);
               year: +endTimeArr[1] + i % 12 > 12 ? +endTimeArr[0] + parseInt(i / 12) + 1 : +endTimeArr[0] + parseInt(i /
               12),
               month: +endTimeArr[1] + i % 12 > 12 ? +endTimeArr[1] + i % 12 - 12 : +endTimeArr[1] + i % 12,
-              day: endTimeArr[2],
+              day: endTimeArr[2], //是否保留？数据结构有待优化
               cost: this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost) };
 
           }

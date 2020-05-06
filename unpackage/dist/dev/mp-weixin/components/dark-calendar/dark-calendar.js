@@ -310,7 +310,6 @@ var _default = { name: 'dark-calendar', props: { // 第一列星期几
     },
     // 点击回调
     selectOne: function selectOne(i, event) {
-      console.log(i);
       var date = "".concat(i.year, "-").concat(i.month + 1, "-").concat(i.date);
       var selectD = new Date(date);
       if (selectD.getMonth() != this.m) {
@@ -318,8 +317,9 @@ var _default = { name: 'dark-calendar', props: { // 第一列星期几
         return false;
       }
       this.choose = date;
-      this.$emit('on-click', date);
+      this.$emit('on-click', i);
     },
+
     // 上个月，下个月
     turning: function turning(_action) {
       if (_action === 'next') {
@@ -342,24 +342,24 @@ var _default = { name: 'dark-calendar', props: { // 第一列星期几
       this.getSignedDates(this.y, this.m);
       this.getToLunar(this.dates);
     },
-    //获取本月及前后打点数据
-    getSignedDates: function getSignedDates(y, m) {var _this2 = this;
+    //获取本月及前后打点数据，
+    //打点时间取决了  首次、第二次等的时间，不取决于项目开始时间
+    getSignedDates: function getSignedDates(y, m) {
       var keysArray = uni.getStorageSync('huizi_keys');
       var len = keysArray.length;
       var signed_data = [];
-      if (keysArray) {var _loop = function _loop(
-        i) {
+      var date_detail = [];
+      if (keysArray) {
+        for (var i = 0; i < len; i++) {
           uni.getStorage({
             key: i + '_key',
             success: function success(res) {
               var huiziLen = res.data.self_huzi.length;
               for (var j = 0; j < huiziLen; j++) {
-                var startTime = res.data.self_huzi[i].start_time.toString().split('-');
-                var endTime = res.data.self_huzi[i].end_time.toString().split('-');
+                var startTime = res.data.self_huzi[j].start_time.toString().split('-');
+                var endTime = res.data.self_huzi[j].end_time.toString().split('-');
                 var onetime = null;
                 var twotime = null;
-                _this2.dateDetail.push(res.data.self_huzi[j]);
-                console.log(_this2.dateDetail);
                 if (startTime[0] <= y && y <= endTime[0]) {
                   if (res.data.self_huzi[j].subitems_timemodel == '新历') {
                     onetime = res.data.self_huzi[j].subitems_new_onetime;
@@ -391,7 +391,7 @@ var _default = { name: 'dark-calendar', props: { // 第一列星期几
                   }
                 }
               }
-            } });};for (var i = 0; i < len; i++) {_loop(i);
+            } });
 
         }
 
