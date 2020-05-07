@@ -375,6 +375,7 @@
 							huizi_arr[i] = {
 								year: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[0] + parseInt(i / 12)) + 1 : +endTimeArr[0] + parseInt(i /
 									12),
+								self_payment_num: i + 1,
 								month: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[1] + i % 12) - 12 : +endTimeArr[1] + i % 12,
 								day:endTimeArr[2],//是否保留？数据结构有待优化
 								cost: this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)

@@ -9,17 +9,17 @@
 				<view class="huizi-data-items-item">
 					<view class="huizi-data-items-item-r">
 						<view class="">
-							项目(名称)：{{ item.projectName}}
+							项目(名称)：{{ item.subitems_name}}
 						</view>
 						<view class="">
-							实际支出（元）：{{ item.actualPayment}}
+							<!-- 支出（元）：{{ item.huizi_arr[0].cost}} -->
 						</view>
 						<view class="">
-							当前期数(期)/总期数(期)：{{ item.currentPeriod}}/{{ item.totalPeriods}}
+							<!-- 当前期数(期)/总期数(期)：{{ item.huizi_arr[0].self_payment_num}} / {{ item.subitems_periods}} -->
 						</view>
-						<view class="">
+<!-- 						<view class="">
 							支付日期：{{ item.payTime}}
-						</view>
+						</view> -->
 					</view>
 					<view class="huizi-data-items-item-l" v-text=" item.isPay?'已支付' : '未支付'">
 						已支付

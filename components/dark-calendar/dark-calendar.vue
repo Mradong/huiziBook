@@ -207,6 +207,7 @@
 			//获取本月及前后打点数据，
 			//打点时间取决了  首次、第二次等的时间，不取决于项目开始时间
 			getSignedDates(y, m) {
+				console.log( m )
 				let keysArray = uni.getStorageSync('huizi_keys');
 				let len = keysArray.length;
 				let signed_data = [];
@@ -232,12 +233,13 @@
 										} else {
 											if (res.data.self_huzi[j].subitems_old_twotime == null) {
 												//第一次缴费时间打点
-												let tempTimeArr = publicFnc.calendar.lunar2solar(y, m + 1, +res.data.self_huzi[j].subitems_old_onetime);
-												for (let index = 0; index < 3; index++) {
-													let tempTimeArr = publicFnc.calendar.lunar2solar(y, m + index, +res.data.self_huzi[j].subitems_old_onetime);
-													signed_data.push(tempTimeArr.cYear + '-' + tempTimeArr.cMonth + '-' + tempTimeArr.cDay);
-												}
+											
+												y = m == 0 ? y - 1 :y ;
+												m = m == 0 ? 12 : m ;
 
+												let tempTimeArr = publicFnc.calendar.lunar2solar(y, m, +res.data.self_huzi[j].subitems_old_onetime);
+												signed_data.push(tempTimeArr.cYear + '-' + tempTimeArr.cMonth + '-' + tempTimeArr.cDay);
+												
 											} else {
 												//第一次缴费时间打点
 												for (let index = 0; index < 3; index++) {

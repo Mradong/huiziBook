@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<nav-bar fontColor="#000" backState="1000" :home='false' :titleCenter="true" type="fixed" :title="title">
+		<nav-bar fontColor="#000" backState="1000" :home='true' :titleCenter="true" type="fixed" :title="title">
 		</nav-bar>
 		<view class="user-message">
 			<view class="user-message-l">

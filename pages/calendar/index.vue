@@ -1,8 +1,7 @@
 <template>
 	<view class="calendar-list">
-		<nav-bar fontColor="#000" backState="1000" :home='false' :titleCenter="true" type="fixed" title="会子本">
-		</nav-bar>
-		<view><dark-calendar  @on-click="getDayData"></dark-calendar></view>
+		<nav-bar fontColor="#000" backState="1000" :home="false" :titleCenter="true" type="fixed" title="会子本"></nav-bar>
+		<view><dark-calendar @on-click="getDayData"></dark-calendar></view>
 
 		<huizi-deatil class="huiz-com" :huiziData="huiziData"></huizi-deatil>
 	</view>
@@ -15,56 +14,60 @@ export default {
 	data() {
 		return {
 			title: 'Hello',
-			huiziData: [],
+			huiziData: []
 		};
 	},
 	onLoad() {},
 	methods: {
-		getDayData(i) {
-			console.log( i )
+		getDayData(item) {
+			console.log( item )
 			let keysArray = uni.getStorageSync('huizi_keys');
 			let len = keysArray.length;
-			let date = `${i.year}-${i.month + 1}-${i.date}`;
+			let date = `${item.year}-${item.month}-${item.date}`;
 			let dateData = {};
+			let c_huizi_arr = {};
+			let self_day_data = [];
 			if (keysArray) {
 				for (let i = 0; i < len; i++) {
 					uni.getStorage({
 						key: i + '_key',
 						success: res => {
 							let huiziLen = res.data.self_huzi.length;
-							let day = null ;
+							let day = null;
 							for (let j = 0; j < huiziLen; j++) {
-								if( res.data.self_huzi[j].subitems_timemodel == '新历'){
+								if (res.data.self_huzi[j].subitems_timemodel == '新历') {
 									day = res.data.self_huzi[j].subitems_new_onetime;
-										for (let index in res.data.self_huzi[j].huizi_arr) {
-											let time =
-												`${res.data.self_huzi[j].huizi_arr[index].year}-${res.data.self_huzi[j].huizi_arr[index].month}-${day}`;
-												if( date == time ){
-													dateData = res.data.self_huzi[j].huizi_arr[index] ;
-													res.data.self_huzi[j].huizi_arr=[];
-													res.data.self_huzi[j].huizi_arr.push( dateData )
-												}
-											
+									for (let index in res.data.self_huzi[j].huizi_arr) {
+										let time = `${res.data.self_huzi[j].huizi_arr[index].year}-${res.data.self_huzi[j].huizi_arr[index].month -1 }-${day}`;
+										console.log( time )
+										if (date == time) {
+											dateData = res.data.self_huzi[j].huizi_arr[index];
+											c_huizi_arr = { ...res.data.self_huzi[j] };
+											c_huizi_arr.huizi_arr = [];
+											c_huizi_arr.huizi_arr.push(dateData);
+											self_day_data.push(c_huizi_arr);
 										}
-								}
-								else{
+									}
+								} else {
 									day = res.data.self_huzi[j].subitems_old_show_onetime;
-									if( day == i.lunar){
+									if (day == item.lunar) {
 										for (let index in res.data.self_huzi[j].huizi_arr) {
-										if( res.data.self_huzi[j].huizi_arr[index].year ==  i.year && res.data.self_huzi[j].huizi_arr[index].month ==  i.month)
-											console.log( res.data.self_huzi[j].huizi_arr[index] )
+											if (res.data.self_huzi[j].huizi_arr[index].year == item.year && res.data.self_huzi[j].huizi_arr[index].month -1 == item.month) {
+												dateData = res.data.self_huzi[j].huizi_arr[index];
+												c_huizi_arr = { ...res.data.self_huzi[j] };
+												c_huizi_arr.huizi_arr = [];
+												c_huizi_arr.huizi_arr.push(dateData);
+												self_day_data.push(c_huizi_arr);
+											}
 										}
 									}
 								}
 							}
-							console.log( res.data.self_huzi[j] )
 						}
 					});
 				}
-			
-			
+				this.huiziData = self_day_data;
 			}
-			
 
 			// for (let i in this.dateDetail) {
 			// 	if( this.dateDetail[i].subitems_timemodel == '新历' ){
@@ -77,7 +80,7 @@ export default {
 			// 		let time =
 			// 			`${this.dateDetail[i].huizi_arr[j].year}-${this.dateDetail[i].huizi_arr[j].month}-${day}`;
 			// 		date == time ? console.log( this.dateDetail[i].huizi_arr[j] ) : false;
-					
+
 			// 	}
 			// }
 		}
