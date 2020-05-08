@@ -63,7 +63,7 @@
 .form .fixation-dec {
   position: absolute;
   top: 56rpx;
-  font-size: 6px;
+  font-size: 22rpx;
   color: #DD524D;
 }
 .create {

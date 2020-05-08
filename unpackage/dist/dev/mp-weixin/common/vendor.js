@@ -1552,9 +1552,9 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 110:
-/*!*********************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/e-picker/e-picker.js ***!
-  \*********************************************************************/
+/*!********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/e-picker/e-picker.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1584,33 +1584,33 @@ function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(pars
 /***/ }),
 
 /***/ 116:
-/*!*********************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/static/js/public.js ***!
-  \*********************************************************/
+/*!********************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/static/js/public.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                     * @1900-2100区间内的公历、农历互转
-                                                                                                     * @charset UTF-8
-                                                                                                     * @Author  Jea杨(JJonline@JJonline.Cn) 
-                                                                                                     * @Time    2014-7-21
-                                                                                                     * @Time    2016-8-13 Fixed 2033hex、Attribution Annals
-                                                                                                     * @Time    2016-9-25 Fixed lunar LeapMonth Param Bug
-                                                                                                     * @Time    2017-7-24 Fixed use getTerm Func Param Error.use solar year,NOT lunar year
-                                                                                                     * @Version 1.0.3
-                                                                                                     * @公历转农历：calendar.solar2lunar(1987,11,01); //[you can ignore params of prefix 0]
-                                                                                                     * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
-                                                                                                     */
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @1900-2100区间内的公历、农历互转
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @charset UTF-8
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Author  Jea杨(JJonline@JJonline.Cn) 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Time    2014-7-21
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Time    2016-8-13 Fixed 2033hex、Attribution Annals
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Time    2016-9-25 Fixed lunar LeapMonth Param Bug
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Time    2017-7-24 Fixed use getTerm Func Param Error.use solar year,NOT lunar year
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Version 1.0.3
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @公历转农历：calendar.solar2lunar(1987,11,01); //[you can ignore params of prefix 0]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @农历转公历：calendar.lunar2solar(1987,09,10); //[you can ignore params of prefix 0]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */
 
 var calendar = {
 
   /**
-                   * 农历1900-2100的润大小信息表
-                   * @Array Of Property
-                   * @return Hex 
-                   */
+                  * 农历1900-2100的润大小信息表
+                  * @Array Of Property
+                  * @return Hex 
+                  */
   lunarInfo: [0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2, //1900-1909
   0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977, //1910-1919
   0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970, //1920-1929
@@ -1632,51 +1632,60 @@ var calendar = {
   0x052d0, 0x0a9b8, 0x0a950, 0x0b4a0, 0x0b6a6, 0x0ad50, 0x055a0, 0x0aba4, 0x0a5b0, 0x052b0, //2070-2079
   0x0b273, 0x06930, 0x07337, 0x06aa0, 0x0ad50, 0x14b55, 0x04b60, 0x0a570, 0x054e4, 0x0d160, //2080-2089
   0x0e968, 0x0d520, 0x0daa0, 0x16aa6, 0x056d0, 0x04ae0, 0x0a9d4, 0x0a2d0, 0x0d150, 0x0f252, //2090-2099
-  0x0d520], //2100
+  0x0d520],
+  //2100
 
   /**
-    * 公历每个月份的天数普通表
-    * @Array Of Property
-    * @return Number 
-    */
+   * 公历每个月份的天数普通表
+   * @Array Of Property
+   * @return Number 
+   */
   solarMonth: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 
   /**
-                                                                  * 天干地支之天干速查表
-                                                                  * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
-                                                                  * @return Cn string 
-                                                                  */
+                                                                 * 天干地支之天干速查表
+                                                                 * @Array Of Property trans["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"]
+                                                                 * @return Cn string 
+                                                                 */
   Gan: ["\u7532", "\u4E59", "\u4E19", "\u4E01", "\u620A", "\u5DF1", "\u5E9A", "\u8F9B", "\u58EC", "\u7678"],
 
   /**
-                                                                                                               * 天干地支之地支速查表
-                                                                                                               * @Array Of Property 
-                                                                                                               * @trans["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
-                                                                                                               * @return Cn string 
-                                                                                                               */
-  Zhi: ["\u5B50", "\u4E11", "\u5BC5", "\u536F", "\u8FB0", "\u5DF3", "\u5348", "\u672A", "\u7533", "\u9149", "\u620C", "\u4EA5"],
+                                                                                                              * 天干地支之地支速查表
+                                                                                                              * @Array Of Property 
+                                                                                                              * @trans["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"]
+                                                                                                              * @return Cn string 
+                                                                                                              */
+  Zhi: ["\u5B50", "\u4E11", "\u5BC5", "\u536F", "\u8FB0", "\u5DF3", "\u5348", "\u672A", "\u7533", "\u9149", "\u620C",
+  "\u4EA5"],
+
 
   /**
-                                                                                                                                   * 天干地支之地支速查表<=>生肖
-                                                                                                                                   * @Array Of Property 
-                                                                                                                                   * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
-                                                                                                                                   * @return Cn string 
-                                                                                                                                   */
-  Animals: ["\u9F20", "\u725B", "\u864E", "\u5154", "\u9F99", "\u86C7", "\u9A6C", "\u7F8A", "\u7334", "\u9E21", "\u72D7", "\u732A"],
+              * 天干地支之地支速查表<=>生肖
+              * @Array Of Property 
+              * @trans["鼠","牛","虎","兔","龙","蛇","马","羊","猴","鸡","狗","猪"]
+              * @return Cn string 
+              */
+  Animals: ["\u9F20", "\u725B", "\u864E", "\u5154", "\u9F99", "\u86C7", "\u9A6C", "\u7F8A", "\u7334", "\u9E21",
+  "\u72D7", "\u732A"],
+
 
   /**
-                                                                                                                                       * 24节气速查表
-                                                                                                                                       * @Array Of Property 
-                                                                                                                                       * @trans["小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"]
-                                                                                                                                       * @return Cn string 
-                                                                                                                                       */
-  solarTerm: ["\u5C0F\u5BD2", "\u5927\u5BD2", "\u7ACB\u6625", "\u96E8\u6C34", "\u60CA\u86F0", "\u6625\u5206", "\u6E05\u660E", "\u8C37\u96E8", "\u7ACB\u590F", "\u5C0F\u6EE1", "\u8292\u79CD", "\u590F\u81F3", "\u5C0F\u6691", "\u5927\u6691", "\u7ACB\u79CB", "\u5904\u6691", "\u767D\u9732", "\u79CB\u5206", "\u5BD2\u9732", "\u971C\u964D", "\u7ACB\u51AC", "\u5C0F\u96EA", "\u5927\u96EA", "\u51AC\u81F3"],
+                        * 24节气速查表
+                        * @Array Of Property 
+                        * @trans["小寒","大寒","立春","雨水","惊蛰","春分","清明","谷雨","立夏","小满","芒种","夏至","小暑","大暑","立秋","处暑","白露","秋分","寒露","霜降","立冬","小雪","大雪","冬至"]
+                        * @return Cn string 
+                        */
+  solarTerm: ["\u5C0F\u5BD2", "\u5927\u5BD2", "\u7ACB\u6625", "\u96E8\u6C34", "\u60CA\u86F0", "\u6625\u5206",
+  "\u6E05\u660E", "\u8C37\u96E8", "\u7ACB\u590F", "\u5C0F\u6EE1", "\u8292\u79CD", "\u590F\u81F3", "\u5C0F\u6691",
+  "\u5927\u6691", "\u7ACB\u79CB", "\u5904\u6691", "\u767D\u9732", "\u79CB\u5206", "\u5BD2\u9732", "\u971C\u964D",
+  "\u7ACB\u51AC", "\u5C0F\u96EA", "\u5927\u96EA", "\u51AC\u81F3"],
+
 
   /**
-                                                                                                                                                                                                                                                                                                                                                                                                                 * 1900-2100各年的24节气日期速查表
-                                                                                                                                                                                                                                                                                                                                                                                                                 * @Array Of Property 
-                                                                                                                                                                                                                                                                                                                                                                                                                 * @return 0x string For splice
-                                                                                                                                                                                                                                                                                                                                                                                                                 */
+                                                                    * 1900-2100各年的24节气日期速查表
+                                                                    * @Array Of Property 
+                                                                    * @return 0x string For splice
+                                                                    */
   sTermInfo: ['9778397bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e', '97bcf97c3598082c95f8c965cc920f',
   '97bd0b06bdb0722c965ce1cfcc920f', 'b027097bd097c36b0b6fc9274c91aa', '97b6b97bd19801ec9210c965cc920e',
   '97bcf97c359801ec95f8c965cc920f', '97bd0b06bdb0722c965ce1cfcc920f', 'b027097bd097c36b0b6fc9274c91aa',
@@ -1745,58 +1754,63 @@ var calendar = {
   '7f07e7f0e47f531b0723b0b6fb0721', '7f0e26665b66a449801e9808297c35', '665f67f0e37f1489801eb072297c35',
   '7ec967f0e37f14998082b0787b06bd', '7f07e7f0e47f531b0723b0b6fb0721', '7f0e27f1487f531b0b0bb0b6fb0722'],
 
+
   /**
-                                                                                                           * 数字转中文速查表
-                                                                                                           * @Array Of Property 
-                                                                                                           * @trans ['日','一','二','三','四','五','六','七','八','九','十']
-                                                                                                           * @return Cn string 
-                                                                                                           */
+                                                                                                          * 数字转中文速查表
+                                                                                                          * @Array Of Property 
+                                                                                                          * @trans ['日','一','二','三','四','五','六','七','八','九','十']
+                                                                                                          * @return Cn string 
+                                                                                                          */
   nStr1: ["\u65E5", "\u4E00", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D", "\u4E03", "\u516B", "\u4E5D", "\u5341"],
 
   /**
-                                                                                                                           * 日期转农历称呼速查表
-                                                                                                                           * @Array Of Property 
-                                                                                                                           * @trans ['初','十','廿','卅']
-                                                                                                                           * @return Cn string 
-                                                                                                                           */
+                                                                                                                          * 日期转农历称呼速查表
+                                                                                                                          * @Array Of Property 
+                                                                                                                          * @trans ['初','十','廿','卅']
+                                                                                                                          * @return Cn string 
+                                                                                                                          */
   nStr2: ["\u521D", "\u5341", "\u5EFF", "\u5345"],
 
   /**
-                                                     * 月份转农历称呼速查表
-                                                     * @Array Of Property 
-                                                     * @trans ['正','一','二','三','四','五','六','七','八','九','十','冬','腊']
-                                                     * @return Cn string 
-                                                     */
-  nStr3: ["\u6B63", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D", "\u4E03", "\u516B", "\u4E5D", "\u5341", "\u51AC", "\u814A"],
+                                                    * 月份转农历称呼速查表
+                                                    * @Array Of Property 
+                                                    * @trans ['正','一','二','三','四','五','六','七','八','九','十','冬','腊']
+                                                    * @return Cn string 
+                                                    */
+  nStr3: ["\u6B63", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D", "\u4E03", "\u516B", "\u4E5D", "\u5341", "\u51AC",
+  "\u814A"],
+
 
   /**
-                                                                                                                                     * 返回农历y年一整年的总天数
-                                                                                                                                     * @param lunar Year
-                                                                                                                                     * @return Number
-                                                                                                                                     * @eg:var count = calendar.lYearDays(1987) ;//count=387
-                                                                                                                                     */
+              * 返回农历y年一整年的总天数
+              * @param lunar Year
+              * @return Number
+              * @eg:var count = calendar.lYearDays(1987) ;//count=387
+              */
   lYearDays: function lYearDays(y) {
     var i,sum = 348;
-    for (i = 0x8000; i > 0x8; i >>= 1) {sum += calendar.lunarInfo[y - 1900] & i ? 1 : 0;}
+    for (i = 0x8000; i > 0x8; i >>= 1) {
+      sum += calendar.lunarInfo[y - 1900] & i ? 1 : 0;
+    }
     return sum + calendar.leapDays(y);
   },
 
   /**
-       * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
-       * @param lunar Year
-       * @return Number (0-12)
-       * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
-       */
+      * 返回农历y年闰月是哪个月；若y年没有闰月 则返回0
+      * @param lunar Year
+      * @return Number (0-12)
+      * @eg:var leapMonth = calendar.leapMonth(1987) ;//leapMonth=6
+      */
   leapMonth: function leapMonth(y) {//闰字编码 \u95f0
     return calendar.lunarInfo[y - 1900] & 0xf;
   },
 
   /**
-       * 返回农历y年闰月的天数 若该年没有闰月则返回0
-       * @param lunar Year
-       * @return Number (0、29、30)
-       * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
-       */
+      * 返回农历y年闰月的天数 若该年没有闰月则返回0
+      * @param lunar Year
+      * @return Number (0、29、30)
+      * @eg:var leapMonthDay = calendar.leapDays(1987) ;//leapMonthDay=29
+      */
   leapDays: function leapDays(y) {
     if (calendar.leapMonth(y)) {
       return calendar.lunarInfo[y - 1900] & 0x10000 ? 30 : 29;
@@ -1805,24 +1819,28 @@ var calendar = {
   },
 
   /**
-       * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
-       * @param lunar Year
-       * @return Number (-1、29、30)
-       * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
-       */
+      * 返回农历y年m月（非闰月）的总天数，计算m为闰月时的天数请使用leapDays方法
+      * @param lunar Year
+      * @return Number (-1、29、30)
+      * @eg:var MonthDay = calendar.monthDays(1987,9) ;//MonthDay=29
+      */
   monthDays: function monthDays(y, m) {
-    if (m > 12 || m < 1) {return -1;} //月份参数从1至12，参数错误返回-1
+    if (m > 12 || m < 1) {
+      return -1;
+    } //月份参数从1至12，参数错误返回-1
     return calendar.lunarInfo[y - 1900] & 0x10000 >> m ? 30 : 29;
   },
 
   /**
-       * 返回公历(!)y年m月的天数
-       * @param solar Year
-       * @return Number (-1、28、29、30、31)
-       * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
-       */
+      * 返回公历(!)y年m月的天数
+      * @param solar Year
+      * @return Number (-1、28、29、30、31)
+      * @eg:var solarMonthDay = calendar.leapDays(1987) ;//solarMonthDay=30
+      */
   solarDays: function solarDays(y, m) {
-    if (m > 12 || m < 1) {return -1;} //若参数错误 返回-1
+    if (m > 12 || m < 1) {
+      return -1;
+    } //若参数错误 返回-1
     var ms = m - 1;
     if (ms == 1) {//2月份的闰平规律测算后确认返回28或29
       return y % 4 == 0 && y % 100 != 0 || y % 400 == 0 ? 29 : 28;
@@ -1852,29 +1870,34 @@ var calendar = {
       * @return Cn string
       */
   toAstro: function toAstro(cMonth, cDay) {
-    var s = "\u9B54\u7FAF\u6C34\u74F6\u53CC\u9C7C\u767D\u7F8A\u91D1\u725B\u53CC\u5B50\u5DE8\u87F9\u72EE\u5B50\u5904\u5973\u5929\u79E4\u5929\u874E\u5C04\u624B\u9B54\u7FAF";
+    var s =
+    "\u9B54\u7FAF\u6C34\u74F6\u53CC\u9C7C\u767D\u7F8A\u91D1\u725B\u53CC\u5B50\u5DE8\u87F9\u72EE\u5B50\u5904\u5973\u5929\u79E4\u5929\u874E\u5C04\u624B\u9B54\u7FAF";
     var arr = [20, 19, 21, 21, 21, 22, 23, 23, 23, 23, 22, 22];
     return s.substr(cMonth * 2 - (cDay < arr[cMonth - 1] ? 2 : 0), 2) + "\u5EA7"; //座
   },
 
   /**
-       * 传入offset偏移量返回干支
-       * @param offset 相对甲子的偏移量
-       * @return Cn string
-       */
+      * 传入offset偏移量返回干支
+      * @param offset 相对甲子的偏移量
+      * @return Cn string
+      */
   toGanZhi: function toGanZhi(offset) {
     return calendar.Gan[offset % 10] + calendar.Zhi[offset % 12];
   },
 
   /**
-       * 传入公历(!)y年获得该年第n个节气的公历日期
-       * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起 
-       * @return day Number
-       * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
-       */
+      * 传入公历(!)y年获得该年第n个节气的公历日期
+      * @param y公历年(1900-2100)；n二十四节气中的第几个节气(1~24)；从n=1(小寒)算起 
+      * @return day Number
+      * @eg:var _24 = calendar.getTerm(1987,3) ;//_24=4;意即1987年2月4日立春
+      */
   getTerm: function getTerm(y, n) {
-    if (y < 1900 || y > 2100) {return -1;}
-    if (n < 1 || n > 24) {return -1;}
+    if (y < 1900 || y > 2100) {
+      return -1;
+    }
+    if (n < 1 || n > 24) {
+      return -1;
+    }
     var _table = calendar.sTermInfo[y - 1900];
     var _info = [
     parseInt('0x' + _table.substr(0, 5)).toString(),
@@ -1919,34 +1942,39 @@ var calendar = {
   },
 
   /**
-       * 传入农历数字月份返回汉语通俗表示法
-       * @param lunar month
-       * @return Cn string
-       * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
-       */
+      * 传入农历数字月份返回汉语通俗表示法
+      * @param lunar month
+      * @return Cn string
+      * @eg:var cnMonth = calendar.toChinaMonth(12) ;//cnMonth='腊月'
+      */
   toChinaMonth: function toChinaMonth(m) {// 月 => \u6708
-    if (m > 12 || m < 1) {return -1;} //若参数错误 返回-1
+    if (m > 12 || m < 1) {
+      return -1;
+    } //若参数错误 返回-1
     var s = calendar.nStr3[m - 1];
     s += "\u6708"; //加上月字
     return s;
   },
 
   /**
-       * 传入农历日期数字返回汉字表示法
-       * @param lunar day
-       * @return Cn string
-       * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
-       */
+      * 传入农历日期数字返回汉字表示法
+      * @param lunar day
+      * @return Cn string
+      * @eg:var cnDay = calendar.toChinaDay(21) ;//cnMonth='廿一'
+      */
   toChinaDay: function toChinaDay(d) {//日 => \u65e5
     var s;
     switch (d) {
       case 10:
-        s = "\u521D\u5341";break;
+        s = "\u521D\u5341";
+        break;
       case 20:
-        s = "\u4E8C\u5341";break;
+        s = "\u4E8C\u5341";
+        break;
         break;
       case 30:
-        s = "\u4E09\u5341";break;
+        s = "\u4E09\u5341";
+        break;
         break;
       default:
         s = calendar.nStr2[Math.floor(d / 10)];
@@ -1956,23 +1984,23 @@ var calendar = {
   },
 
   /**
-       * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
-       * @param y year
-       * @return Cn string
-       * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
-       */
+      * 年份转生肖[!仅能大致转换] => 精确划分生肖分界线是“立春”
+      * @param y year
+      * @return Cn string
+      * @eg:var animal = calendar.getAnimal(1987) ;//animal='兔'
+      */
   getAnimal: function getAnimal(y) {
     return calendar.Animals[(y - 4) % 12];
   },
 
   /**
-       * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
-       * @param y  solar year
-       * @param m  solar month
-       * @param d  solar day
-       * @return JSON object
-       * @eg:console.log(calendar.solar2lunar(1987,11,01));
-       */
+      * 传入阳历年月日获得详细的公历、农历object信息 <=>JSON
+      * @param y  solar year
+      * @param m  solar month
+      * @param d  solar day
+      * @return JSON object
+      * @eg:console.log(calendar.solar2lunar(1987,11,01));
+      */
   solar2lunar: function solar2lunar(y, m, d) {//参数区间1900.1.31~2100.12.31
     //年份限定、上限
     if (y < 1900 || y > 2100) {
@@ -1988,18 +2016,21 @@ var calendar = {
     } else {
       var objDate = new Date(y, parseInt(m) - 1, d);
     }
-    var i,leap = 0,temp = 0;
+    var i,leap = 0,
+    temp = 0;
     //修正ymd参数
     var y = objDate.getFullYear(),
     m = objDate.getMonth() + 1,
     d = objDate.getDate();
-    var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) / 86400000;
+    var offset = (Date.UTC(objDate.getFullYear(), objDate.getMonth(), objDate.getDate()) - Date.UTC(1900, 0, 31)) /
+    86400000;
     for (i = 1900; i < 2101 && offset > 0; i++) {
       temp = calendar.lYearDays(i);
       offset -= temp;
     }
     if (offset < 0) {
-      offset += temp;i--;
+      offset += temp;
+      i--;
     }
 
     //是否今天
@@ -2025,27 +2056,29 @@ var calendar = {
       //闰月
       if (leap > 0 && i == leap + 1 && isLeap == false) {
         --i;
-        isLeap = true;temp = calendar.leapDays(year); //计算农历闰月天数
-      } else
-      {
+        isLeap = true;
+        temp = calendar.leapDays(year); //计算农历闰月天数
+      } else {
         temp = calendar.monthDays(year, i); //计算农历普通月天数
       }
       //解除闰月
-      if (isLeap == true && i == leap + 1) {isLeap = false;}
+      if (isLeap == true && i == leap + 1) {
+        isLeap = false;
+      }
       offset -= temp;
     }
     // 闰月导致数组下标重叠取反
-    if (offset == 0 && leap > 0 && i == leap + 1)
-    {
+    if (offset == 0 && leap > 0 && i == leap + 1) {
       if (isLeap) {
         isLeap = false;
       } else {
-        isLeap = true;--i;
+        isLeap = true;
+        --i;
       }
     }
-    if (offset < 0)
-    {
-      offset += temp;--i;
+    if (offset < 0) {
+      offset += temp;
+      --i;
     }
     //农历月
     var month = i;
@@ -2083,25 +2116,49 @@ var calendar = {
     //该日期所属的星座
     var astro = calendar.toAstro(m, d);
 
-    return { 'lYear': year, 'lMonth': month, 'lDay': day, 'Animal': calendar.getAnimal(year), 'IMonthCn': (isLeap ? "\u95F0" : '') + calendar.toChinaMonth(month), 'IDayCn': calendar.toChinaDay(day), 'cYear': y, 'cMonth': m, 'cDay': d, 'gzYear': gzY, 'gzMonth': gzM, 'gzDay': gzD, 'isToday': isToday, 'isLeap': isLeap, 'nWeek': nWeek, 'ncWeek': "\u661F\u671F" + cWeek, 'isTerm': isTerm, 'Term': Term, 'astro': astro };
+    return {
+      'lYear': year,
+      'lMonth': month,
+      'lDay': day,
+      'Animal': calendar.getAnimal(year),
+      'IMonthCn': (isLeap ? "\u95F0" : '') + calendar.toChinaMonth(month),
+      'IDayCn': calendar.toChinaDay(day),
+      'cYear': y,
+      'cMonth': m,
+      'cDay': d,
+      'gzYear': gzY,
+      'gzMonth': gzM,
+      'gzDay': gzD,
+      'isToday': isToday,
+      'isLeap': isLeap,
+      'nWeek': nWeek,
+      'ncWeek': "\u661F\u671F" + cWeek,
+      'isTerm': isTerm,
+      'Term': Term,
+      'astro': astro };
+
   },
 
   /**
-       * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
-       * @param y  lunar year
-       * @param m  lunar month
-       * @param d  lunar day
-       * @param isLeapMonth  lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
-       * @return JSON object
-       * @eg:console.log(calendar.lunar2solar(1987,9,10));
-       */
+      * 传入农历年月日以及传入的月份是否闰月获得详细的公历、农历object信息 <=>JSON
+      * @param y  lunar year
+      * @param m  lunar month
+      * @param d  lunar day
+      * @param isLeapMonth  lunar month is leap or not.[如果是农历闰月第四个参数赋值true即可]
+      * @return JSON object
+      * @eg:console.log(calendar.lunar2solar(1987,9,10));
+      */
   lunar2solar: function lunar2solar(y, m, d, isLeapMonth) {//参数区间1900.1.31~2100.12.1
     var isLeapMonth = !!isLeapMonth;
     var leapOffset = 0;
     var leapMonth = calendar.leapMonth(y);
     var leapDay = calendar.leapDays(y);
-    if (isLeapMonth && leapMonth != m) {return -1;} //传参要求计算该闰月公历 但该年得出的闰月与传参的月份并不同
-    if (y == 2100 && m == 12 && d > 1 || y == 1900 && m == 1 && d < 31) {return -1;} //超出了最大极限值 
+    if (isLeapMonth && leapMonth != m) {
+      return -1;
+    } //传参要求计算该闰月公历 但该年得出的闰月与传参的月份并不同
+    if (y == 2100 && m == 12 && d > 1 || y == 1900 && m == 1 && d < 31) {
+      return -1;
+    } //超出了最大极限值 
     var day = calendar.monthDays(y, m);
     var _day = day;
     //bugFix 2016-9-25 
@@ -2109,25 +2166,31 @@ var calendar = {
     if (isLeapMonth) {
       _day = calendar.leapDays(y, m);
     }
-    if (y < 1900 || y > 2100 || d > _day) {return -1;} //参数合法性效验
+    if (y < 1900 || y > 2100 || d > _day) {
+      return -1;
+    } //参数合法性效验
 
     //计算农历的时间差
     var offset = 0;
     for (var i = 1900; i < y; i++) {
       offset += calendar.lYearDays(i);
     }
-    var leap = 0,isAdd = false;
+    var leap = 0,
+    isAdd = false;
     for (var i = 1; i < m; i++) {
       leap = calendar.leapMonth(y);
       if (!isAdd) {//处理闰月
         if (leap <= i && leap > 0) {
-          offset += calendar.leapDays(y);isAdd = true;
+          offset += calendar.leapDays(y);
+          isAdd = true;
         }
       }
       offset += calendar.monthDays(y, i);
     }
     //转换闰月农历 需补充该年闰月的前一个月的时差
-    if (isLeapMonth) {offset += day;}
+    if (isLeapMonth) {
+      offset += day;
+    }
     //1900年农历正月一日的公历时间为1900年1月30日0时0分0秒(该时间也是本农历的最开始起始点)
     var stmap = Date.UTC(1900, 1, 30, 0, 0, 0);
     var calObj = new Date((offset + d - 31) * 86400000 + stmap);
@@ -2136,11 +2199,76 @@ var calendar = {
     var cD = calObj.getUTCDate();
 
     return calendar.solar2lunar(cY, cM, cD);
+  } };
+
+var toDay = {
+  //item格式
+  // {date: 7,
+  // 	day: 4,
+  // 	lm: true,
+  // 	lunar: "十五",
+  // 	month: 4,
+  // 	year: 2020
+  // }
+  getToDayData: function getToDayData(item) {
+    var keysArray = uni.getStorageSync('huizi_keys');
+    var len = keysArray.length;
+    var date = "".concat(item.year, "-").concat(item.month, "-").concat(item.date);
+    var dateData = {};
+    var c_huizi_arr = {};
+    var self_day_data = [];
+    if (keysArray) {
+      for (var i = 0; i < len; i++) {
+        uni.getStorage({
+          key: i + '_key',
+          success: function success(res) {
+            var huiziLen = res.data.self_huzi.length;
+            var day = null;
+            for (var j = 0; j < huiziLen; j++) {
+              if (res.data.self_huzi[j].subitems_timemodel == '新历') {
+                day = res.data.self_huzi[j].subitems_new_onetime;
+                for (var index in res.data.self_huzi[j].huizi_arr) {
+                  var time = "".concat(
+                  res.data.self_huzi[j].huizi_arr[index].year, "-").concat(res.data.self_huzi[j].huizi_arr[index].month - 1, "-").concat(day);
+
+                  if (date == time) {
+                    dateData = res.data.self_huzi[j].huizi_arr[index];
+                    c_huizi_arr = _objectSpread({}, res.data.self_huzi[j]);
+
+                    c_huizi_arr.huizi_arr = [];
+                    c_huizi_arr.huizi_arr.push(dateData);
+                    self_day_data.push(c_huizi_arr);
+                  }
+                }
+              } else {
+                day = res.data.self_huzi[j].subitems_old_show_onetime;
+                if (day == item.lunar) {
+                  for (var _index in res.data.self_huzi[j].huizi_arr) {
+                    if (res.data.self_huzi[j].huizi_arr[_index].year == item.year && res.data.self_huzi[j].huizi_arr[_index].month -
+                    1 == item.month) {
+                      dateData = res.data.self_huzi[j].huizi_arr[_index];
+                      c_huizi_arr = _objectSpread({}, res.data.self_huzi[j]);
+
+                      c_huizi_arr.huizi_arr = [];
+                      c_huizi_arr.huizi_arr.push(dateData);
+                      self_day_data.push(c_huizi_arr);
+                    }
+                  }
+                }
+              }
+            }
+          } });
+
+      }
+      return self_day_data;
+    }
   } };var _default =
 
 
 {
-  calendar: calendar };exports.default = _default;
+  calendar: calendar,
+  toDay: toDay };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -2261,6 +2389,1005 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ 156:
+/*!***************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/store/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 157));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //引入vue
+// 引入vuex
+_vue.default.use(_vuex.default); // 让vue使用vuex
+
+// 通过vuex构造函数创建store对象
+var store = new _vuex.default.Store({
+  //将vuex中的值赋值给组件保存的变量，无法直接在标签中使用vuex的任何数据或者方法
+  //栗子：this.$data.allMoney = this.$store.state.shopcar.allMoney
+  state: {
+    init_date: null },
+
+  //type对应的是vuex中保存的mutations的方法名，无论是保存到mutations还是保存到modules的mutations中，都能成功。
+  // arguments 对应的是传过去的参数
+  // this.$store.commit({
+  // 	type:"changeAllMoney",
+  // 	arguments: {
+  // 		allMoney: allMoney
+  // 	}
+  // })
+
+  mutations: {
+    changeInitDate: function changeInitDate(state, initDate) {
+      state.init_date = initDate.arguments.init_date;
+    } }
+
+  //组件中调用vux中modules的state
+  //this.$store.state.modules名.属性名
+  //引入某个store对象import dialog_store from '../components/dialog_store.js';
+  //做出这样的修改之后 , 我们将之前我们使用的 $store.state.show 统统改为 $store.state.dialog.show 即可。
+  //store的子模块，内容就相当于是store的一个实例。调用方式和前面介绍的相似，只是要加上当前子模块名，如：store.a.getters.xxx()。
+  // modules: {
+  //     dialog: dialog_store
+  // }
+});var _default =
+store; //导出store对象
+exports.default = _default;
+
+/***/ }),
+
+/***/ 157:
+/*!********************************************!*\
+  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
+  \********************************************/
+/*! exports provided: Store, install, mapState, mapMutations, mapGetters, mapActions, createNamespacedHelpers, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/**
+ * vuex v3.0.1
+ * (c) 2017 Evan You
+ * @license MIT
+ */
+var applyMixin = function (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+};
+
+var devtoolHook =
+  typeof window !== 'undefined' &&
+  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  this._children = Object.create(null);
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors$1 = { namespaced: { configurable: true } };
+
+prototypeAccessors$1.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors$1 );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "Store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  var state = options.state; if ( state === void 0 ) state = {};
+  if (typeof state === 'function') {
+    state = state() || {};
+  }
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  if (Vue.config.devtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors = { state: { configurable: true } };
+
+prototypeAccessors.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors.state.set = function (v) {
+  if (true) {
+    assert(false, "Use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+     true &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
+
+  return entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload)
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  return genericSubscribe(fn, this._subscribers)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn) {
+  return genericSubscribe(fn, this._actionSubscribers)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors );
+
+function genericSubscribe (fn, subs) {
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    computed[key] = function () { return fn(store); };
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  var gettersProxy = {};
+
+  var splitPos = namespace.length;
+  Object.keys(store.getters).forEach(function (type) {
+    // skip if the target getter is not match this namespace
+    if (type.slice(0, splitPos) !== namespace) { return }
+
+    // extract local getter type
+    var localType = type.slice(splitPos);
+
+    // Add a port to the getters proxy.
+    // Define as getter property because
+    // we do not want to evaluate the getters in this time.
+    Object.defineProperty(gettersProxy, localType, {
+      get: function () { return store.getters[type]; },
+      enumerable: true
+    });
+  });
+
+  return gettersProxy
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload, cb) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload, cb);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ( true && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+function normalizeMap (map) {
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ( true && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.0.1',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+
+/* harmony default export */ __webpack_exports__["default"] = (index_esm);
 
 
 /***/ }),
@@ -8328,9 +9455,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
-  \************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9238,9 +10365,9 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!*****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \*****************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9250,9 +10377,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 8:
-/*!****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \****************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9262,9 +10389,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 88:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/lb-picker/utils.js ***!
-  \*******************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/lb-picker/utils.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

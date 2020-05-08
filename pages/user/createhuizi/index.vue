@@ -371,7 +371,7 @@
 					let payment_num = payment_num_y * 12 + payment_num_m;
 					let huizi_arr = [];
 					if (this.subitems_fixation == '不定投' && this.subitems_monthnum == "1次") {
-						for (let i = 0; i < payment_num; i++) {
+						for (let i = 0; i <= payment_num; i++) {
 							huizi_arr[i] = {
 								year: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[0] + parseInt(i / 12)) + 1 : +endTimeArr[0] + parseInt(i /
 									12),
@@ -524,7 +524,7 @@
 			&-dec {
 				position: absolute;
 				top: 56rpx;
-				font-size: 6px;
+				font-size: 22rpx;
 				color: #DD524D;
 			}
 		}

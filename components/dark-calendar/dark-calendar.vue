@@ -15,10 +15,11 @@
 				<view class="item" v-for="(item, index) in dates" :key="index">
 					<view class="day" @click="selectOne(item, $event)" :class="{ choose: choose == `${item.year}-${item.month + 1}-${item.date}`, nolm: !item.lm }">
 						{{ item.date }}
+						<text class="old-time" :class="{ oldnolm: !item.lm }" v-if="!isSigned(item.year, item.month + 1, item.date)">
+							{{ item.lunar }}
+						</text>
 					</view>
-					<view class="old-time" :class="{ oldnolm: !item.lm }" v-if="!isSigned(item.year, item.month + 1, item.date)">
-						{{ item.lunar }}
-					</view>
+
 					<view class="sign" v-if="isSigned(item.year, item.month + 1, item.date)"></view>
 					<view class="today-text" v-if="isToday(item.year, item.month, item.date)">今</view>
 				</view>
@@ -329,8 +330,8 @@
 						font-style: normal;
 						display: inline-block;
 						vertical-align: middle;
-						width: 60upx;
-						height: 60upx;
+						width: 80upx;
+						height: 80upx;
 						line-height: 60upx;
 						overflow: hidden;
 						border-radius: 60upx;
@@ -349,8 +350,8 @@
 
 					.old-time {
 						position: absolute;
-						top: 13px;
-						right: 14px;
+						top: 28upx;
+						right: 28upx;
 						font-size: 12px;
 
 					}

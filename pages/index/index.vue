@@ -28,6 +28,7 @@
 	import uniFab from '@/components/uni-fab/uni-fab.vue';
 	import huiziDeatil from '@/components/huizi-deatil/huizi-detail.vue';
 	import navBar from "@/components/zhouWei-navBar";
+	import publicFnc from '@/static/js/public.js';
 	export default {
 		data() {
 			return {
@@ -53,7 +54,7 @@
 						active: false
 					}
 				],
-				huiziData:[],
+				huiziData: [],
 				horizontal: 'right',
 				vertical: 'bottom',
 				direction: 'vertical',
@@ -61,38 +62,11 @@
 			};
 		},
 		onLoad() {
-			this.huiziData = [{
-				id:1,
-				projectName:'嘻嘻500',
-				currentPeriod:2,
-				totalPeriods:50,
-				payment:500,
-				isPay:true,
-				payTime:'2020-04-12'
-			},{
-				id:2,
-				projectName:'哈哈1000',
-				currentPeriod:9,
-				totalPeriods:50,
-				payment:1000,
-				isPay:true,
-				payTime:'2020-03-23'
-			},{
-				id:3,
-				projectName:'呵呵1500',
-				currentPeriod:6,
-				totalPeriods:30,
-				payment:1500,
-				isPay:true,
-				payTime:'2020-02-22'
-			}]
-			
-			
+			this.initToday();
 		},
 		methods: {
 			trigger(e) {
 				let model = e.item.model;
-
 				switch (model) {
 					case 'calendar':
 						console.log('11');
@@ -106,6 +80,20 @@
 					default:
 						console.log('butiao');
 				}
+			},
+			initToday() {
+				let date = new Date();
+				let y = date.getFullYear();
+				let m = date.getMonth();
+				let d = date.getDate();
+				let lunar = publicFnc.calendar.solar2lunar(y, m + 1, d);
+				let today_data = {
+					date: d,
+					lunar: lunar.IDayCn,
+					month: m,
+					year:y
+				}
+				this.huiziData =  publicFnc.toDay.getToDayData( today_data );
 			}
 		},
 		components: {
@@ -121,12 +109,14 @@
 		font-size: 16px;
 		font-weight: 600;
 	}
+
 	.home {
 		width: 100%;
 		height: 100%;
 		color: #ffffff;
 		display: flex;
 		flex-direction: column;
+
 		&-nav {
 			box-sizing: border-box;
 			display: flex;
@@ -139,6 +129,7 @@
 			padding: 10rpx 25rpx 50rpx;
 			position: fixed;
 			z-index: 9999;
+
 			&-r {
 				flex: 1;
 				text-align: right;
@@ -156,7 +147,7 @@
 				}
 			}
 		}
-		
+
 		.huizi-title {
 			text-align: center;
 			font-size: 18px;
