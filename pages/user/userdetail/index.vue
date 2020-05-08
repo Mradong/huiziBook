@@ -57,16 +57,15 @@
 				   }
 				   for(let i = 0 ;  i< res.data.self_huzi.length ;i++){
 					   tableData.push({
+						   id:res.data.self_huzi[i].id,
 						   subitems_name:res.data.self_huzi[i].subitems_name,
 						   payment:res.data.self_huzi[i].payment_num,
 					   })
 				   }
 				   this.tableData = tableData;
-				   
+				   console.log( this.tableData )
 			    }
 			});
-			
-
 		},
 		methods:{
 			createHuizi(){

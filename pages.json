@@ -35,6 +35,13 @@
 		
 		},
 		{
+			"path": "pages/user/userdetail/lists/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		
+		},
+		{
 			"path": "pages/user/createhuizi/index",
 			"style": {
 				"navigationStyle":"custom"

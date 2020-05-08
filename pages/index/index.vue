@@ -13,7 +13,7 @@
 		<view class="clearfix">
 		</view>
 		<view class="huizi-title">
-			本月会子详情
+			本日会子详情
 		</view>
 		<huizi-deatil class='huiz-com' :huiziData='huiziData'></huizi-deatil>
 		<!-- 悬浮组件-->

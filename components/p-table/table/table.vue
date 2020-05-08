@@ -5,7 +5,7 @@
 			<view class="flex-box tc thead">
 				<view class="item-3"  v-for=" (item,index) in theadData" :key=index >{{ item.name }}</view>
 			</view>
-			<view class="flex-box table tc" v-for=" (item,index) in tableData" :key=index >
+			<view class="flex-box table tc" v-for=" (item,index) in tableData" :key=index  @click="toLists(item.id)">
 				<view class="item-3"> 
 					<view class="">
 						{{ item.subitems_name }}
@@ -28,70 +28,7 @@
 				</view>
 			</view>
 		</view>
-		 <!-- <view class="title">多行合并表格</view>
-		<view  class="advance-area">
-			<view class="flex-box tc thead">
-				<view class="item-3">功率范围(瓦)</view>
-				<view class="item-3">金额(元)</view>
-				<view class="item-3">分钟</view>
-			</view>
-			<view class="flex-box table tc">
-				<view class="item-3">
-					1-100
-				</view>
-				<view class="item-3">
-					<view class="table-flex">
-						<view class="item">1</view>
-						<view class="item">2</view>
-						<view class="item">2</view>
-					</view>
-				</view>
-				<view class="item-3">
-					<view class="table-flex">
-						<view class="item">1</view>
-						<view class="item">2</view>
-						<view class="item">2</view>
-					</view>
-				</view>
-			</view>
-			<view class="flex-box table tc">
-				<view class="item-3">
-					1-100
-				</view>
-				<view class="item-3">
-					<view class="table-flex">
-						<view class="item">1</view>
-						<view class="item">2</view>
-						<view class="item">3</view>
-					</view>
-				</view>
-				<view class="item-3">
-					<view class="table-flex">
-						<view class="item">1</view>
-						<view class="item">2</view>
-						<view class="item">3</view>
-					</view>
-				</view>
-			</view>
-			<view class="flex-box table tc">
-				<view class="item-3">
-					1-100
-				</view>
-				<view class="item-3">
-					<view class="table-flex">
-						<view class="item">1</view>
-						<view class="item">2</view>
-					</view>
-				</view>
-				<view class="item-3">
-					<view class="table-flex">
-						<view class="item">1</view>
-						<view class="item">2</view>
-					</view>
-				</view>
-			</view>
-		</view>
-			 -->
+
 	</view>
 </template>
 
@@ -115,6 +52,16 @@
 			return {
 				
 			};
+		},
+		methods:{
+			toLists( id ){
+				uni.navigateTo({
+					//唯一ID值传入userdetail页面
+					url: '/pages/user/userdetail/lists/index?id=' + id,
+					animationType: 'pop-in',
+					animationDuration: 200,
+				});
+			},
 		}
 	}
 </script>
