@@ -58,4 +58,10 @@
   color: #383838;
   font-size: 14px;
 }
+.icon_setUp image {
+  width: 35rpx;
+  height: 35rpx;
+  position: relative;
+  top: -10rpx;
+}
 

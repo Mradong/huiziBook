@@ -1,7 +1,7 @@
 <template>
 	<view class="calendar-list">
 		<nav-bar fontColor="#000" backState="1000" :home="false" :titleCenter="true" type="fixed" title="会子本"></nav-bar>
-		<view><dark-calendar @on-click="getDayData"></dark-calendar></view>
+		<view><dark-calendar ref="calendar" @on-click="getDayData($event)"></dark-calendar></view>
 
 		<huizi-deatil class="huiz-com" :huiziData="huiziData"></huizi-deatil>
 	</view>
@@ -18,8 +18,9 @@ export default {
 			huiziData: []
 		};
 	},
-	onLoad() {},
-	
+	mounted() {
+		
+	},
 	methods: {
 		getDayData(item) {
 			

@@ -1,0 +1,65 @@
+.form-one {
+  background-color: #FFFFFF;
+}
+.form-one .form-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 10rpx 20rpx;
+  border-bottom: 1px solid #F1F1F1;
+  margin-top: 20rpx;
+}
+.form-one .form-row-title {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  color: #383838;
+  font-size: 34rpx;
+  line-height: 150%;
+  text-align: left;
+  vertical-align: middle;
+}
+.form-one .form-row-input {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+}
+.form-one .form-row-select {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  font-size: 34rpx;
+  line-height: 100%;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 40rpx;
+}
+.form-one .form-row-select text {
+  position: relative;
+  top: -14rpx;
+}
+.form-one .form-row-select image {
+  width: 50rpx;
+  height: 50rpx;
+  right: -130px;
+}
+.form-one .form-row .warn {
+  padding-left: 15rpx;
+  width: 50rpx;
+  height: 100%;
+}
+.form-one .form-row .warn image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.form-one .form-row .time image {
+  width: 50rpx;
+  height: 50rpx;
+  right: -110px;
+}
+.create {
+  margin-top: 30rpx;
+  width: 90%;
+  color: #ffffff;
+}
+

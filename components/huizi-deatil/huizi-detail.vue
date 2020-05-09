@@ -5,24 +5,25 @@
 		</view>
 		<view class="huizi-data" v-if=" !isHaveData">
 			
-			<view class="huizi-data-items"  v-for=" (item,index) in huiziData" :key= index>
-				<view class="huizi-data-items-item">
+			<view class="huizi-data-items"  v-for=" (item,index) in huiziData" :key="index">
+				<view class="huizi-data-items-item" @click="changData(item.id,item.huizi_arr[0].self_payment_num)">
 					<view class="huizi-data-items-item-r">
 						<view class="">
-							项目(1名称)：{{ item.subitems_name}}
+							编号:{{ item.id}}
 						</view>
 						<view class="">
-							支出（元）：{{ item.huizi_arr[0].cost}}
+							项目名：{{ item.subitems_name}}
+						</view>
+						<view class="">
+							支出（元）：{{ item.huizi_arr[0].cost == 0 ?'今日尚未缴费':item.huizi_arr[0].cost}}
 						</view>
 						<view class="">
 							当前期数(期)/总期数(期)：{{ item.huizi_arr[0].self_payment_num}} / {{ item.subitems_periods}}
 						</view>
-						<view class="">
-							支付日期：{{ item.payTime}}
-						</view>
+
 					</view>
-					<view class="huizi-data-items-item-l" v-text=" item.isPay?'已支付' : '未支付'">
-						已支付
+					<view class="huizi-data-items-item-l">
+						{{ item.huizi_arr[0].cost == 0 ?'未支付':'已支付'}}
 					</view>
 				</view>
 			</view>
@@ -47,6 +48,16 @@
 		},
 		mounted(){
 			this.isHaveData =  this.huiziData.length == 0? true:false;
+		},
+		methods:{
+			changData( id, num){
+				uni.navigateTo({
+					//唯一ID值传入userdetail页面
+					url: '/pages/user/userdetail/changehuizidetail/index?id=' + id +'&num='+ num,
+					animationType: 'pop-in',
+					animationDuration: 200,
+				});
+			}
 		},
 		watch:{
 			huiziData( newdata ){
@@ -128,10 +139,15 @@
 						}
 					}
 					&-l{
-						flex: 1;
+						color: #FFFFFF;
 						text-align: center;
-						line-height: 260rpx *0.8;
-						
+						width: 120upx;
+						height: 120upx;
+						border: 1px solid #F8F8F8;
+						line-height: 120upx;
+						text-align: center;
+						border-radius: 50%;
+						transform: rotate( 320deg);
 					}
 				}
 

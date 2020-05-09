@@ -6,6 +6,7 @@
     "pages/user/adduser/index",
     "pages/user/userdetail/index",
     "pages/user/userdetail/lists/index",
+    "pages/user/userdetail/changehuizidetail/index",
     "pages/user/createhuizi/index",
     "pages/calendar/index"
   ],
@@ -17,28 +18,28 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "color": "#353535",
+    "selectedColor": "#f0559d",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/hover_home.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/user/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
-        "text": "会子详情"
+        "iconPath": "static/images/item-manage.png",
+        "selectedIconPath": "static/images/hover_item-manage.png",
+        "text": "项目列表"
       },
       {
         "pagePath": "pages/message/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
-        "text": "个人信息"
+        "iconPath": "static/images/my.png",
+        "selectedIconPath": "static/images/hover_my.png",
+        "text": "我的"
       }
     ]
   },
@@ -46,6 +47,5 @@
     "lb-picker": "/components/lb-picker/index",
     "nav-bar": "/components/zhouWei-navBar/index",
     "m-table": "/components/p-table/table/table"
-  },
-  "sitemapLocation": "sitemap87.json"
+  }
 }

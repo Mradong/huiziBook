@@ -1,7 +1,9 @@
 <template>
 	<view class="data">
 		<nav-bar fontColor="#000" backState="1000" :shadow='true' :home='false' :titleCenter="true" type="fixed" title="数据中心">
-			<view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData">+</view>
+			<view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData">
+				<image src="../../static/images/jiahao.svg" mode=""></image>
+			</view>
 		</nav-bar>
 
 		<view class="data-user" v-for=" (item,index) in userData" :key=item.id>
@@ -159,6 +161,14 @@
 					}
 				}
 			}
+		}
+	}
+	.icon_setUp{
+		image{
+			width: 35upx;
+			height: 35upx;
+			position: relative;
+			top: -10upx;
 		}
 	}
 </style>

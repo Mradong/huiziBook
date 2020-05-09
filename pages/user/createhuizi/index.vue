@@ -411,7 +411,6 @@
 					let integer = parseInt(this.subitems_periods / 12)
 					let remainder = this.subitems_periods % 12;
 					let endTimeArr = date.split('-');
-
 					let end_timeY = Number(endTimeArr[1]) + remainder > 12 ? Number(endTimeArr[0]) + integer + 1 : Number(endTimeArr[0]) +
 						integer;
 					let end_timeM = (Number(endTimeArr[1]) + remainder) % 12 == 0 ? 12 : (Number(endTimeArr[1]) + remainder) % 12;
@@ -452,7 +451,7 @@
 								self_payment_num: i + 1,
 								month: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[1] + i % 12) - 12 : +endTimeArr[1] + i % 12,
 								day: endTimeArr[2], //是否保留？数据结构有待优化
-								cost: this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
+								cost: i == payment_num ? 0 : this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
 							}
 						}
 					}

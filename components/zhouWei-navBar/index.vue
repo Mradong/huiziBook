@@ -263,8 +263,22 @@
 			},
 			//返回首页
 			onBackHome() {
+				// uni.switchTab({
+				// 	url: homePath
+				// });
 				uni.switchTab({
-					url: homePath
+					url: homePath,
+					success: function(e) {
+						var page = getCurrentPages().pop();
+						if (page == undefined || page == null) return;
+						if( page.hasOwnProperty('onLoad') ){
+							page.onLoad();
+						}else{
+							location.reload();
+							
+						}
+						
+					}
 				});
 			},
 			pageScroll(e) {

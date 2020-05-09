@@ -35,21 +35,21 @@
 				title: 'Hello',
 				pattern: {
 					color: '#3c3e49',
-					selectedColor: '#007AFF',
-					backgroundColor: '#fff',
-					buttonColor: '#e80e09'
+					selectedColor: '#ea6566',
+					backgroundColor: '#ea656600',
+					buttonColor: '#ea6566'
 				},
 				content: [{
-						iconPath: '/static/logo.png',
-						selectedIconPath: '/static/logo.png',
-						text: '首页',
+						iconPath: "/static/images/item_2.svg",
+						selectedIconPath: "/static/images/item_2.svg",
+						text: '',
 						model: 'home',
-						active: true
+						active: false
 					},
 					{
-						iconPath: '/static/logo.png',
-						selectedIconPath: '/static/logo.png',
-						text: '汇总',
+						iconPath: "/static/images/rili_1.svg",
+						selectedIconPath: "/static/images/hover_rili_1.svg",
+						text: '',
 						model: 'calendar',
 						active: false
 					}
@@ -78,11 +78,12 @@
 						});
 						break;
 					default:
-						console.log('butiao');
+					
 				}
 			},
 			initToday() {
 				let date = new Date();
+				console.log(date )
 				let y = date.getFullYear();
 				let m = date.getMonth();
 				let d = date.getDate();
@@ -93,7 +94,9 @@
 					month: m,
 					year:y
 				}
+				this.huiziData =[];
 				this.huiziData =  publicFnc.toDay.getToDayData( today_data );
+				console.log( this.huiziData)
 			}
 		},
 		components: {
@@ -158,6 +161,16 @@
 			background-color: #f8f8f8;
 			box-shadow: 0 3px 5px #3F536E;
 			margin-top: 307rpx;
+		}
+	}
+	/deep/ .uni-fab__item--active{
+		border-radius: 50%;
+		border: 1px solid #fff;
+		width: 106upx;
+		background-color: rgb(234, 101, 102);
+		image{
+			width: 70upx;
+			height: 70upx;
 		}
 	}
 </style>

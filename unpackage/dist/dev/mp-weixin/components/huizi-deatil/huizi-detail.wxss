@@ -84,10 +84,14 @@
   margin: 10rpx;
 }
 .huizi-data-items-item-l {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+  color: #FFFFFF;
+  width: 120rpx;
+  height: 120rpx;
+  border: 1px solid #F8F8F8;
+  line-height: 120rpx;
   text-align: center;
-  line-height: 208rpx;
+  border-radius: 50%;
+  -webkit-transform: rotate(320deg);
+          transform: rotate(320deg);
 }
 
