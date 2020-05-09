@@ -10,10 +10,16 @@
 					<view class="data-user-item-logo-ball">
 						{{ item.self_huzi.length }} 
 					</view>
-					<image src="../../static/logo.png" mode=""></image>
+					<image src="../../static/images/tx.png" mode=""></image>
 				</view>
 				<view class="data-user-item-detail">
-					<text>{{ item.name }}</text>
+
+					<view class="">
+						项目人：{{ item.name }}
+					</view>
+					<view class="">
+						联系电话：{{ item.phone }}
+					</view>
 				</view>
 			</view>
 
@@ -99,7 +105,6 @@
 			box-shadow: 0 5px 5px #F1F1F1;
 			text-align: center;
 			position: relative;
-
 			&-add {
 				margin-right: 10px;
 				width: 60rpx;
@@ -110,17 +115,11 @@
 		}
 
 		&-user {
-			&-item:first-child {
-				border-bottom: 0;
-			}
-
 			&-item {
 				display: flex;
 				height: 140rpx;
-				line-height: 140rpx;
-				border-top: 1px solid #C0C0C0;
+				
 				border-bottom: 1px solid #C0C0C0;
-
 				&-logo {
 					flex: 1;
 					text-align: center;
@@ -150,6 +149,14 @@
 
 				&-detail {
 					flex: 4;
+					padding-left: 50upx;
+					line-height: 70upx;
+					view{
+						height: 50%;
+							color: rgba(56, 56, 56, 1);
+							font-size: 14px;
+							
+					}
 				}
 			}
 		}

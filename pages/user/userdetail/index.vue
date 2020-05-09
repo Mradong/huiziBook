@@ -19,7 +19,7 @@
 			</view>
 		</view>
 		<view v-if=" isHaveHuizi">
-			<m-table :theadData='theadData' :tableData="tableData"/>
+			<m-table :tableData="tableData"/>
 		</view>
 		<view class="noData" v-if=" !isHaveHuizi">
 			没有查询到相关数据-_-||，请尽快录入
@@ -39,14 +39,12 @@
 				isHaveHuizi:false,
 				title: '详情',
 				uesr_huizi_data:{},
-				theadData:[{name:'会子名称'},{name:'上期收益'},{name:'总收益'}],
 				tableData:[],
 			}
 		},
 		onLoad: function(option) {
 			//获取具体用户ID，用于查询具体会子
 			this.id = option.id;
-			let tableData =[];
 			uni.getStorage({
 			    key: this.id + '_key',
 			    success:( res ) => {
@@ -55,15 +53,7 @@
 					   name : res.data.name,
 					   phone : res.data.phone,
 				   }
-				   for(let i = 0 ;  i< res.data.self_huzi.length ;i++){
-					   tableData.push({
-						   id:res.data.self_huzi[i].id,
-						   subitems_name:res.data.self_huzi[i].subitems_name,
-						   payment:res.data.self_huzi[i].payment_num,
-					   })
-				   }
-				   this.tableData = tableData;
-				   console.log( this.tableData )
+				   this.tableData = res.data.self_huzi;
 			    }
 			});
 		},
@@ -81,7 +71,7 @@
 
 <style lang="less">
 	.user-message {
-		width: 90%;
+		width: 94%;
 		height: 278rpx;
 		background-color: #DD524D;
 		margin: 15rpx auto 0;

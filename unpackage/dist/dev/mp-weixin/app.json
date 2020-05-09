@@ -5,6 +5,7 @@
     "pages/message/index",
     "pages/user/adduser/index",
     "pages/user/userdetail/index",
+    "pages/user/userdetail/lists/index",
     "pages/user/createhuizi/index",
     "pages/calendar/index"
   ],
@@ -45,5 +46,6 @@
     "lb-picker": "/components/lb-picker/index",
     "nav-bar": "/components/zhouWei-navBar/index",
     "m-table": "/components/p-table/table/table"
-  }
+  },
+  "sitemapLocation": "sitemap87.json"
 }

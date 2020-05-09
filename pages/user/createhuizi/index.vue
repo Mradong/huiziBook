@@ -1,92 +1,140 @@
 <template>
 	<view class="">
 
-		<nav-bar fontColor="#000" backState="1000" :home='false' :titleCenter="true" type="fixed" title="新增会子">
+		<nav-bar fontColor="#000" backState="1000" :home='false' :titleCenter="true" type="fixed" title="新增项目">
 		</nav-bar>
 		<view class="create-data">
 			<view class="form">
-				<view class="form-row">
-					<label class="form-row-title">子项目名称</label>
-					<input type="text" maxlength="11" v-model="subitems_name" placeholder="请输入子项目名称" class="form-row-input " />
-					<view class="warn" v-if="subitems_name == '' ? true : false">必填</view>
+				<view class="form-one-title">
+					子项目信息
 				</view>
-				<view class="form-row">
-					<label class="form-row-title">子项目描述</label>
-					<input type="text" maxlength="11" v-model="subitems_description" placeholder="子项目描述" class="form-row-input " />
-					<view class="warn" v-if="subitems_description == '' ? true : false">必填</view>
-				</view>
-				<view class="form-row">
-					<label class="form-row-title">子项目总期数</label>
-					<input type="text" maxlength="11" v-model="subitems_periods" placeholder="请输入子项目总期数" class="form-row-input " />
-					<view class="warn" v-if="subitems_periods == '' ? true : false">必填</view>
-				</view>
-				<view class="form-row">
-					<label class="form-row-title">子项目死期</label>
-					<input type="text" maxlength="11" v-model="subitems_profit" placeholder="请输入子项目回报" class="form-row-input " />
-					<view class="warn" v-if="subitems_profit == '' ? true : false">必填</view>
+				<view class="form-one">
+					<view class="form-row">
+						<label class="form-row-title">名称</label>
+						<input type="text" maxlength="11" v-model="subitems_name" placeholder="子项目名称" class="form-row-input " />
+						<view class="warn" v-if="subitems_name == '' ? true : false"></view>
+					</view>
+					<view class="form-row">
+						<label class="form-row-title">描述</label>
+						<input type="text" maxlength="11" v-model="subitems_description" placeholder="子项目描述" class="form-row-input " />
+						<view class="warn" v-if="subitems_description == '' ? true : false"></view>
+					</view>
+					<view class="form-row">
+						<label class="form-row-title">总期数</label>
+						<input type="number" maxlength="11" v-model="subitems_periods" placeholder="子项目总期数" class="form-row-input " />
+						<view class="warn" v-if="subitems_periods == '' ? true : false"></view>
+					</view>
+					<view class="form-row">
+						<label class="form-row-title">金额</label>
+						<input type="number" maxlength="11" v-model="subitems_profit" placeholder="项目死期的金额" class="form-row-input " />
+						<view class="warn" v-if="subitems_profit == '' ? true : false"></view>
+					</view>
 				</view>
 
-				<view class="form-row fixation">
-					<label class="form-row-title">子项目是否定投</label>
-					<view class="form-row-select" @click="selectFixation"> {{ subitems_fixation }} <text> > </text> </view>
-					<lb-picker ref="fixation" v-model="subitems_fixation" :list="subitems_fixation_list"></lb-picker>
-					<view class="red fixation-dec" v-if="subitems_fixation == '定投' ">
+				<view class="form-one-title">
+					
+				</view>
+
+				<view class="form-one">
+					<view class="form-row fixation">
+						<label class="form-row-title">缴费模式</label>
+						<view class="form-row-select" @click="selectFixation"> <text>{{ subitems_fixation }} </text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+						</view>
+						<lb-picker ref="fixation" v-model="subitems_fixation" :list="subitems_fixation_list"></lb-picker>
+						<view class="warn">
+							<image src="../../../static/images/warn.svg" mode=""></image>
+						</view>
+						<!-- 					<view class="red fixation-dec" v-if="subitems_fixation == '定投' ">
 						将智能生成往期数据
 					</view>
 					<view class="red fixation-dec" v-if="subitems_fixation == '不定投' ">
 						智能生成往期数据,随机取最高与最低缴费之间的值
+					</view> -->
+					</view>
+
+					<view class="form-row" v-if="subitems_fixation == '定投' ">
+						<label class="form-row-title">每期定投(元)</label>
+						<input type="number" maxlength="11" v-model="subitems_fixation_cost" placeholder="00.00" class="form-row-input " />
+					</view>
+
+
+					<view class="form-row" v-if="subitems_fixation == '不定投' ">
+						<label class="form-row-title form-fixation-title">最低缴费(元)</label>
+						<input type="number" maxlength="11" v-model="subitems_fixation_low_cost" placeholder="每期最低缴费" class="form-row-input " />
+
+					</view>
+
+					<view class="form-row form-fixation" v-if="subitems_fixation == '不定投' ">
+						<label class="form-row-title form-fixation-title">最高缴费(元)</label>
+						<input type="number" maxlength="11" v-model="subitems_fixation_high_cost" placeholder="每期最高缴费" class="form-row-input " />
+
+					</view>
+				</view>
+				
+				<view class="form-one-title" style="display: none;">
+				</view>
+				<view class="form-one" style="display: none;">
+					<view class="form-row">
+						<label class="form-row-title">缴纳份额</label>
+						<view class="form-row-select" @click="selectShare"> <text>{{ subitems_share }} </text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+						</view>
+						<view class="warn">
+							<image src="../../../static/images/warn.svg" mode=""></image>
+						</view>
+						<lb-picker ref="share" v-model="subitems_share" :list="subitems_share_list"></lb-picker>
+					</view>
+					<view class="form-row">
+						<label class="form-row-title">会头缴纳期数</label>
+						<view class="form-row-select" @click="selectNum"> <text>{{ subitems_num }} </text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+						</view>
+						<view class="warn">
+							<image src="../../../static/images/warn.svg" mode=""></image>
+						</view>
+						<lb-picker ref="num" v-model="subitems_num" :list="subitems_num_list"></lb-picker>
+					</view>
+
+					<view class="form-row">
+						<label class="form-row-title">每月缴纳次数</label>
+						<view class="form-row-select" @click="selectMonthnum"> <text>{{ subitems_monthnum }} </text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+						</view>
+						<view class="warn">
+							<image src="../../../static/images/warn.svg" mode=""></image>
+						</view>
+						<lb-picker ref="monthnum" v-model="subitems_monthnum" :list="subitems_monthnum_list"></lb-picker>
 					</view>
 				</view>
 
-				<view class="form-row" v-if="subitems_fixation == '定投' ">
-					<label class="form-row-title">每期定投(元)</label>
-					<input type="text" maxlength="11" v-model="subitems_fixation_cost" placeholder="00.00" class="form-row-input " />
-					<view class="warn" v-if="subitems_fixation_cost == '' ? true : false">必填</view>
+				<view class="form-one-title">
 				</view>
-
-
-				<view class="form-row" v-if="subitems_fixation == '不定投' ">
-					<label class="form-row-title form-fixation-title">每期最低缴费(元)</label>
-					<input type="text" maxlength="11" v-model="subitems_fixation_low_cost" placeholder="00.00" class="form-row-input " />
-					<view class="warn" v-if="subitems_fixation_low_cost == '' ? true : false">必填</view>
-				</view>
-
-				<view class="form-row form-fixation" v-if="subitems_fixation == '不定投' ">
-					<label class="form-row-title form-fixation-title">每期最高缴费(元)</label>
-					<input type="text" maxlength="11" v-model="subitems_fixation_high_cost" placeholder="00.00" class="form-row-input " />
-					<view class="warn" v-if="subitems_fixation_high_cost == '' ? true : false">必填</view>
-				</view>
-
-
-
+				<view class="form-one">
 				<view class="form-row">
-					<label class="form-row-title">缴纳份额</label>
-					<view class="form-row-select" @click="selectShare"> {{ subitems_share }} <text> > </text> </view>
-					<lb-picker ref="share" v-model="subitems_share" :list="subitems_share_list"></lb-picker>
-				</view>
-				<view class="form-row">
-					<label class="form-row-title">会头缴纳期数</label>
-					<view class="form-row-select" @click="selectNum"> {{ subitems_num }} <text> > </text> </view>
-					<lb-picker ref="num" v-model="subitems_num" :list="subitems_num_list"></lb-picker>
-				</view>
-
-				<view class="form-row">
-					<label class="form-row-title">每月缴纳次数</label>
-					<view class="form-row-select" @click="selectMonthnum"> {{ subitems_monthnum }} <text> > </text> </view>
-					<lb-picker ref="monthnum" v-model="subitems_monthnum" :list="subitems_monthnum_list"></lb-picker>
-				</view>
-
-				<view class="form-row">
-					<label class="form-row-title">缴纳时间模式</label>
-					<view class="form-row-select" @click="selectTimemodel"> {{ subitems_timemodel }} <text> > </text> </view>
+					<label class="form-row-title">新/农 历</label>
+					<view class="form-row-select" @click="selectTimemodel"> 
+						<text>{{ subitems_timemodel }} </text>
+						<image src="../../../static/images/hjt.svg" mode=""></image>
+					</view>
+					<view class="warn">
+						<image src="../../../static/images/warn.svg" mode=""></image>
+					</view>
 					<lb-picker ref="timemodel" v-model="subitems_timemodel" :list="subitems_timemodel_list "></lb-picker>
 				</view>
 				<!-- 选择模式为新历时 -->
 				<view class="form-row" v-if=" subitems_timemodel == '新历' ">
-					<label class="form-row-title">首次缴纳时间</label>
+					<label class="form-row-title">首次缴纳</label>
 					<view class="form-row-select" @click="selectOnetime">
-						<view class="form-row-select-time">(新历)</view> {{ subitems_new_onetime }} 号<text> > </text>
+						<view class="form-row-select-time">
+							<text>{{ subitems_new_onetime }} 号</text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+						</view>
 					</view>
+					<view class="warn">
+						<image src="../../../static/images/warn.svg" mode=""></image>
+					</view>
+					
 					<lb-picker ref="onetime" v-model="subitems_new_onetime" :list="subitems_newtime_list"></lb-picker>
 				</view>
 				<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '新历'">
@@ -99,9 +147,15 @@
 
 				<!-- 选择模式为农历时 -->
 				<view class="form-row" v-if=" subitems_timemodel == '农历' ">
-					<label class="form-row-title">首次缴纳时间</label>
+					<label class="form-row-title">首次缴纳</label>
 					<view class="form-row-select" @click="selectOnetime">
-						<view class="form-row-select-time"></view> {{ subitems_old_show_onetime }} <text> > </text>
+						<view class="form-row-select-time">
+							<text>{{ subitems_old_show_onetime }}</text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+						</view> 
+					</view>
+					<view class="warn">
+						<image src="../../../static/images/warn.svg" mode=""></image>
 					</view>
 					<lb-picker ref="onetime" :list="subitems_time_list" @confirm="getOneOldTime"></lb-picker>
 				</view>
@@ -113,29 +167,50 @@
 					</view>
 					<lb-picker ref="twotime" :list="subitems_time_list" @confirm="getTwoOldTime"></lb-picker>
 				</view>
-
+				</view>
+				
+				<view class="form-one-title">
+				</view>
+				<view class="form-one">
+					
 				<view class="form-row">
-					<label class="form-row-title">子项目开始时间</label>
+					<label class="form-row-title">开始时间</label>
 					<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="start_time" @btnConfirm="getEndtime" class="form-row-select">
-						<view class="time">{{ start_time }}<text> > </text></view>
+						<view class="time">
+							<text>{{ start_time }}</text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+							</text>
+						</view>
 					</ePicker>
+					
 				</view>
 				<view class="form-row">
-					<label class="form-row-title">子项目结束时间</label>
-					<view class="form-row-select"> {{ end_time }} <text style="color: #fff;"> > </text> </view>
-
+					<label class="form-row-title">结束时间</label>
+					<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="end_time"  class="form-row-select">
+						<view class="time">
+							<text>{{ end_time }}</text>
+							<image src="../../../static/images/hjt.svg" mode=""></image>
+							</text>
+						</view>
 					</ePicker>
 				</view>
-
+				</view>
 			</view>
 		</view>
-		<button type="warn" class="create" @click="createHuizi">完成</button>
+		<button type="warn" class="create" @click="createHuizi" >完成</button>
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog type="input" :duration="2000" :before-close="true" @close="close" @confirm="confirm">
+				<view class="popup-warn">
+					数据不完整、请完善数据
+				</view>
+			</uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
 	import ePicker from '@/components/e-picker/e-picker.vue'
-
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	export default {
 		data() {
 			return {
@@ -197,39 +272,39 @@
 					{
 						label: '初九',
 						value: '9'
-					}, 
+					},
 					{
 						label: '初十',
 						value: '10'
-					}, 
+					},
 					{
 						label: '十一',
 						value: '11'
-					}, 
+					},
 					{
 						label: '十二',
 						value: '12'
-					}, 
+					},
 					{
 						label: '十三',
 						value: '13'
-					}, 
+					},
 					{
 						label: '十四',
 						value: '14'
-					}, 
+					},
 					{
 						label: '十五',
 						value: '15'
-					}, 
+					},
 					{
 						label: '十六',
 						value: '16'
-					}, 
+					},
 					{
 						label: '十七',
 						value: '17'
-					}, 
+					},
 					{
 						label: '十八',
 						value: '18'
@@ -237,30 +312,30 @@
 					{
 						label: '十九',
 						value: '19'
-					}, 
+					},
 					{
 						label: '二十',
 						value: '20'
-					}, 
+					},
 					{
 						label: '廿一',
 						value: '21'
-					}, 
+					},
 					{
 						label: '廿二',
 						value: '22'
-					}, 
+					},
 					{
 						label: '廿三',
 						value: '23'
 					}, {
 						label: '廿四',
 						value: '24'
-					}, 
+					},
 					{
 						label: '廿五',
 						value: '25'
-					}, 
+					},
 					{
 						label: '廿六',
 						value: '26'
@@ -268,15 +343,15 @@
 					{
 						label: '廿七',
 						value: '27'
-					}, 
+					},
 					{
 						label: '廿八',
 						value: '28'
-					}, 
+					},
 					{
 						label: '廿九',
 						value: '29'
-					}, 
+					},
 					{
 						label: '三十',
 						value: '30'
@@ -342,7 +417,6 @@
 					let end_timeM = (Number(endTimeArr[1]) + remainder) % 12 == 0 ? 12 : (Number(endTimeArr[1]) + remainder) % 12;
 					end_timeM = end_timeM > 9 ? end_timeM : '0' + end_timeM;
 					this.end_time = end_timeY + '-' + end_timeM + '-' + endTimeArr[2];
-					console.log(this.end_time);
 				}
 				this.start_time = date;
 
@@ -362,7 +436,7 @@
 
 			createHuizi() {
 				if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time >
-					this.formatDate( new Date() ) ) {
+					this.formatDate(new Date())) {
 					let date = new Date();
 					let endTimeArr = this.start_time.toString().split('-');
 					let payment_num_y = date.getFullYear() - endTimeArr[0]; //当结束时间小于当前时间，存着bug
@@ -377,22 +451,11 @@
 									12),
 								self_payment_num: i + 1,
 								month: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[1] + i % 12) - 12 : +endTimeArr[1] + i % 12,
-								day:endTimeArr[2],//是否保留？数据结构有待优化
+								day: endTimeArr[2], //是否保留？数据结构有待优化
 								cost: this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
 							}
 						}
 					}
-					// else if ( this.subitems_fixation == '不定投' && this.subitems_monthnum == "2次" ){						
-					// 	for( let i = 0 ; i < payment_num ; i++){
-					// 		huizi_arr[i]={
-					// 			year:  +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[0] +  parseInt( i /12) ) + 1 : +endTimeArr[0] +  parseInt( i /12),
-					// 			month: +endTimeArr[1] + i % 12 > 12 ? ( +endTimeArr[1]  + i % 12 ) - 12 : +endTimeArr[1] + i % 12,
-					// 			day:endTimeArr[2],
-					// 			cost:this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
-					// 		}
-					// 	}
-					// }
-
 					let dataArr = {
 						subitems_name: this.subitems_name, //项目名称
 						subitems_description: this.subitems_description, //项目描述
@@ -442,10 +505,31 @@
 						}
 					});
 				}
-			}
+				else{
+					 this.$refs.popup.open();
+				}
+			},
+			        close(done){
+			            // TODO 做一些其他的事情，before-close 为true的情况下，手动执行 done 才会关闭对话框
+			            // ...
+			            done()
+			        },
+			        /**
+			         * 点击确认按钮触发
+			         * @param {Object} done
+			         * @param {Object} value
+			         */
+			        confirm(done,value){
+			            // 输入框的值
+			            console.log(value)
+			            // TODO 做一些其他的事情，手动执行 done 才会关闭对话框
+			            // ...
+			            done()
+			        }
 		},
 		components: {
-			ePicker
+			ePicker,
+			uniPopup
 		},
 		watch: {
 			subitems_monthnum(num) {
@@ -457,84 +541,88 @@
 
 <style lang="less">
 	.form {
-		&-row {
-			display: flex;
-			height: 100rpx;
-			text-align: center;
-			line-height: 100rpx;
-			border-bottom: 1px solid #c8c7cc;
-			margin: 10rpx 20rpx;
-			position: relative;
+		&-one-title {
+			color: rgba(128, 128, 128, 1);
+			font-size: 13px;
+			line-height: 150%;
+			text-align: left;
+			padding: 10upx 20upx;
+			min-height: 30upx;
+		}
 
-			.warn {
-				position: absolute;
-				right: 60rpx;
-				top: 0;
-				font-size: 14px;
-				color: #dd524d;
-				display: block;
-			}
+		&-one {
+			background-color: #FFFFFF;
+			.form-row {
+				display: flex;
+				padding: 10upx 20upx;
+				border-bottom: 1px solid #F1F1F1;
 
-			&-title {
-				flex: 3;
-				color: grey;
-				text-align: left;
-			}
-
-			&-input {
-				flex: 5;
-				height: 100rpx;
-				text-align: left;
-			}
-
-			&-select {
-				flex: 2;
-				text-align: left;
-
-				text {
-					color: grey;
-					position: absolute;
-					top: 0;
-					right: 15rpx;
-					font-size: 60rpx;
-
+				&-title {
+					flex: 1;
+					color: rgba(56, 56, 56, 1);
+					font-size: 34upx;
+					line-height: 150%;
+					text-align: left;
+					vertical-align: middle;
 				}
 
-				view.time {
-					color: #000;
+				&-input {
+					flex: 2;
 				}
 
-				view {
-					color: grey;
-					padding-right: 20rpx;
-					display: inline-block;
+				&-select{
+					flex: 2;
+					font-size: 34upx;
+					line-height: 100%;
+					text-align: left;
+					vertical-align: middle;
+					padding-left: 40upx;
+					text {
+						position: relative;
+						top: -14upx;
+					}
+
+					image {
+						width: 50upx;
+						height: 50upx;
+						right: -130px;
+					}
+				}
+
+				.warn {
+					padding-left: 15upx;
+					width: 50upx;
+					height: 100%;
+
+					image {
+						width: 30upx;
+						height: 30upx;
+					}
+				}
+				.time {
+					image {
+						width: 50upx;
+						height: 50upx;
+						right: -110px;
+					}
 				}
 			}
 		}
-
-		&-fixation {
-			&-title {
-				flex: 4 !important;
-			}
-		}
-
-		.fixation {
-			height: 140rpx;
-
-			&-dec {
-				position: absolute;
-				top: 56rpx;
-				font-size: 22rpx;
-				color: #DD524D;
-			}
-		}
-
 	}
-
-	.create {
-
-		margin-top: 200rpx;
+	.create{
+		margin-top: 30upx;
 		width: 90%;
-		color: #fff;
+		color: rgba(255, 255, 255, 1);
+		
+	}
+	.popup-warn{
+		width: 540upx;
+		height: 200upx;
+		color: rgba(80, 80, 80, 1);
+		background-color: rgba(255, 255, 255, 1);
+		border-radius: 11px;
+		font-size: 14px;
+		line-height: 200upx;
+		text-align: center;
 	}
 </style>

@@ -13,16 +13,11 @@
   font-size: 28px;
   background-color: #FFFFFF;
 }
-.data-user-item:first-child {
-  border-bottom: 0;
-}
 .data-user-item {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   height: 140rpx;
-  line-height: 140rpx;
-  border-top: 1px solid #C0C0C0;
   border-bottom: 1px solid #C0C0C0;
 }
 .data-user-item-logo {
@@ -55,5 +50,12 @@
   -webkit-box-flex: 4;
   -webkit-flex: 4;
           flex: 4;
+  padding-left: 50rpx;
+  line-height: 70rpx;
+}
+.data-user-item-detail view {
+  height: 50%;
+  color: #383838;
+  font-size: 14px;
 }
 

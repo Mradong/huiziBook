@@ -1,46 +1,51 @@
 <template>
 	<view class="content">
-		
-		<view class="custom-area">
-			<view class="flex-box tc thead">
-				<view class="item-3"  v-for=" (item,index) in theadData" :key=index >{{ item.name }}</view>
+		<view class="custom-area" v-for="( item,index ) in tableData" :key="index" >
+			
+			<view class="tc thead">
+				<view class="tc-r" >编码：{{item.id}}</view>
+				<view class="tc-l" >未取</view>
 			</view>
-			<view class="flex-box table tc" v-for=" (item,index) in tableData" :key=index  @click="toLists(item.id)">
-				<view class="item-3"> 
-					<view class="">
-						{{ item.subitems_name }}
+			<view class="td">
+				<view class="td-r" >
+					<view class="" >
+						每月缴费时间：{{ item.subitems_timemodel == '新历'? item.subitems_new_onetime +'号': item.subitems_old_show_onetime}}
 					</view>
-					<view class="fbColor">
-						已缴纳{{ item.payment }}期
+					<view class="" >
+						开始时间：{{item.start_time}}
+					</view>
+					<view class="" >
+						结束时间：{{item.end_time}}
+					</view>
+
+				</view>
+				<view class="td-l" >
+					<view class="" >
+						已缴费期数：{{item.payment_num}}期
+					</view>
+					<view class="" >
+						已缴费金额：23333
+					</view>
+					<view class="" >
+						已收益金额：23333
 					</view>
 				</view>
-				<view class="item-3 hsColor">
-					+{{ item.subitems_name }}
-					<view class="fbColor">
-						{{ item.subitems_name }}
-					</view>
+			</view>
+			<view class="tf">
+				<view class="tf-r">
+					项目名：{{item.subitems_name}}
 				</view>
-				<view class="item-3 hsColor">
-					+{{ item.subitems_name }}
-					<view class="fbColor">
-						{{ item.subitems_name }}
-					</view>
+				<view class="tf-l">
+					<button type="default" class="tf-button" @click="toLists(item.id)">查看详情</button>
 				</view>
 			</view>
 		</view>
-
 	</view>
 </template>
 
 <script>
 	export default {
 		props: {
-			theadData:{
-				type:Array,
-				default () {
-					return []
-				}
-			},
 			tableData:{
 				type:Array,
 				default () {
@@ -67,165 +72,76 @@
 </script>
 
 <style lang="scss">
-	.fbColor{
-		color: #C8C7CC;
-	}
-	.hsColor{
-		color: #DD524D;
-	}
-	$color:#e0e0e0;
-	.content {
-		display: flex;
-		flex: 1;
-		flex-direction: column;
-	}
 	
-	.flex-box {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	
-	
-	.flex-box>.item-2 {
-		flex: 0 0 50%;
-	}
-	
-	.flex-box>.item-3 {
-		flex: 0 0 33.3333%;
-		text-align:center;
-	}
-	
-	.title{
-		margin: 20upx 0;
-		color: red;
-	}
-	//自定义表格
-	.custom-area {
-		.item-3 {
-			font-size: 26upx;
-			border-width: 1upx 1upx 0 0;
-			padding: 16upx 0;
-			box-sizing: border-box;
-			text-align: center;
-		}
-	
-		.thead {
-			
-			margin-top: 20rpx;
-			.item-3 {
-				font-size: 32rpx;
-				font-weight: bold;
-				box-sizing: border-box;
-			}
-		}
-		.table {
-			border-bottom: 1upx solid $color;
-			
-			.item-3 {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				box-sizing: border-box;
-			}
-		}
-	}
+	.custom-area{
+		width: 95%;
 		
-		
-		
-	//普通表格
-	.genaral-area {
-		.item-3 {
-			font-size: 26upx;
-			border: 1upx solid $color;
-			border-width: 1upx 1upx 0 0;
-			padding: 16upx 0;
+		margin: 30upx auto;
+		color: rgba(80, 80, 80, 1);
+		background-color: rgba(255, 255, 255, 1);
+		font-size: 14px;
+		line-height: 150%;
+		text-align: center;
+		.tc,.td, .tf{
+			width: 100%;
+			height: 60upx;
+			color: rgba(166, 166, 166, 1);
+			font-size: 13px;
+			line-height: 60upx;
+			border: 1px solid rgba(242, 242, 242, 1);
+			display: flex;
+			padding: 0 30upx;
 			box-sizing: border-box;
-			text-align: center;
-	
-			&:first-child {
-				border-left-width: 1upx;
+			&-r{
+				flex:2;
+				text-align: left;
+				
 			}
-	
-			&:last-child {
-				border-right-width: 1upx;
-			}
-		}
-	
-		.thead {
-			.item-3 {
-				font-weight: bold;
-	
-				box-sizing: border-box;
+			&-l{
+				flex:1;
+				text-align: right;
+				
 			}
 		}
-	
-		.table {
-			&:last-child {
-				border-bottom: 1upx solid $color;
+		.td{
+			height: 200upx;
+			&-r{
+				flex:1;
+				text-align: left;
+				
 			}
-	
-			.item-3 {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				box-sizing: border-box;
-			}
-		}
-	}
-	
-	
-	// 多行合并表格
-	.advance-area {
-		.item-3 {
-			font-size: 26upx;
-			border: 1upx solid $color;
-			border-width: 1upx 1upx 0 0;
-			box-sizing: border-box;
-			text-align: center;
-	
-			&:first-child {
-				border-left-width: 1upx;
-			}
-	
-			&:last-child {
-				border-right-width: 1upx;
+			&-l{
+				flex:1;
+				text-align: left;
+				
 			}
 		}
-	
-		.thead {
-			.item-3 {
-				font-weight: bold;
-				padding: 16upx 0;
-				box-sizing: border-box;
+		.tf{
+			height: 80upx;
+			&-r{
+				flex:2;
+				text-align: left;
+				
 			}
-		}
-	
-		.table {
-			&:last-child {
-				border-bottom: 1upx solid $color;
-			}
-	
-			.item-3 {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				box-sizing: border-box;
-			}
-		}
-	
-		.table-flex {
-			flex: 1;
-	
-			.item {
-				border-bottom: 1upx solid $color;
-				padding: 10upx 0;
-				box-sizing: border-box;
-	
-				&:last-child {
-					border-width: 0;
+			&-l{
+				flex:1;
+				text-align: right;
+				
+				.tf-button{
+					margin-top: 12upx;
+					width: 200upx;
+					height: 56upx;
+					color: rgba(144, 192, 239, 1);
+					box-shadow: rgba(144, 192, 239, 1) solid 1px;
+					border-radius: 4px;
+					font-size: 13px;
+					line-height: 56upx;
+					text-align: center;
 				}
 			}
 		}
 	}
+
+		
+	
 </style>
