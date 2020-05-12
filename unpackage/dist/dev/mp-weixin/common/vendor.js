@@ -1551,10 +1551,10 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 107:
-/*!******************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/lb-picker/utils.js ***!
-  \******************************************************************************/
+/***/ 115:
+/*!*******************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/lb-picker/utils.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1570,15 +1570,15 @@ function getIndicatorHeight() {
 
 /***/ }),
 
-/***/ 129:
-/*!******************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/popup.js ***!
-  \******************************************************************************/
+/***/ 137:
+/*!*******************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/popup.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 130));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 138));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -1605,10 +1605,10 @@ var config = {
 
 /***/ }),
 
-/***/ 130:
-/*!********************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/message.js ***!
-  \********************************************************************************/
+/***/ 138:
+/*!*********************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/message.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1640,38 +1640,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       this.childrenMsg.close();
     }
   } }), _created$created$meth);exports.default = _default;
-
-/***/ }),
-
-/***/ 138:
-/*!********************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/e-picker/e-picker.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getDayArr = getDayArr;exports.getArr = getArr;exports.checkDefaultValue = checkDefaultValue;exports.getDateTimeValue = getDateTimeValue;function getDayArr(y, m) {var flag = y % 4 == 0 && y % 100 != 0 && y % 400 != 0;
-  var nums = [31, flag ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  var arr = [];
-  for (var i = 0; i < nums[m - 1]; i++) {arr.push(fmt(i + 1) + '日');}
-  return arr;}
-function getArr(index) {var arr = [],s = 1,len = 13,tag = '月';if (index > 2) {s = 0;
-    if (index == 3) {len = 24;
-      tag = '时';}
-    if (index > 3) {len = 60;
-      if (index == 4) {tag = '分';}
-      if (index == 5) {tag = '秒';}}}
-  for (var i = s; i < len; i++) {arr.push(fmt(i) + tag);}
-  return arr;}
-function fmt(t) {return t > 9 ? t : '0' + t;}
-function checkDefaultValue(m, d) {if (m == 'date' || m == 'dateTime' || m == 'time') {if (!d) {throw Error("'defaultValue'为必填属性");}
-    if (m == 'date' && d.length != 10 || m == 'time' && d.length != 8 || m == 'dateTime' && d.length != 19) {throw Error("'defaultValue'有误，请根据当前mode 正确设置格式");}
-    return;}
-  throw Error("mode\u65E0".concat(m, "\u8BE5\u9009\u9879\u914D\u7F6E"));}
-function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(parseInt(arr[1])),d = fmt(parseInt(arr[2])),h = fmt(parseInt(arr[3])),m = fmt(parseInt(arr[4])),s = fmt(parseInt(arr[5]));
-  if (mode != 'dateTime') return "".concat(y, "-").concat(M, "-").concat(d);
-  return "".concat(y, "-").concat(M, "-").concat(d, " ").concat(h, ":").concat(m, ":").concat(s);}
 
 /***/ }),
 
@@ -1796,10 +1764,42 @@ function normalizeComponent (
 
 /***/ }),
 
+/***/ 146:
+/*!*********************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/e-picker/e-picker.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDayArr = getDayArr;exports.getArr = getArr;exports.checkDefaultValue = checkDefaultValue;exports.getDateTimeValue = getDateTimeValue;function getDayArr(y, m) {var flag = y % 4 == 0 && y % 100 != 0 && y % 400 != 0;
+  var nums = [31, flag ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var arr = [];
+  for (var i = 0; i < nums[m - 1]; i++) {arr.push(fmt(i + 1) + '日');}
+  return arr;}
+function getArr(index) {var arr = [],s = 1,len = 13,tag = '月';if (index > 2) {s = 0;
+    if (index == 3) {len = 24;
+      tag = '时';}
+    if (index > 3) {len = 60;
+      if (index == 4) {tag = '分';}
+      if (index == 5) {tag = '秒';}}}
+  for (var i = s; i < len; i++) {arr.push(fmt(i) + tag);}
+  return arr;}
+function fmt(t) {return t > 9 ? t : '0' + t;}
+function checkDefaultValue(m, d) {if (m == 'date' || m == 'dateTime' || m == 'time') {if (!d) {throw Error("'defaultValue'为必填属性");}
+    if (m == 'date' && d.length != 10 || m == 'time' && d.length != 8 || m == 'dateTime' && d.length != 19) {throw Error("'defaultValue'有误，请根据当前mode 正确设置格式");}
+    return;}
+  throw Error("mode\u65E0".concat(m, "\u8BE5\u9009\u9879\u914D\u7F6E"));}
+function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(parseInt(arr[1])),d = fmt(parseInt(arr[2])),h = fmt(parseInt(arr[3])),m = fmt(parseInt(arr[4])),s = fmt(parseInt(arr[5]));
+  if (mode != 'dateTime') return "".concat(y, "-").concat(M, "-").concat(d);
+  return "".concat(y, "-").concat(M, "-").concat(d, " ").concat(h, ":").concat(m, ":").concat(s);}
+
+/***/ }),
+
 /***/ 15:
-/*!***************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/store/index.js ***!
-  \***************************************************************/
+/*!****************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/store/index.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8827,9 +8827,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 23:
-/*!********************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/static/js/public.js ***!
-  \********************************************************************/
+/*!*********************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/static/js/public.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9580,9 +9580,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!***********************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
-  \***********************************************************/
+/*!************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10490,21 +10490,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!****************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \****************************************************************************/
+/*!*****************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子簿" }, "pages/user/index": { "navigationStyle": "custom" }, "pages/message/index": { "navigationStyle": "custom" }, "pages/user/adduser/index": { "navigationStyle": "custom" }, "pages/user/userdetail/index": { "navigationStyle": "custom" }, "pages/user/userdetail/lists/index": { "navigationStyle": "custom" }, "pages/user/userdetail/changehuizidetail/index": { "navigationStyle": "custom" }, "pages/user/createhuizi/index": { "navigationStyle": "custom" }, "pages/calendar/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子簿", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子簿", "usingComponents": { "uni-fab": "/components/uni-fab/uni-fab", "huizi-deatil": "/components/huizi-deatil/huizi-detail", "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": { "uni-fab": "/components/uni-fab/uni-fab" } }, "pages/user/index": { "navigationStyle": "custom", "usingComponents": { "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": {} }, "pages/message/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/adduser/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/lists/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/changehuizidetail/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/createhuizi/index": { "navigationStyle": "custom", "usingComponents": { "e-picker": "/components/e-picker/e-picker", "uni-popup": "/components/uni-popup/uni-popup" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/calendar/index": { "navigationStyle": "custom", "usingComponents": { "dark-calendar": "/components/dark-calendar/dark-calendar", "huizi-deatil": "/components/huizi-deatil/huizi-detail" }, "usingAutoImportComponents": { "dark-calendar": "/components/dark-calendar/dark-calendar" } }, "pages/my/index": { "navigationBarTitleText": "用户中心", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子簿", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!***************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \***************************************************************************/
+/*!****************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

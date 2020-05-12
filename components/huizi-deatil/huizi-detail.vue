@@ -82,7 +82,7 @@
 			flex-direction: column;
 			align-items:center ;
 			box-sizing: content-box;
-			padding-top: 150rpx;
+			padding-top: 150upx;
 			&-img{
 				margin: 0 auto;
 				

@@ -1,0 +1,91 @@
+.my-top {
+  width: 100%;
+  height: 307rpx;
+  background-color: #644c3c;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center ;
+  -webkit-align-items: center ;
+          align-items: center ;
+}
+.my-top .my-tx {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #007AFF;
+  margin-left: 40rpx;
+}
+.my-top .my-tx image {
+  width: 100%;
+  height: 100%;
+}
+.my-top .my-login {
+  line-height: 70rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  margin-left: 20rpx;
+  position: relative;
+}
+.my-top .my-login text {
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 150%;
+  text-align: left;
+}
+.my-top .my-login image {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 16rpx;
+  right: 40rpx;
+}
+.my-datas {
+  margin-bottom: 40rpx;
+}
+.my-datas .my-data {
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1px solid #d0cfcf;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  position: relative;
+}
+.my-datas .my-data-img {
+  margin-left: 30rpx;
+}
+.my-datas .my-data-img image {
+  width: 40rpx;
+  height: 28rpx;
+}
+.my-datas .my-data-go {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  color: #383838;
+  font-size: 28rpx;
+  line-height: 150%;
+  text-align: left;
+  margin-left: 20rpx;
+}
+.my-datas .my-data-go image {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+}
+.box-yx-b {
+  box-shadow: 0 2px 5px #c3a3a32e;
+  border-bottom: none !important;
+}
+.box-yx-t {
+  box-shadow: 0 -2px 5px #c3a3a32e;
+}
+

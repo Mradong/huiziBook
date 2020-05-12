@@ -8,7 +8,8 @@
     "pages/user/userdetail/lists/index",
     "pages/user/userdetail/changehuizidetail/index",
     "pages/user/createhuizi/index",
-    "pages/calendar/index"
+    "pages/calendar/index",
+    "pages/my/index"
   ],
   "subPackages": [],
   "window": {
@@ -36,7 +37,7 @@
         "text": "项目列表"
       },
       {
-        "pagePath": "pages/message/index",
+        "pagePath": "pages/my/index",
         "iconPath": "static/images/my.png",
         "selectedIconPath": "static/images/hover_my.png",
         "text": "我的"
@@ -48,5 +49,5 @@
     "nav-bar": "/components/zhouWei-navBar/index",
     "m-table": "/components/p-table/table/table"
   },
-  "sitemapLocation": "sitemap38.json"
+  "sitemapLocation": "sitemap3.json"
 }
