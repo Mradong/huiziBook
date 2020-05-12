@@ -1,13 +1,20 @@
 <template>
 	<view class="home">
 		<view class="home-nav">
-			<view class="home-nav-l">
-				<view>本月需支出</view>
-				<view class="expend">00.00</view>
-				<view>本月已支付：00.00</view>
-			</view>
-			<view class="home-nav-r font-c">
-				<view class="budget">本月未支付：00.00</view>
+			<view class="home-nav-t">
+				<view class="to-month-money ">本月支出(元) <br />
+				<text> {{ tomonth_money.money | e}} </text>  
+				</view>
+				<view class="to-month-detail">
+					<view class="to-month-detail-c">本月项目：<text>{{ tomonth_money.expect | e}}</text> 期</view>
+					<view class="to-month-detail-c">本月逾期：<text>{{ tomonth_money.uncalled | e}}</text> 期</view>
+				</view>
+
+			</view>	
+			<view class="home-nav-b">
+				<view class="to-day">本日项目 <br /><text>{{ today_money.expect | e }}</text> 期</view>
+				<view class="to-day to-day-c">本日未缴<br /><text>{{ today_money.uncalled | e }}</text>期</view>
+				<view class="to-day">本日支付 (元)<br /><text> {{ today_money.money | e }} </text> </view>
 			</view>
 		</view>
 		<view class="clearfix">
@@ -40,8 +47,8 @@
 					buttonColor: '#ea6566'
 				},
 				content: [{
-						iconPath: "/static/images/item_2.svg",
-						selectedIconPath: "/static/images/item_2.svg",
+						iconPath: "/static/images/item_3.svg",
+						selectedIconPath: "/static/images/item_3.svg",
 						text: '',
 						model: 'home',
 						active: false
@@ -55,11 +62,17 @@
 					}
 				],
 				huiziData: [],
+				today_money:{},
+				tomonth_money:{},
 				horizontal: 'right',
 				vertical: 'bottom',
 				direction: 'vertical',
 				popMenu: true
 			};
+			
+		},
+		filters:{
+			e(val){ return val || '0'}
 		},
 		onLoad() {
 			this.initToday();
@@ -69,7 +82,6 @@
 				let model = e.item.model;
 				switch (model) {
 					case 'calendar':
-						console.log('11');
 						uni.navigateTo({
 							url: '/pages/calendar/index',
 							success: res => {},
@@ -96,7 +108,27 @@
 				}
 				this.huiziData =[];
 				this.huiziData =  publicFnc.toDay.getToDayData( today_data );
-				console.log( this.huiziData)
+				let tomonth_money = publicFnc.toDay.getToMonthData( today_data );
+				this.today_money = this.getMoney( this.huiziData);
+				this.tomonth_money = this.getMoney( tomonth_money );
+			},
+			getMoney( data ){
+				let len = [...data].length;
+				let money= 0 ;
+				let uncalled = 0 ;
+				for( let i = 0; i<len ;i++){
+					if( data[i].huizi_arr[0].cost == 0){
+						uncalled += 1 ;
+					}
+					money += Number( data[i].huizi_arr[0].cost );
+				}
+				let money_data ={
+					uncalled:uncalled,
+					money:money,
+					expect:len
+				}
+				
+				return money_data ;
 			}
 		},
 		components: {
@@ -108,10 +140,6 @@
 </script>
 
 <style lang="less">
-	.font-c {
-		font-size: 16px;
-		font-weight: 600;
-	}
 
 	.home {
 		width: 100%;
@@ -123,34 +151,59 @@
 		&-nav {
 			box-sizing: border-box;
 			display: flex;
-			flex-direction: row;
-			align-items: flex-end;
+			flex-direction: column;
 			width: 100%;
 			height: 307rpx;
-			background-color: #ea6566;
-			background-image: linear-gradient(top left, #ea6566, #e69495);
-			padding: 10rpx 25rpx 50rpx;
+			background-image: -webkit-linear-gradient(top left, #ea6566, rgba(212, 98, 44, 0.68));
+			align-items:flex-start;
 			position: fixed;
 			z-index: 9999;
-
-			&-r {
-				flex: 1;
-				text-align: right;
-
-				.budget {}
-			}
-
-			&-l {
-				flex: 1;
+			&-t {
 				text-align: left;
-
-				.expend {
-					margin: 5px 0;
-					.font-c;
+				font-size: 24upx;
+				flex: 1;
+				padding-top: 70upx;
+				margin-left: 20upx;
+				width: 100%;
+				.to-month-money{
+					text{
+						font-size: 48upx;
+					}
+				}
+				.to-month-detail{
+					display: flex;
+					&-c{
+						margin-right:  10upx;
+					}
 				}
 			}
-		}
+			&-b {
+				border-top: 1px solid #f8f8f8;
+				text-align: left;
+				display: flex;
+				font-size: 24upx;
+				width: 100%;
+				text-align: center;
+				.to-day{
+					flex: 1;
+					text{
+						font-size: 36upx;
+					}
+				}
+				.to-day-c{
+					border-left: 1px solid #f8f8f8;
+					border-right: 1px solid #f8f8f8;
+				}
+			}
 
+		}
+		.budget {
+			font-size: 32upx;
+			text{
+				font-size: 40upx;
+				padding: 0 10upx;
+			}
+		}
 		.huizi-title {
 			text-align: center;
 			font-size: 18px;
@@ -159,15 +212,21 @@
 			height: 45px;
 			line-height: 45px;
 			background-color: #f8f8f8;
-			box-shadow: 0 3px 5px #3F536E;
+			    box-shadow: 0 3px 5px #3f536e26;
 			margin-top: 307rpx;
 		}
 	}
-	/deep/ .uni-fab__item--active{
+	
+	/deep/ .uni-fab__circle{
+		    background-image: -webkit-linear-gradient(top left, #ea6566, rgba(209, 212, 44, 0.62));
+	}
+	
+	/deep/  .uni-fab__item--active{
+		
 		border-radius: 50%;
 		border: 1px solid #fff;
 		width: 106upx;
-		background-color: rgb(234, 101, 102);
+		background-image: -webkit-linear-gradient(top left, #ea6566, rgba(209, 212, 44, 0.62));
 		image{
 			width: 70upx;
 			height: 70upx;

@@ -1,7 +1,3 @@
-.font-c {
-  font-size: 16px;
-  font-weight: 600;
-}
 .home {
   width: 100%;
   height: 100%;
@@ -19,38 +15,72 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: end;
-  -webkit-align-items: flex-end;
-          align-items: flex-end;
+  -webkit-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   height: 307rpx;
   background-color: #ea6566;
   background-image: -webkit-linear-gradient(top left, #ea6566, #e69495);
   background-image: linear-gradient(top left, #ea6566, #e69495);
-  padding: 10rpx 25rpx 50rpx;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
   position: fixed;
   z-index: 9999;
 }
-.home-nav-r {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
-  text-align: right;
-}
-.home-nav-l {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-          flex: 1;
+.home-nav-t {
   text-align: left;
+  font-size: 24rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  padding-top: 70rpx;
+  margin-left: 20rpx;
 }
-.home-nav-l .expend {
-  margin: 5px 0;
-  font-size: 16px;
-  font-weight: 600;
+.home-nav-t .to-month-money text {
+  font-size: 48rpx;
+}
+.home-nav-t .to-month-detail {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.home-nav-t .to-month-detail-c {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  margin-right: 10rpx;
+}
+.home-nav-b {
+  border-top: 1px solid #f8f8f8;
+  text-align: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  font-size: 24rpx;
+  width: 100%;
+  text-align: center;
+}
+.home-nav-b .to-day {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.home-nav-b .to-day text {
+  font-size: 36rpx;
+}
+.home-nav-b .to-day-c {
+  border-left: 1px solid #f8f8f8;
+  border-right: 1px solid #f8f8f8;
+}
+.home .budget {
+  font-size: 32rpx;
+}
+.home .budget text {
+  font-size: 40rpx;
+  padding: 0 10rpx;
 }
 .home .huizi-title {
   text-align: center;
@@ -60,7 +90,7 @@
   height: 45px;
   line-height: 45px;
   background-color: #f8f8f8;
-  box-shadow: 0 3px 5px #3F536E;
+  box-shadow: 0 3px 5px #3f536e26;
   margin-top: 307rpx;
 }
  .uni-fab__item--active {

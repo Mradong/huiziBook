@@ -189,7 +189,11 @@ export default {
 		// 点击回调
 		selectOne(i, event) {
 			let date = `${i.year}-${i.month + 1}-${i.date}`;
-			let selectD = new Date(date);
+			let iosDate = `${i.year}/${i.month + 1}/${i.date}`;
+			let selectD = new Date(iosDate);
+			
+			console.log(this.m )
+			console.log(selectD.getMonth() )
 			if (selectD.getMonth() != this.m) {
 				console.log('不在可选范围内');
 				return false;

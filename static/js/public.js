@@ -669,6 +669,39 @@ var toDay = {
 			}
 			return self_day_data;
 		}
+	},
+	getToMonthData(item) {
+		let keysArray = uni.getStorageSync('huizi_keys');
+		let len = keysArray.length;
+		let date = `${item.year}-${item.month}`;
+		let dateData = {};
+		let c_huizi_arr = {};
+		let self_day_data = [];
+		if (keysArray) {
+			for (let i = 0; i < len; i++) {
+				uni.getStorage({
+					key: i + '_key',
+					success: res => {
+						let huiziLen = res.data.self_huzi.length;
+						let day = null;
+						for (let j = 0; j < huiziLen; j++) {
+							for (let index in res.data.self_huzi[j].huizi_arr) {
+								let time =
+									`${res.data.self_huzi[j].huizi_arr[index].year}-${res.data.self_huzi[j].huizi_arr[index].month -1 }`;
+								if (date == time) {
+									dateData = res.data.self_huzi[j].huizi_arr[index];
+									c_huizi_arr = { ...res.data.self_huzi[j]};
+									c_huizi_arr.huizi_arr = [];
+									c_huizi_arr.huizi_arr.push(dateData);
+									self_day_data.push(c_huizi_arr);
+								}
+							}
+						}
+					}
+				});
+			}
+			return self_day_data;
+		}
 	}
 }
 

@@ -32,7 +32,7 @@
 				</view>
 
 				<view class="form-one-title">
-					
+
 				</view>
 
 				<view class="form-one">
@@ -71,7 +71,7 @@
 
 					</view>
 				</view>
-				
+
 				<view class="form-one-title" style="display: none;">
 				</view>
 				<view class="form-one" style="display: none;">
@@ -111,93 +111,93 @@
 				<view class="form-one-title">
 				</view>
 				<view class="form-one">
-				<view class="form-row">
-					<label class="form-row-title">新/农 历</label>
-					<view class="form-row-select" @click="selectTimemodel"> 
-						<text>{{ subitems_timemodel }} </text>
-						<image src="../../../static/images/hjt.svg" mode=""></image>
-					</view>
-					<view class="warn">
-						<image src="../../../static/images/warn.svg" mode=""></image>
-					</view>
-					<lb-picker ref="timemodel" v-model="subitems_timemodel" :list="subitems_timemodel_list "></lb-picker>
-				</view>
-				<!-- 选择模式为新历时 -->
-				<view class="form-row" v-if=" subitems_timemodel == '新历' ">
-					<label class="form-row-title">首次缴纳</label>
-					<view class="form-row-select" @click="selectOnetime">
-						<view class="form-row-select-time">
-							<text>{{ subitems_new_onetime }} 号</text>
+					<view class="form-row">
+						<label class="form-row-title">新/农 历</label>
+						<view class="form-row-select" @click="selectTimemodel">
+							<text>{{ subitems_timemodel }} </text>
 							<image src="../../../static/images/hjt.svg" mode=""></image>
 						</view>
+						<view class="warn">
+							<image src="../../../static/images/warn.svg" mode=""></image>
+						</view>
+						<lb-picker ref="timemodel" v-model="subitems_timemodel" :list="subitems_timemodel_list "></lb-picker>
 					</view>
-					<view class="warn">
-						<image src="../../../static/images/warn.svg" mode=""></image>
+					<!-- 选择模式为新历时 -->
+					<view class="form-row" v-if=" subitems_timemodel == '新历' ">
+						<label class="form-row-title">首次缴纳</label>
+						<view class="form-row-select" @click="selectOnetime">
+							<view class="form-row-select-time">
+								<text>{{ subitems_new_onetime }} 号</text>
+								<image src="../../../static/images/hjt.svg" mode=""></image>
+							</view>
+						</view>
+						<view class="warn">
+							<image src="../../../static/images/warn.svg" mode=""></image>
+						</view>
+
+						<lb-picker ref="onetime" v-model="subitems_new_onetime" :list="subitems_newtime_list"></lb-picker>
 					</view>
-					
-					<lb-picker ref="onetime" v-model="subitems_new_onetime" :list="subitems_newtime_list"></lb-picker>
-				</view>
-				<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '新历'">
-					<label class="form-row-title">再次缴纳时间</label>
-					<view class="form-row-select" @click="selectTwotime">
-						<view class="form-row-select-time">(新历)</view> {{ subitems_new_twotime }} 号<text> > </text>
+					<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '新历'">
+						<label class="form-row-title">再次缴纳时间</label>
+						<view class="form-row-select" @click="selectTwotime">
+							<view class="form-row-select-time">(新历)</view> {{ subitems_new_twotime }} 号<text> > </text>
+						</view>
+						<lb-picker ref="twotime" v-model="subitems_new_twotime" :list="subitems_newtime_list"></lb-picker>
 					</view>
-					<lb-picker ref="twotime" v-model="subitems_new_twotime" :list="subitems_newtime_list"></lb-picker>
+
+					<!-- 选择模式为农历时 -->
+					<view class="form-row" v-if=" subitems_timemodel == '农历' ">
+						<label class="form-row-title">首次缴纳</label>
+						<view class="form-row-select" @click="selectOnetime">
+							<view class="form-row-select-time">
+								<text>{{ subitems_old_show_onetime }}</text>
+								<image src="../../../static/images/hjt.svg" mode=""></image>
+							</view>
+						</view>
+						<view class="warn">
+							<image src="../../../static/images/warn.svg" mode=""></image>
+						</view>
+						<lb-picker ref="onetime" :list="subitems_time_list" @confirm="getOneOldTime"></lb-picker>
+					</view>
+
+					<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '农历'">
+						<label class="form-row-title">再次缴纳时间</label>
+						<view class="form-row-select" @click="selectTwotime">
+							<view class="form-row-select-time"></view> {{ subitems_old_show_twotime }} <text> > </text>
+						</view>
+						<lb-picker ref="twotime" :list="subitems_time_list" @confirm="getTwoOldTime"></lb-picker>
+					</view>
 				</view>
 
-				<!-- 选择模式为农历时 -->
-				<view class="form-row" v-if=" subitems_timemodel == '农历' ">
-					<label class="form-row-title">首次缴纳</label>
-					<view class="form-row-select" @click="selectOnetime">
-						<view class="form-row-select-time">
-							<text>{{ subitems_old_show_onetime }}</text>
-							<image src="../../../static/images/hjt.svg" mode=""></image>
-						</view> 
-					</view>
-					<view class="warn">
-						<image src="../../../static/images/warn.svg" mode=""></image>
-					</view>
-					<lb-picker ref="onetime" :list="subitems_time_list" @confirm="getOneOldTime"></lb-picker>
-				</view>
-
-				<view class="form-row" v-if=" subitems_monthnum == '2次' && subitems_timemodel == '农历'">
-					<label class="form-row-title">再次缴纳时间</label>
-					<view class="form-row-select" @click="selectTwotime">
-						<view class="form-row-select-time"></view> {{ subitems_old_show_twotime }} <text> > </text>
-					</view>
-					<lb-picker ref="twotime" :list="subitems_time_list" @confirm="getTwoOldTime"></lb-picker>
-				</view>
-				</view>
-				
 				<view class="form-one-title">
 				</view>
 				<view class="form-one">
-					
-				<view class="form-row">
-					<label class="form-row-title">开始时间</label>
-					<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="start_time" @btnConfirm="getEndtime" class="form-row-select">
-						<view class="time">
-							<text>{{ start_time }}</text>
-							<image src="../../../static/images/hjt.svg" mode=""></image>
-							</text>
-						</view>
-					</ePicker>
-					
-				</view>
-				<view class="form-row">
-					<label class="form-row-title">结束时间</label>
-					<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="end_time"  class="form-row-select">
-						<view class="time">
-							<text>{{ end_time }}</text>
-							<image src="../../../static/images/hjt.svg" mode=""></image>
-							</text>
-						</view>
-					</ePicker>
-				</view>
+
+					<view class="form-row">
+						<label class="form-row-title">开始时间</label>
+						<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="start_time" @btnConfirm="getEndtime" class="form-row-select">
+							<view class="time">
+								<text>{{ start_time }}</text>
+								<image src="../../../static/images/hjt.svg" mode=""></image>
+								</text>
+							</view>
+						</ePicker>
+
+					</view>
+					<view class="form-row">
+						<label class="form-row-title">结束时间</label>
+						<ePicker startYear="2015" endYear="2030" mode="date" :defaultValue="end_time" class="form-row-select">
+							<view class="time">
+								<text>{{ end_time }}</text>
+								<image src="../../../static/images/hjt.svg" mode=""></image>
+								</text>
+							</view>
+						</ePicker>
+					</view>
 				</view>
 			</view>
 		</view>
-		<button type="warn" class="create" @click="createHuizi" >完成</button>
+		<button type="warn" class="create" @click="createHuizi">完成</button>
 		<uni-popup ref="popup" type="dialog">
 			<uni-popup-dialog type="input" :duration="2000" :before-close="true" @close="close" @confirm="confirm">
 				<view class="popup-warn">
@@ -434,9 +434,10 @@
 			},
 
 			createHuizi() {
-				if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit && this.end_time >
-					this.formatDate(new Date())) {
+				if (this.subitems_name && this.subitems_description && this.subitems_periods && this.subitems_profit ) {
+					console.log(  '执行了')
 					let date = new Date();
+					console.log(  date.getFullYear())
 					let endTimeArr = this.start_time.toString().split('-');
 					let payment_num_y = date.getFullYear() - endTimeArr[0]; //当结束时间小于当前时间，存着bug
 					let payment_num_m = date.getDate() >= endTimeArr[2] ? date.getMonth() + 1 - endTimeArr[1] : date.getMonth() -
@@ -444,14 +445,25 @@
 					let payment_num = payment_num_y * 12 + payment_num_m;
 					let huizi_arr = [];
 					if (this.subitems_fixation == '不定投' && this.subitems_monthnum == "1次") {
-						for (let i = 0; i <= payment_num; i++) {
+						for (let i = 0; i <= this.subitems_periods; i++) {
 							huizi_arr[i] = {
 								year: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[0] + parseInt(i / 12)) + 1 : +endTimeArr[0] + parseInt(i /
 									12),
 								self_payment_num: i + 1,
 								month: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[1] + i % 12) - 12 : +endTimeArr[1] + i % 12,
 								day: endTimeArr[2], //是否保留？数据结构有待优化
-								cost: i == payment_num ? 0 : this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
+								cost: i >= payment_num ? 0 : this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
+							}
+						}
+					} else if (this.subitems_fixation == '定投' && this.subitems_monthnum == "1次") {
+						for (let i = 0; i <= this.subitems_periods; i++) {
+							huizi_arr[i] = {
+								year: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[0] + parseInt(i / 12)) + 1 : +endTimeArr[0] + parseInt(i /
+									12),
+								self_payment_num: i + 1,
+								month: +endTimeArr[1] + i % 12 > 12 ? (+endTimeArr[1] + i % 12) - 12 : +endTimeArr[1] + i % 12,
+								day: endTimeArr[2], //是否保留？数据结构有待优化
+								cost: i >= payment_num ? 0 : this.subitems_fixation_cost
 							}
 						}
 					}
@@ -503,28 +515,27 @@
 							});
 						}
 					});
-				}
-				else{
-					 this.$refs.popup.open();
+				} else {
+					this.$refs.popup.open();
 				}
 			},
-			        close(done){
-			            // TODO 做一些其他的事情，before-close 为true的情况下，手动执行 done 才会关闭对话框
-			            // ...
-			            done()
-			        },
-			        /**
-			         * 点击确认按钮触发
-			         * @param {Object} done
-			         * @param {Object} value
-			         */
-			        confirm(done,value){
-			            // 输入框的值
-			            console.log(value)
-			            // TODO 做一些其他的事情，手动执行 done 才会关闭对话框
-			            // ...
-			            done()
-			        }
+			close(done) {
+				// TODO 做一些其他的事情，before-close 为true的情况下，手动执行 done 才会关闭对话框
+				// ...
+				done()
+			},
+			/**
+			 * 点击确认按钮触发
+			 * @param {Object} done
+			 * @param {Object} value
+			 */
+			confirm(done, value) {
+				// 输入框的值
+				console.log(value)
+				// TODO 做一些其他的事情，手动执行 done 才会关闭对话框
+				// ...
+				done()
+			}
 		},
 		components: {
 			ePicker,
@@ -551,6 +562,7 @@
 
 		&-one {
 			background-color: #FFFFFF;
+
 			.form-row {
 				display: flex;
 				padding: 10upx 20upx;
@@ -569,13 +581,14 @@
 					flex: 2;
 				}
 
-				&-select{
+				&-select {
 					flex: 2;
 					font-size: 34upx;
 					line-height: 100%;
 					text-align: left;
 					vertical-align: middle;
 					padding-left: 40upx;
+
 					text {
 						position: relative;
 						top: -14upx;
@@ -598,6 +611,7 @@
 						height: 30upx;
 					}
 				}
+
 				.time {
 					image {
 						width: 50upx;
@@ -608,13 +622,15 @@
 			}
 		}
 	}
-	.create{
+
+	.create {
 		margin-top: 30upx;
 		width: 90%;
 		color: rgba(255, 255, 255, 1);
-		
+
 	}
-	.popup-warn{
+
+	.popup-warn {
 		width: 540upx;
 		height: 200upx;
 		color: rgba(80, 80, 80, 1);

@@ -1,16 +1,16 @@
 <template>
 	<view class="data">
 		<nav-bar fontColor="#000" backState="1000" :shadow='true' :home='false' :titleCenter="true" type="fixed" title="数据中心">
-			<view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData">
+			<view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData" v-if=" userData.length != 0">
 				<image src="../../static/images/jiahao.svg" mode=""></image>
 			</view>
 		</nav-bar>
 
-		<view class="data-user" v-for=" (item,index) in userData" :key=item.id>
+		<view class="data-user" v-for=" (item,index) in userData" :key="item.id">
 			<view class="data-user-item" @click="toDetail(item.id)">
 				<view class="data-user-item-logo">
 					<view class="data-user-item-logo-ball">
-						{{ item.self_huzi.length }} 
+						{{ item.self_huzi.length }}
 					</view>
 					<image src="../../static/images/tx.png" mode=""></image>
 				</view>
@@ -24,7 +24,17 @@
 					</view>
 				</view>
 			</view>
-
+		</view>
+		<view v-if=" userData.length == 0" class=" none-userData">
+			<view class="none-userData-img">
+				<image src="../../static/images/kong-item.png" mode=""></image>
+				<view class="none-userData-img-text">
+					您的列表有点寂寞
+				</view>
+				<view class="none-userData-img-button">
+					<button @click="add">去建一个</button>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -107,6 +117,7 @@
 			box-shadow: 0 5px 5px #F1F1F1;
 			text-align: center;
 			position: relative;
+
 			&-add {
 				margin-right: 10px;
 				width: 60rpx;
@@ -120,8 +131,9 @@
 			&-item {
 				display: flex;
 				height: 140rpx;
-				
+
 				border-bottom: 1px solid #C0C0C0;
+
 				&-logo {
 					flex: 1;
 					text-align: center;
@@ -153,22 +165,62 @@
 					flex: 4;
 					padding-left: 50upx;
 					line-height: 70upx;
-					view{
+
+					view {
 						height: 50%;
-							color: rgba(56, 56, 56, 1);
-							font-size: 14px;
-							
+						color: rgba(56, 56, 56, 1);
+						font-size: 14px;
+
 					}
 				}
 			}
 		}
 	}
-	.icon_setUp{
-		image{
+
+	.icon_setUp {
+		image {
 			width: 35upx;
 			height: 35upx;
 			position: relative;
 			top: -10upx;
+		}
+	}
+
+	.none-userData {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+
+		&-img {
+			width: 320upx;
+			height: 320upx;
+			position: absolute;
+			top: 50%;
+			right: 50%;
+			margin-top: -160upx;
+			margin-right: -160upx;
+
+			image {
+				width: 120upx;
+				height: 120upx;
+			}
+
+			&-text {
+				color: rgba(166, 166, 166, 1);
+				font-size: 13px;
+			}
+
+			&-button {
+				button{
+					width: 100%;
+					height: 100%;
+					font-size: 24upx;
+					color: #a6a6a6;
+				}
+				width: 160upx;
+				height: 60upx;
+				margin: 20upx auto;
+			}
 		}
 	}
 </style>

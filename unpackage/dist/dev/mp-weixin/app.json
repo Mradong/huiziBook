@@ -13,7 +13,7 @@
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "会子本",
+    "navigationBarTitleText": "会子簿",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
@@ -47,5 +47,6 @@
     "lb-picker": "/components/lb-picker/index",
     "nav-bar": "/components/zhouWei-navBar/index",
     "m-table": "/components/p-table/table/table"
-  }
+  },
+  "sitemapLocation": "sitemap38.json"
 }

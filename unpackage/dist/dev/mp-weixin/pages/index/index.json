@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "会子本",
+  "navigationBarTitleText": "会子簿",
   "usingComponents": {
     "uni-fab": "/components/uni-fab/uni-fab",
     "huizi-deatil": "/components/huizi-deatil/huizi-detail",

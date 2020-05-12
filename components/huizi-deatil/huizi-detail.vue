@@ -1,7 +1,8 @@
 <template>
 	<view class="huizi">
 		<view class="huizi-none" v-if="isHaveData">
-			<view class="message">今日暂无新增缴费记录，<br>请继续保持</view>
+			<view class="huizi-none-img"><image src="../../static/images/wujilu.svg" mode=""></image></view>
+			<view class="message">暂无缴费记录</view>
 		</view>
 		<view class="huizi-data" v-if=" !isHaveData">
 			
@@ -23,7 +24,7 @@
 
 					</view>
 					<view class="huizi-data-items-item-l">
-						{{ item.huizi_arr[0].cost == 0 ?'未支付':'已支付'}}
+						<image :src="item.huizi_arr[0].cost != 0 ?'../../static/images/yizhifu.svg':'../../static/images/weizhifu.svg'" mode=""></image>
 					</view>
 				</view>
 			</view>
@@ -78,12 +79,21 @@
 			-webkit-flex-grow:1;
 			color: #000;
 			display: flex;
-			flex-direction: row;
+			flex-direction: column;
 			align-items:center ;
 			box-sizing: content-box;
 			padding-top: 150rpx;
+			&-img{
+				margin: 0 auto;
+				
+				image{
+					width: 90upx;
+					height: 110upx;
+				}
+			}
 			.message{
-				flex: 1;
+				color: rgba(128, 128, 128, 1);
+				font-size: 26upx;
 				text-align: center;
 			}
 		}
@@ -143,11 +153,12 @@
 						text-align: center;
 						width: 120upx;
 						height: 120upx;
-						border: 1px solid #F8F8F8;
 						line-height: 120upx;
 						text-align: center;
-						border-radius: 50%;
-						transform: rotate( 320deg);
+						image{
+							width: 100%;
+							height: 100%;
+						}
 					}
 				}
 
