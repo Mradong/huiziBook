@@ -2,23 +2,33 @@
 	<view class="">
 		<nav-bar fontColor="#000" backState="1000" :home="true" :titleCenter="true" type="fixed" title="录入/修正 缴费"></nav-bar>
 		<view class="form-one">
+			<view class="">
+				<text > 当期若为取会期,请</text><button type="primary"  @click="isFetch">点我</button>
+			</view>
 			<view class="form-row">
 				<label class="form-row-title">金额</label>
-				<input type="text" maxlength="11" v-model="money" placeholder="请输入正确缴费" class="form-row-input " />
+				<input type="text" maxlength="11" v-model="money"  :disabled="isDisabled" placeholder="请输入正确缴费" class="form-row-input " />
+				<!-- 不能为空值，看到做判断 -->
 				<view class="warn" v-if="money == '' ? true : false"></view>
 			</view>
 		</view>
 		<button type="warn" class="create" @click="changeMoney(id,num) " >完成</button>
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog type="error" title="警告" mode="base" content="请再次确认,当期是否为取会期" :duration="2000" :before-close="true" @close="close" @confirm="confirm"> </uni-popup-dialog>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
+	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
 export default {
 	data() {
 		return {
 			id:null,
 			num:null,
 			money:'',
+			isDisabled:false,
 		};
 	},
 	computed: {
@@ -40,7 +50,7 @@ export default {
 				success: res => {
 					for (let i = 0; i < res.data.self_huzi.length; i++) {
 						if (res.data.self_huzi[i].id == id) {
-							res.data.self_huzi[i].huizi_arr[num].cost = this. money ;
+							res.data.self_huzi[i].huizi_arr[num].cost = this. money;
 							for( let j = 0; j < res.data.self_huzi[i].huizi_arr.length; j++ ){
 								if(  res.data.self_huzi[i].huizi_arr[j].cost != 0){
 									payment_num += 1;
@@ -63,8 +73,25 @@ export default {
 					}
 				}
 			});
+		},
+		isFetch(){
+			this.$refs.popup.open();
+		},
+		close(done) {
+			
+			this.isDisabled = false ;
+			done();
+		},
+		confirm(done, value) {
+			this.money = -1 ;
+			this.isDisabled = true ;
+			done();
 		}
-	}
+	},
+	components: {
+		uniPopup,
+		uniPopupDialog
+	},
 };
 </script>
 
@@ -133,4 +160,5 @@ export default {
 		color: rgba(255, 255, 255, 1);
 		
 	}
+
 </style>

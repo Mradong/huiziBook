@@ -57,7 +57,7 @@
   display: -webkit-flex;
   display: flex;
   height: 100rpx;
-  border-bottom: 1px solid #C8C7CC;
+  border-bottom: 1px solid #c8c7cc;
   margin-bottom: 15rpx;
 }
 .lists-num {
@@ -86,14 +86,14 @@
   float: left;
   width: 80rpx;
   height: 80rpx;
-  border: 1px solid #DD524D;
+  border: 1px solid #dd524d;
   -webkit-transform: rotate(-50deg);
           transform: rotate(-50deg);
   border-radius: 50%;
   text-align: center;
   line-height: 80rpx;
-  background-color: #DD524D;
-  color: #FFFFFF;
+  background-color: #dd524d;
+  color: #ffffff;
   margin-right: 20rpx;
   font-size: 38rpx;
   filter: alpha(opacity=60);

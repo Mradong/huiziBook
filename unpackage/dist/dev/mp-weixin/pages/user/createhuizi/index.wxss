@@ -7,14 +7,14 @@
   min-height: 30rpx;
 }
 .form-one {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .form-one .form-row {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   padding: 10rpx 20rpx;
-  border-bottom: 1px solid #F1F1F1;
+  border-bottom: 1px solid #f1f1f1;
 }
 .form-one .form-row-title {
   -webkit-box-flex: 1;
@@ -78,5 +78,17 @@
   font-size: 14px;
   line-height: 200rpx;
   text-align: center;
+}
+ .uni-dialog-button {
+  display: none;
+}
+ .uni-border-left {
+  display: block !important;
+  border: none;
+  text-align: center;
+}
+ .uni-border-left .uni-dialog-button-text {
+  font-size: 35rpx !important;
+  line-height: 90rpx;
 }
 
