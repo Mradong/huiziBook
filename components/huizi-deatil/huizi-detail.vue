@@ -19,7 +19,7 @@
 							支出（元）：{{ item.huizi_arr[0].cost == 0 ?'今日尚未缴费':item.huizi_arr[0].cost}}
 						</view>
 						<view class="">
-							当前期数(期)/总期数(期)：{{ item.huizi_arr[0].self_payment_num}} / {{ item.subitems_periods}}
+							当前期数/总期数：{{ item.huizi_arr[0].self_payment_num}} / {{ item.subitems_periods}}
 						</view>
 
 					</view>
@@ -99,7 +99,7 @@
 		}
 		&-data{
 			&-items{
-				height: 300rpx;
+				height: 350rpx;
 				position: relative;
 				// box-shadow: 0 0 10px #808080;
 				

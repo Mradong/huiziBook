@@ -238,6 +238,8 @@
 				subitems_old_show_twotime: '初一',
 				subitems_old_onetime: null,
 				subitems_old_twotime: null,
+				delivered : 0 , //已支付,
+				earned_surplus : 0, //已获益
 				subitems_time_list: [{
 						label: '初一',
 						value: '1'
@@ -444,6 +446,8 @@
 						endTimeArr[1];
 					let payment_num = payment_num_y * 12 + payment_num_m;
 					let huizi_arr = [];
+					let delivered = 0 ; //已支付
+					let earned_surplus = 0; //已获益
 					if (this.subitems_fixation == '不定投' && this.subitems_monthnum == "1次") {
 						for (let i = 0; i <= this.subitems_periods; i++) {
 							huizi_arr[i] = {
@@ -454,7 +458,10 @@
 								day: endTimeArr[2], //是否保留？数据结构有待优化
 								cost: i >= payment_num ? 0 : this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
 							}
+							this.delivered += Number( huizi_arr[i].cost ) ;
 						}
+						this.earned_surplus =  payment_num * this.subitems_profit - this.delivered ;
+						
 					} else if (this.subitems_fixation == '定投' && this.subitems_monthnum == "1次") {
 						for (let i = 0; i <= this.subitems_periods; i++) {
 							huizi_arr[i] = {
@@ -465,7 +472,9 @@
 								day: endTimeArr[2], //是否保留？数据结构有待优化
 								cost: i >= payment_num ? 0 : this.subitems_fixation_cost
 							}
+							this.delivered += Number( huizi_arr[i].cost ) ;
 						}
+						this.earned_surplus =  payment_num * this.subitems_profit - this.delivered ;
 					}
 					let dataArr = {
 						subitems_name: this.subitems_name, //项目名称
@@ -490,6 +499,8 @@
 						end_time: this.end_time, //项目结束时间
 						payment_num: payment_num, //项目创建时，已缴纳的期数，
 						huizi_arr: huizi_arr,
+						delivered:this.delivered,//已支付
+						earned_surplus:this.earned_surplus,//已获益
 						isfull: true
 					}
 					let id_huizi = {};

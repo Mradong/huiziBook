@@ -39,7 +39,7 @@
   text-align: center;
 }
 .huizi-data-items {
-  height: 300rpx;
+  height: 350rpx;
   position: relative;
 }
 .huizi-data-items::before {

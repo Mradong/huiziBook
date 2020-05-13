@@ -24,10 +24,10 @@
 						已缴费期数：{{item.payment_num}}期
 					</view>
 					<view class="" >
-						已缴费金额：23333
+						已缴费金额：{{item.delivered}}
 					</view>
 					<view class="" >
-						已收益金额：23333
+						已收益金额：{{item.earned_surplus}}
 					</view>
 				</view>
 			</view>
@@ -55,7 +55,7 @@
 		},
 		data() {
 			return {
-				
+				delivered:0,
 			};
 		},
 		methods:{
@@ -66,13 +66,15 @@
 					animationType: 'pop-in',
 					animationDuration: 200,
 				});
-			},
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
-	
+	.content{
+		margin-bottom: 150upx;
+	}
 	.custom-area{
 		width: 95%;
 		

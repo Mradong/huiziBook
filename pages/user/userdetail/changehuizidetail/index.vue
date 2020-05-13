@@ -32,12 +32,26 @@ export default {
 	methods: {
 		changeMoney(id,num ){
 			let Userid = id.slice(0, 1);
+			let payment_num = 0;
+			let delivered = 0;
+			let earned_surplus = 0;
 			uni.getStorage({
 				key: Userid + '_key',
 				success: res => {
 					for (let i = 0; i < res.data.self_huzi.length; i++) {
 						if (res.data.self_huzi[i].id == id) {
 							res.data.self_huzi[i].huizi_arr[num].cost = this. money ;
+							for( let j = 0; j < res.data.self_huzi[i].huizi_arr.length; j++ ){
+								if(  res.data.self_huzi[i].huizi_arr[j].cost != 0){
+									payment_num += 1;
+								}
+								delivered += Number( res.data.self_huzi[i].huizi_arr[j].cost ) ;
+							}
+							earned_surplus =  payment_num * res.data.self_huzi[i].subitems_profit - delivered ;
+							res.data.self_huzi[i].payment_num = payment_num;
+							res.data.self_huzi[i].delivered = delivered;
+							res.data.self_huzi[i].earned_surplus = earned_surplus;
+							
 							uni.setStorageSync(Userid + '_key', res.data);
 							uni.navigateTo({
 								//唯一ID值传入userdetail页面

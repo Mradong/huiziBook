@@ -5,13 +5,16 @@
 		<view class="user-message">
 			<view class="user-message-l">
 				<view class="user-message-l-top">
-					{{ uesr_huizi_data.name }} | {{ uesr_huizi_data.phone }}
+					{{ uesr_huizi_data.name }} | {{ uesr_huizi_data.phone }} | {{ tableData.length }}名
 				</view>
 				<view class="user-message-l-con">
-					<text>预计总收入（元）</text>
+					<text>已支付(元)</text>
 					<view>
-						11500000.00
+						{{delivered }}
 					</view>
+				</view>
+				<view class="">
+					<text>目前收益:{{ earned_surplus }}元</text>
 				</view>
 			</view>
 			<view class="user-message-r">
@@ -30,8 +33,6 @@
 </template>
 
 <script>
-
-
 	export default {
 		data() {
 			return {
@@ -40,6 +41,8 @@
 				title: '详情',
 				uesr_huizi_data:{},
 				tableData:[],
+				delivered:0,
+				earned_surplus:0,
 			}
 		},
 		onLoad: function(option) {
@@ -54,8 +57,10 @@
 					   phone : res.data.phone,
 				   }
 				   this.tableData = res.data.self_huzi;
+				   this.getDelivered( this.tableData );
 			    }
 			});
+			
 		},
 		methods:{
 			createHuizi(){
@@ -64,6 +69,17 @@
 					animationType: 'pop-in',
 					animationDuration: 200,
 				});
+			},
+			getDelivered( data ){
+				let len = data.length;
+				let delivered = 0 ;
+				let earned_surplus = 0;
+				for( let i = 0 ;i <len ;i++){
+					delivered += data[i].delivered;
+					earned_surplus += data[i].earned_surplus;
+				}
+				this.delivered= delivered;
+				this.earned_surplus= earned_surplus;
 			}
 		},
 	}
@@ -78,27 +94,24 @@
 		border-radius: 10rpx;
 		display: flex;
 		color: #fff;
-
+		font-size: 26upx;
 		&-l {
 			flex: 3;
-			padding: 20rpx;
-
+			padding: 20upx;
 			&-top {
-				font-size: 16px;
+				font-size: 32upx;
 			}
-
 			&-con {
-				margin-top: 40rpx;
-
+				margin-top: 40upx;
 				text {
-					font-size: 16px;
+					font-size: 26upx;
 				}
-
 				view {
-					margin-top: 5rpx;
-					font-size: 24px;
+					margin: 12upx 0;
+					font-size: 50upx;
 				}
 			}
+			
 		}
 
 		&-r {
