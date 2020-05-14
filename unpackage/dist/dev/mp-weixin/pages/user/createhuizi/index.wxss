@@ -80,7 +80,7 @@
   text-align: center;
 }
  .uni-dialog-button {
-  display: none;
+  display: none !important;
 }
  .uni-border-left {
   display: block !important;

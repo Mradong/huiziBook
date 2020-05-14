@@ -422,7 +422,8 @@ export default {
 							self_payment_num: i + 1,
 							month: +endTimeArr[1] + (i % 12) > 12 ? +endTimeArr[1] + (i % 12) - 12 : +endTimeArr[1] + (i % 12),
 							day: endTimeArr[2], //是否保留？数据结构有待优化
-							cost: i >= payment_num ? 0 : this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost)
+							cost: i >= payment_num ? 0 : this.random(+this.subitems_fixation_low_cost, +this.subitems_fixation_high_cost),
+							today_isfull: false
 						};
 						delivered += Number(huizi_arr[i].cost);
 					}
@@ -435,7 +436,8 @@ export default {
 							self_payment_num: i + 1,
 							month: +endTimeArr[1] + (i % 12) > 12 ? +endTimeArr[1] + (i % 12) - 12 : +endTimeArr[1] + (i % 12),
 							day: endTimeArr[2], //是否保留？数据结构有待优化
-							cost: i >= payment_num ? 0 : this.subitems_fixation_cost
+							cost: i >= payment_num ? 0 : this.subitems_fixation_cost,
+							today_isfull: false
 						};
 						delivered += Number(huizi_arr[i].cost);
 					}
@@ -464,10 +466,11 @@ export default {
 					start_time: this.start_time, //项目开始时间
 					end_time: this.end_time, //项目结束时间
 					payment_num: payment_num, //项目创建时，已缴纳的期数，
+					curr_index: payment_num, //项目创建时的当期数
 					huizi_arr: huizi_arr,
 					delivered: this.delivered, //已支付
 					earned_surplus: this.earned_surplus, //已获益
-					isfull: true
+					isfull: false
 				};
 				console.log(dataArr);
 				let id_huizi = {};
@@ -609,7 +612,7 @@ export default {
 	text-align: center;
 }
 /deep/ .uni-dialog-button{
-	display: none;
+	display: none !important;
 }
 
 /deep/ .uni-border-left{

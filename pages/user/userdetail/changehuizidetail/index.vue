@@ -2,17 +2,20 @@
 	<view class="">
 		<nav-bar fontColor="#000" backState="1000" :home="true" :titleCenter="true" type="fixed" title="录入/修正 缴费"></nav-bar>
 		<view class="form-one">
-			<view class="">
-				<text > 当期若为取会期,请</text><button type="primary"  @click="isFetch">点我</button>
+			<view class="" v-if="!isfull">
+				<text> 当期若为取会期,请</text><button type="primary"  @click="isFetch">点我</button>
+			</view>
+			<view class="" v-if="isfull">
+				<text> 当期为取会期</button></text>
 			</view>
 			<view class="form-row">
 				<label class="form-row-title">金额</label>
-				<input type="text" maxlength="11" v-model="money"  :disabled="isDisabled" placeholder="请输入正确缴费" class="form-row-input " />
+				<input type="text" maxlength="11" v-model="money"  placeholder="请输入正确缴费" class="form-row-input " />
 				<!-- 不能为空值，看到做判断 -->
 				<view class="warn" v-if="money == '' ? true : false"></view>
 			</view>
 		</view>
-		<button type="warn" class="create" @click="changeMoney(id,num) " >完成</button>
+		<button type="warn" class="create" @click="changeMoney(id,num)" >完成</button>
 		<uni-popup ref="popup" type="dialog">
 			<uni-popup-dialog type="error" title="警告" mode="base" content="请再次确认,当期是否为取会期" :duration="2000" :before-close="true" @close="close" @confirm="confirm"> </uni-popup-dialog>
 		</uni-popup>
@@ -28,7 +31,8 @@ export default {
 			id:null,
 			num:null,
 			money:'',
-			isDisabled:false,
+			isfull:false,
+			curr_index:0,
 		};
 	},
 	computed: {
@@ -37,35 +41,35 @@ export default {
 	onLoad: function(option) {
 		this.id = option.id ,
 		this.num  = option.num -1
-		
+		this.curr_index = Number(option.curr_index );
 	},
 	methods: {
 		changeMoney(id,num ){
 			let Userid = id.slice(0, 1);
 			let payment_num = 0;
-			let delivered = 0;
-			let earned_surplus = 0;
 			uni.getStorage({
 				key: Userid + '_key',
 				success: res => {
 					for (let i = 0; i < res.data.self_huzi.length; i++) {
 						if (res.data.self_huzi[i].id == id) {
-							res.data.self_huzi[i].huizi_arr[num].cost = this. money;
+							res.data.self_huzi[i].huizi_arr[num].cost = this.money;
+							res.data.self_huzi[i].huizi_arr[num].today_isfull = this.isfull;
+							res.data.self_huzi[i].isfull = this.isfull;
 							for( let j = 0; j < res.data.self_huzi[i].huizi_arr.length; j++ ){
 								if(  res.data.self_huzi[i].huizi_arr[j].cost != 0){
 									payment_num += 1;
 								}
-								delivered += Number( res.data.self_huzi[i].huizi_arr[j].cost ) ;
+								console.log( res.data.self_huzi[i].huizi_arr.length - this.curr_index  )
+								if( this.isfull && j > num && j <= (res.data.self_huzi[i].huizi_arr.length - this.curr_index) ){
+									res.data.self_huzi[i].huizi_arr[j].cost =  res.data.self_huzi[i].subitems_profit ;
+								}
 							}
-							earned_surplus =  payment_num * res.data.self_huzi[i].subitems_profit - delivered ;
+
 							res.data.self_huzi[i].payment_num = payment_num;
-							res.data.self_huzi[i].delivered = delivered;
-							res.data.self_huzi[i].earned_surplus = earned_surplus;
-							
 							uni.setStorageSync(Userid + '_key', res.data);
 							uni.navigateTo({
 								//唯一ID值传入userdetail页面
-								url: '/pages/user/userdetail/lists/index?id=' + id ,
+								url: '/pages/user/userdetail/lists/index?id=' + id +'&curr_index='+ this.curr_index,
 								animationType: 'pop-in',
 								animationDuration: 200,
 							});
@@ -78,13 +82,10 @@ export default {
 			this.$refs.popup.open();
 		},
 		close(done) {
-			
-			this.isDisabled = false ;
 			done();
 		},
 		confirm(done, value) {
-			this.money = -1 ;
-			this.isDisabled = true ;
+			this.isfull = true ;
 			done();
 		}
 	},

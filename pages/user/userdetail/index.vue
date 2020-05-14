@@ -56,6 +56,7 @@
 					   name : res.data.name,
 					   phone : res.data.phone,
 				   }
+				  
 				   this.tableData = res.data.self_huzi;
 				   this.getDelivered( this.tableData );
 			    }

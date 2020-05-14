@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1552,9 +1552,9 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 115:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/lb-picker/utils.js ***!
-  \*******************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/lb-picker/utils.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1571,9 +1571,9 @@ function getIndicatorHeight() {
 /***/ }),
 
 /***/ 137:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/popup.js ***!
-  \*******************************************************************/
+/*!******************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/popup.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1606,9 +1606,9 @@ var config = {
 /***/ }),
 
 /***/ 138:
-/*!*********************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/message.js ***!
-  \*********************************************************************/
+/*!********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/message.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1764,42 +1764,10 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 146:
-/*!*********************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/e-picker/e-picker.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getDayArr = getDayArr;exports.getArr = getArr;exports.checkDefaultValue = checkDefaultValue;exports.getDateTimeValue = getDateTimeValue;function getDayArr(y, m) {var flag = y % 4 == 0 && y % 100 != 0 && y % 400 != 0;
-  var nums = [31, flag ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  var arr = [];
-  for (var i = 0; i < nums[m - 1]; i++) {arr.push(fmt(i + 1) + '日');}
-  return arr;}
-function getArr(index) {var arr = [],s = 1,len = 13,tag = '月';if (index > 2) {s = 0;
-    if (index == 3) {len = 24;
-      tag = '时';}
-    if (index > 3) {len = 60;
-      if (index == 4) {tag = '分';}
-      if (index == 5) {tag = '秒';}}}
-  for (var i = s; i < len; i++) {arr.push(fmt(i) + tag);}
-  return arr;}
-function fmt(t) {return t > 9 ? t : '0' + t;}
-function checkDefaultValue(m, d) {if (m == 'date' || m == 'dateTime' || m == 'time') {if (!d) {throw Error("'defaultValue'为必填属性");}
-    if (m == 'date' && d.length != 10 || m == 'time' && d.length != 8 || m == 'dateTime' && d.length != 19) {throw Error("'defaultValue'有误，请根据当前mode 正确设置格式");}
-    return;}
-  throw Error("mode\u65E0".concat(m, "\u8BE5\u9009\u9879\u914D\u7F6E"));}
-function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(parseInt(arr[1])),d = fmt(parseInt(arr[2])),h = fmt(parseInt(arr[3])),m = fmt(parseInt(arr[4])),s = fmt(parseInt(arr[5]));
-  if (mode != 'dateTime') return "".concat(y, "-").concat(M, "-").concat(d);
-  return "".concat(y, "-").concat(M, "-").concat(d, " ").concat(h, ":").concat(m, ":").concat(s);}
-
-/***/ }),
-
 /***/ 15:
-/*!****************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/store/index.js ***!
-  \****************************************************/
+/*!***************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/store/index.js ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1841,6 +1809,38 @@ var store = new _vuex.default.Store({
 });var _default =
 store; //导出store对象
 exports.default = _default;
+
+/***/ }),
+
+/***/ 153:
+/*!********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/e-picker/e-picker.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDayArr = getDayArr;exports.getArr = getArr;exports.checkDefaultValue = checkDefaultValue;exports.getDateTimeValue = getDateTimeValue;function getDayArr(y, m) {var flag = y % 4 == 0 && y % 100 != 0 && y % 400 != 0;
+  var nums = [31, flag ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var arr = [];
+  for (var i = 0; i < nums[m - 1]; i++) {arr.push(fmt(i + 1) + '日');}
+  return arr;}
+function getArr(index) {var arr = [],s = 1,len = 13,tag = '月';if (index > 2) {s = 0;
+    if (index == 3) {len = 24;
+      tag = '时';}
+    if (index > 3) {len = 60;
+      if (index == 4) {tag = '分';}
+      if (index == 5) {tag = '秒';}}}
+  for (var i = s; i < len; i++) {arr.push(fmt(i) + tag);}
+  return arr;}
+function fmt(t) {return t > 9 ? t : '0' + t;}
+function checkDefaultValue(m, d) {if (m == 'date' || m == 'dateTime' || m == 'time') {if (!d) {throw Error("'defaultValue'为必填属性");}
+    if (m == 'date' && d.length != 10 || m == 'time' && d.length != 8 || m == 'dateTime' && d.length != 19) {throw Error("'defaultValue'有误，请根据当前mode 正确设置格式");}
+    return;}
+  throw Error("mode\u65E0".concat(m, "\u8BE5\u9009\u9879\u914D\u7F6E"));}
+function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(parseInt(arr[1])),d = fmt(parseInt(arr[2])),h = fmt(parseInt(arr[3])),m = fmt(parseInt(arr[4])),s = fmt(parseInt(arr[5]));
+  if (mode != 'dateTime') return "".concat(y, "-").concat(M, "-").concat(d);
+  return "".concat(y, "-").concat(M, "-").concat(d, " ").concat(h, ":").concat(m, ":").concat(s);}
 
 /***/ }),
 
@@ -8327,7 +8327,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8348,14 +8348,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8431,7 +8431,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8827,9 +8827,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 23:
-/*!*********************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/static/js/public.js ***!
-  \*********************************************************/
+/*!********************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/static/js/public.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9580,9 +9580,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
-  \************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10490,9 +10490,9 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!*****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \*****************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10502,9 +10502,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 8:
-/*!****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \****************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

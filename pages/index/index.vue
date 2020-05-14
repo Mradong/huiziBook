@@ -113,7 +113,6 @@ export default {
 		},
 		initToday() {
 			let date = new Date();
-			console.log(date )
 			let y = date.getFullYear();
 			let m = date.getMonth();
 			let d = date.getDate();
@@ -131,7 +130,7 @@ export default {
 			this.tomonth_money = this.getMoney( tomonth_money );
 		},
 		getMoney( data ){
-			let len = [...data].length;
+			let len = data.length;
 			let money= 0 ;
 			let uncalled = 0 ;
 			for( let i = 0; i<len ;i++){
