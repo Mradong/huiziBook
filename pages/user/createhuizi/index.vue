@@ -411,7 +411,8 @@ export default {
 				let endTimeArr = this.start_time.toString().split('-');
 				let payment_num_y = date.getFullYear() - endTimeArr[0]; //当结束时间小于当前时间，存着bug
 				let payment_num_m = date.getDate() >= endTimeArr[2] ? date.getMonth() + 1 - endTimeArr[1] : date.getMonth() - endTimeArr[1];
-				let payment_num = payment_num_y * 12 + payment_num_m;
+				let payment_num = payment_num_y * 12 + payment_num_m > this.subitems_periods ? this.subitems_periods : payment_num_y * 12 + payment_num_m;
+				let  curr_index = payment_num +1 > this.subitems_periods ? this.subitems_periods : payment_num +1 ;
 				let huizi_arr = [];
 				let delivered = 0; //已支付
 				let earned_surplus = 0; //已获益
@@ -447,9 +448,9 @@ export default {
 				let dataArr = {
 					subitems_name: this.subitems_name, //项目名称
 					subitems_description: this.subitems_description, //项目描述
-					subitems_periods: this.subitems_periods, //项目描述
-					subitems_profit: this.subitems_profit, //项目总期数
-					subitems_share: this.subitems_share, //项目回报
+					subitems_periods: this.subitems_periods, //项目总期数
+					subitems_profit: this.subitems_profit, //死会金额
+					subitems_share: this.subitems_share, //
 					subitems_fixation: this.subitems_fixation, //项目是否定投，
 					subitems_fixation_cost: this.subitems_fixation_cost, //项目定投模式下，每月缴费
 					subitems_fixation_low_cost: this.subitems_fixation_low_cost, //项目不定投模式下，每月最低缴费
@@ -466,7 +467,7 @@ export default {
 					start_time: this.start_time, //项目开始时间
 					end_time: this.end_time, //项目结束时间
 					payment_num: payment_num, //项目创建时，已缴纳的期数，
-					curr_index: payment_num, //项目创建时的当期数
+					curr_index: curr_index, //项目创建时的当期数
 					huizi_arr: huizi_arr,
 					delivered: this.delivered, //已支付
 					earned_surplus: this.earned_surplus, //已获益

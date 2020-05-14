@@ -1,6 +1,30 @@
 .form-one {
   background-color: #FFFFFF;
 }
+.form-one .get-full {
+  background-color: #f3aca96b;
+  color: #808080;
+  font-size: 26rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+}
+.form-one .get-full text {
+  color: #DD524D;
+}
+.form-one .get-full button {
+  font-size: 26rpx;
+  width: 120rpx;
+  height: 40rpx;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  line-height: 40rpx;
+  position: relative;
+  top: 10rpx;
+  left: 10rpx;
+  border-radius: none;
+}
 .form-one .form-row {
   display: -webkit-box;
   display: -webkit-flex;

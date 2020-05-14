@@ -56,8 +56,9 @@
 					   name : res.data.name,
 					   phone : res.data.phone,
 				   }
-				  
+				 
 				   this.tableData = res.data.self_huzi;
+				   console.log( this.tableData )
 				   this.getDelivered( this.tableData );
 			    }
 			});

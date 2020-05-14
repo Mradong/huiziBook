@@ -4,7 +4,7 @@
 			
 			<view class="tc thead">
 				<view class="tc-r" >编码：{{item.id}}</view>
-				<view class="tc-l" >未取</view>
+				<view class="tc-l" >{{item.isfull?"已取":"未取" }}</view>
 			</view>
 			<view class="td">
 				<view class="td-r" >

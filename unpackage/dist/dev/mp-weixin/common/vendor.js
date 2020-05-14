@@ -1552,9 +1552,9 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 115:
-/*!******************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/lb-picker/utils.js ***!
-  \******************************************************************************/
+/*!*******************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/lb-picker/utils.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1571,9 +1571,9 @@ function getIndicatorHeight() {
 /***/ }),
 
 /***/ 137:
-/*!******************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/popup.js ***!
-  \******************************************************************************/
+/*!*******************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/popup.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1606,9 +1606,9 @@ var config = {
 /***/ }),
 
 /***/ 138:
-/*!********************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/message.js ***!
-  \********************************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/message.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1765,9 +1765,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!***************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/store/index.js ***!
-  \***************************************************************/
+/*!****************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/store/index.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1813,9 +1813,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ 153:
-/*!********************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/e-picker/e-picker.js ***!
-  \********************************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/e-picker/e-picker.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8827,9 +8827,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 23:
-/*!********************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/static/js/public.js ***!
-  \********************************************************************/
+/*!*********************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/static/js/public.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9580,9 +9580,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!***********************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
-  \***********************************************************/
+/*!************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10490,9 +10490,9 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!****************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \****************************************************************************/
+/*!*****************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10502,9 +10502,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 8:
-/*!***************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \***************************************************************************/
+/*!****************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

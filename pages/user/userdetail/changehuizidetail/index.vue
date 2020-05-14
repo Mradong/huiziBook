@@ -2,11 +2,14 @@
 	<view class="">
 		<nav-bar fontColor="#000" backState="1000" :home="true" :titleCenter="true" type="fixed" title="录入/修正 缴费"></nav-bar>
 		<view class="form-one">
-			<view class="" v-if="!isfull">
-				<text> 当期若为取会期,请</text><button type="primary"  @click="isFetch">点我</button>
+			<view class="get-full " v-if="!isfull">
+				当期若为<text> 取会期,请</text><button @click="isFetch">点我</button>
 			</view>
-			<view class="" v-if="isfull">
-				<text> 当期为取会期</button></text>
+			<view class="get-full" v-if="isfull && iscurrent">
+				当期为<text> 取会期</button></text>
+			</view>
+			<view class="get-full" v-if="isfull && !iscurrent">
+				已有<text>取会期</button></text>
 			</view>
 			<view class="form-row">
 				<label class="form-row-title">金额</label>
@@ -32,47 +35,62 @@ export default {
 			num:null,
 			money:'',
 			isfull:false,
-			curr_index:0,
+			iscurrent:false,
 		};
 	},
 	computed: {
 
 	},
 	onLoad: function(option) {
-		this.id = option.id ,
-		this.num  = option.num -1
-		this.curr_index = Number(option.curr_index );
+		this.id = option.id ;
+		this.num  = option.num -1 ;
+		this.isFull( this.id , this.num );
 	},
 	methods: {
 		changeMoney(id,num ){
 			let Userid = id.slice(0, 1);
-			let payment_num = 0;
 			uni.getStorage({
 				key: Userid + '_key',
 				success: res => {
 					for (let i = 0; i < res.data.self_huzi.length; i++) {
 						if (res.data.self_huzi[i].id == id) {
 							res.data.self_huzi[i].huizi_arr[num].cost = this.money;
-							res.data.self_huzi[i].huizi_arr[num].today_isfull = this.isfull;
-							res.data.self_huzi[i].isfull = this.isfull;
-							for( let j = 0; j < res.data.self_huzi[i].huizi_arr.length; j++ ){
-								if(  res.data.self_huzi[i].huizi_arr[j].cost != 0){
-									payment_num += 1;
-								}
-								console.log( res.data.self_huzi[i].huizi_arr.length - this.curr_index  )
-								if( this.isfull && j > num && j <= (res.data.self_huzi[i].huizi_arr.length - this.curr_index) ){
-									res.data.self_huzi[i].huizi_arr[j].cost =  res.data.self_huzi[i].subitems_profit ;
-								}
+							if( res.data.self_huzi[i].isfull ){
+								res.data.self_huzi[i].huizi_arr[num].today_isfull = res.data.self_huzi[i].huizi_arr[num].today_isfull ?  true :false ;
 							}
-
-							res.data.self_huzi[i].payment_num = payment_num;
+							else{
+								res.data.self_huzi[i].isfull =  true;
+								res.data.self_huzi[i].huizi_arr[num].today_isfull = true ;
+							}
 							uni.setStorageSync(Userid + '_key', res.data);
 							uni.navigateTo({
 								//唯一ID值传入userdetail页面
-								url: '/pages/user/userdetail/lists/index?id=' + id +'&curr_index='+ this.curr_index,
+								url: '/pages/user/userdetail/lists/index?id=' + id,
 								animationType: 'pop-in',
 								animationDuration: 200,
 							});
+						}
+					}
+				}
+			});
+		},
+		isFull(id,num ){
+			let Userid = id.slice(0, 1);
+			uni.getStorage({
+				key: Userid + '_key',
+				success: res => {
+					for (let i = 0; i < res.data.self_huzi.length; i++) {
+						if (res.data.self_huzi[i].id == id) {
+							if( res.data.self_huzi[i].isfull ){
+								this.isfull = true ;
+								if(res.data.self_huzi[i].huizi_arr[num].today_isfull ){
+									this.iscurrent = true ;
+								}
+								else{
+									this.iscurrent = false ;
+								}
+							}
+
 						}
 					}
 				}
@@ -99,6 +117,30 @@ export default {
 <style lang="less">
 	.form-one {
 		background-color: #FFFFFF;
+		.get-full{
+			background-color: #f3aca96b;
+			color: rgba(128, 128, 128, 1);
+			font-size: 26upx;
+			height: 80upx;
+			line-height: 80upx;
+			padding: 0 20upx;
+			text{
+				color: #DD524D;
+			}
+			button{
+				font-size: 26upx;
+				width: 120upx;
+				height: 40upx;
+				display: inline-block;
+				padding: 0;
+				margin: 0;
+				line-height: 40upx;
+				position: relative;
+				top: 10upx;
+				left: 10upx;
+				border-radius: none;
+			}
+		}
 		.form-row {
 			display: flex;
 			padding: 10upx 20upx;
