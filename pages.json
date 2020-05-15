@@ -67,6 +67,13 @@
 				
 			}
 			
+		},
+		{
+			"path": "pages/my/login/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+			
 		}
 
 	],

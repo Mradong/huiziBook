@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1551,10 +1551,10 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 115:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/lb-picker/utils.js ***!
-  \*******************************************************************/
+/***/ 123:
+/*!******************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/lb-picker/utils.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1567,79 +1567,6 @@ function getIndicatorHeight() {
   return Math.round(uni.getSystemInfoSync().screenWidth / (750 / 100));
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 137:
-/*!*******************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/popup.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 138));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-// 定义 type 类型:弹出类型：top/bottom/center
-var config = {
-  // 顶部弹出
-  top: 'top',
-  // 底部弹出
-  bottom: 'bottom',
-  // 居中弹出
-  center: 'center',
-  // 消息提示
-  message: 'top',
-  // 对话框
-  dialog: 'center',
-  // 分享
-  share: 'bottom' };var _default =
-
-
-{
-  data: function data() {
-    return {
-      config: config };
-
-  },
-  mixins: [_message.default] };exports.default = _default;
-
-/***/ }),
-
-/***/ 138:
-/*!*********************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/message.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _created$created$meth;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = (_created$created$meth = {
-  created: function created() {
-    if (this.type === 'message') {
-      // 获取自组件对象
-      this.maskShow = false;
-      this.children = null;
-    }
-  } }, _defineProperty(_created$created$meth, "created", function created()
-{
-  if (this.type === 'message') {
-    // 不显示遮罩
-    this.maskShow = false;
-    // 获取子组件对象
-    this.childrenMsg = null;
-  }
-}), _defineProperty(_created$created$meth, "methods",
-{
-  customOpen: function customOpen() {
-    if (this.childrenMsg) {
-      this.childrenMsg.open();
-    }
-  },
-  customClose: function customClose() {
-    if (this.childrenMsg) {
-      this.childrenMsg.close();
-    }
-  } }), _created$created$meth);exports.default = _default;
 
 /***/ }),
 
@@ -1764,83 +1691,122 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 15:
-/*!****************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/store/index.js ***!
-  \****************************************************/
+/***/ 145:
+/*!******************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/popup.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //引入vue
-// 引入vuex
-_vue.default.use(_vuex.default); // 让vue使用vuex
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 146));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+// 定义 type 类型:弹出类型：top/bottom/center
+var config = {
+  // 顶部弹出
+  top: 'top',
+  // 底部弹出
+  bottom: 'bottom',
+  // 居中弹出
+  center: 'center',
+  // 消息提示
+  message: 'top',
+  // 对话框
+  dialog: 'center',
+  // 分享
+  share: 'bottom' };var _default =
 
-// 通过vuex构造函数创建store对象
-var store = new _vuex.default.Store({
-  //将vuex中的值赋值给组件保存的变量，无法直接在标签中使用vuex的任何数据或者方法
-  //栗子：this.$data.allMoney = this.$store.state.shopcar.allMoney
-  state: {
-    init_date: null },
 
-  //type对应的是vuex中保存的mutations的方法名，无论是保存到mutations还是保存到modules的mutations中，都能成功。
-  // arguments 对应的是传过去的参数
-  // this.$store.commit({
-  // 	type:"changeAllMoney",
-  // 	arguments: {
-  // 		allMoney: allMoney
-  // 	}
-  // })
+{
+  data: function data() {
+    return {
+      config: config };
 
-  mutations: {
-    changeInitDate: function changeInitDate(state, initDate) {
-      state.init_date = initDate.arguments.init_date;
-    } }
-
-  //组件中调用vux中modules的state
-  //this.$store.state.modules名.属性名
-  //引入某个store对象import dialog_store from '../components/dialog_store.js';
-  //做出这样的修改之后 , 我们将之前我们使用的 $store.state.show 统统改为 $store.state.dialog.show 即可。
-  //store的子模块，内容就相当于是store的一个实例。调用方式和前面介绍的相似，只是要加上当前子模块名，如：store.a.getters.xxx()。
-  // modules: {
-  //     dialog: dialog_store
-  // }
-});var _default =
-store; //导出store对象
-exports.default = _default;
+  },
+  mixins: [_message.default] };exports.default = _default;
 
 /***/ }),
 
-/***/ 153:
-/*!*********************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/components/e-picker/e-picker.js ***!
-  \*********************************************************************/
+/***/ 146:
+/*!********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/message.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getDayArr = getDayArr;exports.getArr = getArr;exports.checkDefaultValue = checkDefaultValue;exports.getDateTimeValue = getDateTimeValue;function getDayArr(y, m) {var flag = y % 4 == 0 && y % 100 != 0 && y % 400 != 0;
-  var nums = [31, flag ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  var arr = [];
-  for (var i = 0; i < nums[m - 1]; i++) {arr.push(fmt(i + 1) + '日');}
-  return arr;}
-function getArr(index) {var arr = [],s = 1,len = 13,tag = '月';if (index > 2) {s = 0;
-    if (index == 3) {len = 24;
-      tag = '时';}
-    if (index > 3) {len = 60;
-      if (index == 4) {tag = '分';}
-      if (index == 5) {tag = '秒';}}}
-  for (var i = s; i < len; i++) {arr.push(fmt(i) + tag);}
-  return arr;}
-function fmt(t) {return t > 9 ? t : '0' + t;}
-function checkDefaultValue(m, d) {if (m == 'date' || m == 'dateTime' || m == 'time') {if (!d) {throw Error("'defaultValue'为必填属性");}
-    if (m == 'date' && d.length != 10 || m == 'time' && d.length != 8 || m == 'dateTime' && d.length != 19) {throw Error("'defaultValue'有误，请根据当前mode 正确设置格式");}
-    return;}
-  throw Error("mode\u65E0".concat(m, "\u8BE5\u9009\u9879\u914D\u7F6E"));}
-function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(parseInt(arr[1])),d = fmt(parseInt(arr[2])),h = fmt(parseInt(arr[3])),m = fmt(parseInt(arr[4])),s = fmt(parseInt(arr[5]));
-  if (mode != 'dateTime') return "".concat(y, "-").concat(M, "-").concat(d);
-  return "".concat(y, "-").concat(M, "-").concat(d, " ").concat(h, ":").concat(m, ":").concat(s);}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _created$created$meth;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = (_created$created$meth = {
+  created: function created() {
+    if (this.type === 'message') {
+      // 获取自组件对象
+      this.maskShow = false;
+      this.children = null;
+    }
+  } }, _defineProperty(_created$created$meth, "created", function created()
+{
+  if (this.type === 'message') {
+    // 不显示遮罩
+    this.maskShow = false;
+    // 获取子组件对象
+    this.childrenMsg = null;
+  }
+}), _defineProperty(_created$created$meth, "methods",
+{
+  customOpen: function customOpen() {
+    if (this.childrenMsg) {
+      this.childrenMsg.open();
+    }
+  },
+  customClose: function customClose() {
+    if (this.childrenMsg) {
+      this.childrenMsg.close();
+    }
+  } }), _created$created$meth);exports.default = _default;
+
+/***/ }),
+
+/***/ 15:
+/*!***************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/store/index.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //引入vue和vuex
+_vue.default.use(_vuex.default);
+
+var store = new _vuex.default.Store({ //全局变量定义
+  state: {
+    forcedLogin: false, //是否需要强制登录
+    hasLogin: false,
+    userName: "",
+    userLogo: "",
+    userId: '',
+    token: '',
+    pointId: '' },
+
+  mutations: {
+    login: function login(state, user) {
+      state.userName = user.username || '';
+      state.hasLogin = true;
+      state.userId = user.id || '';
+      state.userLogo = user.logo || '';
+      state.token = user.token || '';
+      state.pointId = user.pointId || '';
+    },
+    logout: function logout(state) {
+      state.userName = "";
+      state.hasLogin = false;
+      state.userId = '';
+      state.userLogo = '';
+      state.token = '';
+      state.pointId = '';
+    } } });var _default =
+
+
+store;exports.default = _default;
 
 /***/ }),
 
@@ -2792,6 +2758,38 @@ var index_esm = {
 
 /* harmony default export */ __webpack_exports__["default"] = (index_esm);
 
+
+/***/ }),
+
+/***/ 161:
+/*!********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/components/e-picker/e-picker.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getDayArr = getDayArr;exports.getArr = getArr;exports.checkDefaultValue = checkDefaultValue;exports.getDateTimeValue = getDateTimeValue;function getDayArr(y, m) {var flag = y % 4 == 0 && y % 100 != 0 && y % 400 != 0;
+  var nums = [31, flag ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var arr = [];
+  for (var i = 0; i < nums[m - 1]; i++) {arr.push(fmt(i + 1) + '日');}
+  return arr;}
+function getArr(index) {var arr = [],s = 1,len = 13,tag = '月';if (index > 2) {s = 0;
+    if (index == 3) {len = 24;
+      tag = '时';}
+    if (index > 3) {len = 60;
+      if (index == 4) {tag = '分';}
+      if (index == 5) {tag = '秒';}}}
+  for (var i = s; i < len; i++) {arr.push(fmt(i) + tag);}
+  return arr;}
+function fmt(t) {return t > 9 ? t : '0' + t;}
+function checkDefaultValue(m, d) {if (m == 'date' || m == 'dateTime' || m == 'time') {if (!d) {throw Error("'defaultValue'为必填属性");}
+    if (m == 'date' && d.length != 10 || m == 'time' && d.length != 8 || m == 'dateTime' && d.length != 19) {throw Error("'defaultValue'有误，请根据当前mode 正确设置格式");}
+    return;}
+  throw Error("mode\u65E0".concat(m, "\u8BE5\u9009\u9879\u914D\u7F6E"));}
+function getDateTimeValue(arr, mode) {var y = fmt(parseInt(arr[0])),M = fmt(parseInt(arr[1])),d = fmt(parseInt(arr[2])),h = fmt(parseInt(arr[3])),m = fmt(parseInt(arr[4])),s = fmt(parseInt(arr[5]));
+  if (mode != 'dateTime') return "".concat(y, "-").concat(M, "-").concat(d);
+  return "".concat(y, "-").concat(M, "-").concat(d, " ").concat(h, ":").concat(m, ":").concat(s);}
 
 /***/ }),
 
@@ -8327,7 +8325,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8348,14 +8346,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8431,7 +8429,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8827,9 +8825,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 23:
-/*!*********************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/static/js/public.js ***!
-  \*********************************************************/
+/*!********************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/static/js/public.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9580,9 +9578,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
-  \************************************************/
+/*!***********************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10490,21 +10488,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!*****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \*****************************************************************/
+/*!****************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子簿" }, "pages/user/index": { "navigationStyle": "custom" }, "pages/message/index": { "navigationStyle": "custom" }, "pages/user/adduser/index": { "navigationStyle": "custom" }, "pages/user/userdetail/index": { "navigationStyle": "custom" }, "pages/user/userdetail/lists/index": { "navigationStyle": "custom" }, "pages/user/userdetail/changehuizidetail/index": { "navigationStyle": "custom" }, "pages/user/createhuizi/index": { "navigationStyle": "custom" }, "pages/calendar/index": { "navigationStyle": "custom" }, "pages/my/index": { "navigationBarTitleText": "用户中心" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子簿", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子簿" }, "pages/user/index": { "navigationStyle": "custom" }, "pages/message/index": { "navigationStyle": "custom" }, "pages/user/adduser/index": { "navigationStyle": "custom" }, "pages/user/userdetail/index": { "navigationStyle": "custom" }, "pages/user/userdetail/lists/index": { "navigationStyle": "custom" }, "pages/user/userdetail/changehuizidetail/index": { "navigationStyle": "custom" }, "pages/user/createhuizi/index": { "navigationStyle": "custom" }, "pages/calendar/index": { "navigationStyle": "custom" }, "pages/my/index": { "navigationBarTitleText": "用户中心" }, "pages/my/login/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子簿", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!****************************************************************!*\
-  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \****************************************************************/
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

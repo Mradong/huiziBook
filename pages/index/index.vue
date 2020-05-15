@@ -54,6 +54,9 @@ import uniFab from '@/components/uni-fab/uni-fab.vue';
 import huiziDeatil from '@/components/huizi-deatil/huizi-detail.vue';
 import navBar from "@/components/zhouWei-navBar";
 import publicFnc from '@/static/js/public.js';
+import {
+	mapMutations
+} from "vuex" 
 export default {
 	data() {
 		return {
@@ -94,8 +97,28 @@ export default {
 	},
 	onLoad() {
 		this.initToday();
+		this.initLoginStatu();	
 	},
 	methods: {
+		...mapMutations(['login']),
+		initLoginStatu(){
+			try {
+				const user_isLogin = uni.getStorageSync('user_isLogin');
+				if ( user_isLogin ) {
+					//用户已登录或者授权的情况下
+					let user_code = uni.getStorageSync('wx_userCode');//获取用户code
+					let user_info = uni.getStorageSync( user_code );//获取用户信息
+					let user = {
+						username:user_info.userInfo.nickName,
+						id: user_code,
+						logo :user_info.userInfo.avatarUrl,
+					}
+					this.login( user )
+				}
+			} catch (e) {
+				console.log(e);
+			}
+		},
 		trigger(e) {
 			let model = e.item.model;
 			switch (model) {

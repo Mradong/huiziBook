@@ -36,11 +36,15 @@
   text-align: left;
 }
 .my-top .my-login image {
-  width: 28rpx;
-  height: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
   position: absolute;
-  top: 16rpx;
+  top: 28rpx;
   right: 40rpx;
+}
+.my-top .my-login image.login-out {
+  width: 68rpx;
+  height: 68rpx;
 }
 .my-datas {
   margin-bottom: 40rpx;

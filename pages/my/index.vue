@@ -2,14 +2,18 @@
 	<view class="">
 		<view class="my-top">
 			<view class="my-tx">
-				<image src="../../static/images/tx.png" mode=""></image>
+				<image :src="hasLogin?userLogo :'../../static/images/tx.png' " mode=""></image>
 			</view>
-			<view class="my-login">
+			<view class="my-login" @click="toLogin" v-if="!hasLogin">
 				<text>立即登录</text>
 				<image src="../../static/images/yjiantou.svg" mode=""></image>
 			</view>
+			<view class="my-login " @click="outLogin" >
+				<text>{{ userName }}学习使我快乐</text>
+				<image class="login-out" src="../../static/images/tuichu.svg" mode=""></image>
+			</view>
 		</view>
-		<view class="my-datas">
+		<view class="my-datas" @click="isClick&&clicIsLogin()">
 			<view class="my-data">
 				<view class="my-data-img">
 					<image src="../../static/images/grzl.svg" mode=""></image>
@@ -48,13 +52,68 @@
 					<image src="../../static/images/yjiantou.svg" mode=""></image>
 				</view>
 			</view>
-
 		</view>
+		<uni-popup ref="popup" type="dialog">
+			<uni-popup-dialog type="error" mode="base" :content="content" :duration="2000" :before-close="true"
+			 @close="close" @confirm="confirm">
+			</uni-popup-dialog>
+		</uni-popup>
 	</view>
 	
 </template>
 
 <script>
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
+	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
+	import {
+		mapState,
+		mapMutations,
+	
+	} from "vuex" 
+	export default {
+		computed:mapState(['hasLogin','userName','userLogo']),
+		data() {
+			return {
+				content:"确定退出登录",
+				isClick:true,
+			}
+		},
+		onLoad: function() {
+		},
+		methods:{
+			...mapMutations(['logout']),
+			toLogin(){
+				uni.navigateTo({
+					url: '/pages/my/login/index',
+					animationType: 'pop-in',
+					animationDuration: 200,
+				});
+			},
+			outLogin(){
+				this.$refs.popup.open();
+			},
+			confirm(done, value){
+				this.logout();
+				uni.setStorageSync('user_isLogin', false); //改变用户登录状态
+				let user_code = uni.getStorageSync('wx_userCode');//获取用户code
+				uni.removeStorageSync('wx_userCode');
+				uni.removeStorageSync(user_code);
+				done();
+			},
+			close(done) {
+				done();
+			},
+			clicIsLogin(){
+				if( this.hasLogin ){
+					this.isClick = false ;
+				}
+			}
+		},
+		components: {
+			uniPopup,
+			uniPopupDialog
+		},
+	}
 </script>
 
 <style lang="less">
@@ -88,11 +147,15 @@
 				text-align: left;
 			}
 			image{
-				width: 28upx;
-				height:  28upx;
+				width: 32upx;
+				height:  32upx;
 				position: absolute;
-				top: 16upx;
+				top: 28upx;
 				right: 40upx;
+			}
+			image.login-out {
+				width: 68upx;
+				height:  68upx;
 			}
 		}
 
