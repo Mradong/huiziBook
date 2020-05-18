@@ -3,7 +3,7 @@
 }
 .lists-top {
   width: 721rpx;
-  height: 308rpx;
+  height: 348rpx;
   background-color: #eb6869;
   margin: 20rpx auto;
   padding: 25rpx;

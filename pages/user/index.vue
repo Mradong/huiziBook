@@ -112,6 +112,20 @@ export default {
 		},
 		onClick(id ) {
 			publicFnc.customFnc.remove(id);
+			uni.switchTab({
+				url: '/pages/user/index?id',
+				success: function(e) {
+					var page = getCurrentPages().pop();
+					if (page == undefined || page == null) return;
+					if( page.hasOwnProperty('onLoad') ){
+						page.onLoad();
+					}else{
+						location.reload();
+						
+					}
+					
+				}
+			});
 		},
 		change(open) {
 			console.log('当前开启状态：' + open);

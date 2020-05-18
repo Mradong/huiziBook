@@ -4,25 +4,23 @@
 
 		<view class="form">
 			<view class="form-row">
-				<label class="form-row-title">项目人名称：</label>
-				<input type="text" maxlength="11" v-model="name" placeholder="请输入项目人名称" class="form-row-input " />
+				<label class="form-row-title">姓名：</label>
+				<input type="text" maxlength="11" v-model="name" placeholder="请输入项目人姓名" class="form-row-input " />
 				<view class="warn" v-if="name == '' ? true : false">必填</view>
 			</view>
-
 			<view class="form-row">
-				<label class="form-row-title">项目人描述：</label>
-				<input type="text" maxlength="11" v-model="description" placeholder="请输入项目人描述" class="form-row-input " />
-				<view class="warn" v-if="description == '' ? true : false">必填</view>
-			</view>
-			<view class="form-row">
-				<label class="form-row-title">项目人电话：</label>
+				<label class="form-row-title">电话：</label>
 				<input type="text" maxlength="11" v-model="phone" placeholder="请输入项目人电话" class="form-row-input " />
 				<view class="warn" v-if="phone == '' ? true : false">必填</view>
 			</view>
 			<view class="form-row">
-				<label class="form-row-title">项目人地址：</label>
+				<label class="form-row-title">描述：</label>
+				<input type="text" maxlength="11" v-model="description" placeholder="请输入项目人描述" class="form-row-input " />
+			</view>
+
+			<view class="form-row">
+				<label class="form-row-title">地址：</label>
 				<input type="text" maxlength="11" v-model="site" placeholder="请输入项目人地址" class="form-row-input " />
-				<view class="warn" v-if="site == '' ? true : false">必填</view>
 			</view>
 		</view>
 		<button type="warn" class="but" @click="addData">完成</button>

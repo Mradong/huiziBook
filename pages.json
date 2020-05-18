@@ -54,6 +54,12 @@
 		
 		},
 		{
+			"path": "pages/user/userdetail/changeUser/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		},
+		{
 			"path": "pages/calendar/index",
 			"style": {
 				"navigationStyle":"custom"

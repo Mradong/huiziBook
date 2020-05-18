@@ -706,7 +706,6 @@ var customFnc = {
 	},
 	remove( id ) {
 		let len = id.length;
-		
 		if (len > 1) {
 			let Userid = id.split("lyd")[0];
 			uni.getStorage({

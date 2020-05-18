@@ -33,14 +33,7 @@
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
-  width: 90rpx;
-  height: 48rpx;
-  border: 1px solid #fff;
   margin: 20rpx;
-  text-align: center;
-  line-height: 48rpx;
-  border-radius: 10rpx;
-  box-shadow: 0 0 3px #C8C7CC;
 }
 .noData {
   margin-top: 400rpx;

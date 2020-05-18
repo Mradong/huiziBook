@@ -67,13 +67,14 @@ export default {
 				backgroundColor: '#ea656600',
 				buttonColor: '#ea6566'
 			},
-			content: [{
-					iconPath: "/static/images/item_3.svg",
-					selectedIconPath: "/static/images/item_3.svg",
-					text: '',
-					model: 'home',
-					active: false
-				},
+			content: [
+				// {
+				// 	iconPath: "/static/images/item_3.svg",
+				// 	selectedIconPath: "/static/images/item_3.svg",
+				// 	text: '',
+				// 	model: 'home',
+				// 	active: false
+				// },
 				{
 					iconPath: "/static/images/rili_1.svg",
 					selectedIconPath: "/static/images/hover_rili_1.svg",
@@ -290,7 +291,6 @@ export default {
 /deep/ .uni-fab__item--active {
 	border-radius: 50%;
 	border: 1px solid #fff;
-	width: 106upx;
 	background-image: -webkit-linear-gradient(top left, #ea6566, rgba(209, 212, 44, 0.62));
 	image {
 		width: 70upx;

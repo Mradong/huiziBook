@@ -3,13 +3,13 @@
 		<nav-bar fontColor="#000" backState="1000" :home="true" :titleCenter="true" type="fixed" title="项目名"></nav-bar>
 		<view class="lists-top">
 			<view class="lists-top-title">
-				当前{{ huizi_arr.payment_num }}期 | 总{{ huizi_arr.subitems_periods }}期 | {{ huizi_arr.subitems_profit }}元 | {{ huizi_arr.start_time }} 至
+				当前{{ huizi_arr.curr_index }}期 | 总{{ huizi_arr.subitems_periods }}期 | {{ huizi_arr.subitems_profit }}元 | {{ huizi_arr.start_time }} 至
 				{{ huizi_arr.end_time }}
 			</view>
 			<view class="lists-top-con">
 				<view class="lists-top-con-r">
 					<view>
-						取会预计金额(元)：
+						预测取会金额(元)：
 						<br />
 						{{ anticipated_income }}
 					</view>
@@ -84,6 +84,7 @@ export default {
 						let payment_num = 0; //当前已缴期数（可能存在缴费时间已过，但未缴费情况）
 						let subitems_profit = Number(data_arr.subitems_profit); //死会金额
 						let subitems_periods = Number(data_arr.subitems_periods); //总期数
+						let first_money = Number(data_arr.first_money);
 						let cost = 0;
 						let len = data_arr.huizi_arr.length;
 						for (let j = 0; j < len; j++) {
@@ -91,7 +92,7 @@ export default {
 							if (new Date(this.y + '/' + this.m + '/01').getTime() == new Date(data_arr.huizi_arr[j].year + '/' + data_arr.huizi_arr[j].month + '/01').getTime()) {
 								current_num = data_arr.huizi_arr[j].self_payment_num;
 								if (payment_num == 0) {
-									cost = 350; //在创建的时间，创建 第一期的预测金额，明天处理
+									cost = first_money; 
 								} else {
 									cost = data_arr.huizi_arr[payment_num - 1].cost == 0 ? data_arr.huizi_arr[payment_num - 2].cost : data_arr.huizi_arr[payment_num - 1].cost; //当前的上一期缴费
 								}
@@ -134,7 +135,7 @@ export default {
 						}
 						data_arr.earned_surplus = this.earned_surplus;
 						data_arr.delivered = this.delivered;
-						uni.setStorageSync(this.id + '_key', res.data);
+						uni.setStorageSync(Userid + '_key', res.data);
 						this.huizi_arr = data_arr;
 						this.huizi_arr_list = res.data.self_huzi[i].huizi_arr.concat();
 						this.huizi_arr_list.reverse();
@@ -168,7 +169,7 @@ export default {
 
 .lists-top {
 	width: 721upx;
-	height: 308upx;
+	height: 348upx;
 	background-color: #eb6869;
 	margin: 20upx auto;
 	padding: 25upx;

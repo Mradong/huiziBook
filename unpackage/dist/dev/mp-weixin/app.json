@@ -8,6 +8,7 @@
     "pages/user/userdetail/lists/index",
     "pages/user/userdetail/changehuizidetail/index",
     "pages/user/createhuizi/index",
+    "pages/user/userdetail/changeUser/index",
     "pages/calendar/index",
     "pages/my/index",
     "pages/my/login/index",

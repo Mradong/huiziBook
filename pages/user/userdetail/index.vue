@@ -18,7 +18,7 @@
 				</view>
 			</view>
 			<view class="user-message-r">
-				编辑
+				<button size="mini" @click="toChange">编辑</button>
 			</view>
 		</view>
 		<view v-if=" isHaveHuizi">
@@ -58,7 +58,6 @@
 				   }
 				 
 				   this.tableData = res.data.self_huzi;
-				   console.log( this.tableData )
 				   this.getDelivered( this.tableData );
 			    }
 			});
@@ -82,6 +81,13 @@
 				}
 				this.delivered= delivered;
 				this.earned_surplus= earned_surplus;
+			},
+			toChange(){
+				uni.navigateTo({
+					url: "/pages/user/userdetail/changeUser/index?id="+ this.id,
+					animationType: 'pop-in',
+					animationDuration: 200,
+				});
 			},
 		},
 	}
@@ -118,14 +124,7 @@
 
 		&-r {
 			flex: 1;
-			width: 90rpx;
-			height: 48rpx;
-			border: 1px solid #fff;
-			margin: 20rpx;
-			text-align: center;
-			line-height: 48rpx;
-			border-radius: 10rpx;
-			box-shadow: 0 0 3px #C8C7CC;
+			margin: 20upx;
 		}
 	}
 	.noData{
