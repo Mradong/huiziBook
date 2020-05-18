@@ -39,9 +39,6 @@
 				iscurrent: false,
 			};
 		},
-		computed: {
-
-		},
 		onLoad: function(option) {
 			this.id = option.id;
 			this.num = option.num - 1;

@@ -96,7 +96,7 @@ export default {
 	filters:{
 		e(val){ return val || '0'}
 	},
-	onLoad() {
+	onShow(){
 		this.initToday();
 		this.initLoginStatu();	
 	},

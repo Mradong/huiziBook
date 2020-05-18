@@ -35,6 +35,13 @@
 		
 		},
 		{
+			"path": "pages/user/blank/index",
+			"style": {
+				"navigationStyle":"custom"
+			}
+		
+		},
+		{
 			"path": "pages/user/userdetail/lists/index",
 			"style": {
 				"navigationStyle":"custom"

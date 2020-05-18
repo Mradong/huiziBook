@@ -36,9 +36,33 @@
   margin: 20rpx;
 }
 .noData {
-  margin-top: 400rpx;
+  margin-top: 300rpx;
   text-align: center;
   color: #555555;
+}
+.noData image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.noData-hint {
+  line-height: 100rpx;
+  height: 100rpx;
+}
+.noData-hint .noData-text {
+  color: #808080;
+  font-size: 26rpx;
+  text-align: center;
+}
+.noData-hint .none-userData-img-button {
+  width: 160rpx;
+  height: 60rpx;
+  margin: 0 auto;
+}
+.noData-hint .none-userData-img-button button {
+  width: 100%;
+  height: 100%;
+  font-size: 24rpx;
+  color: #a6a6a6;
 }
 .create {
   position: fixed;

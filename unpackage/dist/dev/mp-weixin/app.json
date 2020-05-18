@@ -5,6 +5,7 @@
     "pages/message/index",
     "pages/user/adduser/index",
     "pages/user/userdetail/index",
+    "pages/user/blank/index",
     "pages/user/userdetail/lists/index",
     "pages/user/userdetail/changehuizidetail/index",
     "pages/user/createhuizi/index",

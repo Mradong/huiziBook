@@ -25,9 +25,15 @@
 			<m-table :tableData="tableData"/>
 		</view>
 		<view class="noData" v-if=" !isHaveHuizi">
-			没有查询到相关数据-_-||，请尽快录入
+			<image src="../../../static/images/nodata.svg" mode=""></image>
+			<view class="noData-hint">
+				<view class="noData-text">
+					您的数据空荡荡的
+				</view>
+				<view class="none-userData-img-button"><button @click="createHuizi">去建一个</button></view>
+			</view>
 		</view>
-		<button type="default" class="create" @click="createHuizi">新建会子</button>
+		<button type="default" class="create" @click="createHuizi"  v-if=" isHaveHuizi">新建会子</button>
 	</view>
 
 </template>
@@ -38,7 +44,7 @@
 			return {
 				id: null,
 				isHaveHuizi:false,
-				title: '详情',
+				title: '会子详情',
 				uesr_huizi_data:{},
 				tableData:[],
 				delivered:0,
@@ -48,22 +54,26 @@
 		onLoad: function(option) {
 			//获取具体用户ID，用于查询具体会子
 			this.id = option.id;
-			uni.getStorage({
-			    key: this.id + '_key',
-			    success:( res ) => {
-			       this.isHaveHuizi = res.data.self_huzi.length == 0 ? false : true ;
-				   this.uesr_huizi_data = {
-					   name : res.data.name,
-					   phone : res.data.phone,
-				   }
-				 
-				   this.tableData = res.data.self_huzi;
-				   this.getDelivered( this.tableData );
-			    }
-			});
-			
+		},
+		onShow( ){
+			this.initHuizi();
 		},
 		methods:{
+			initHuizi(){
+				uni.getStorage({
+				    key: this.id + '_key',
+				    success:( res ) => {
+				       this.isHaveHuizi = res.data.self_huzi.length == 0 ? false : true ;
+					   this.uesr_huizi_data = {
+						   name : res.data.name,
+						   phone : res.data.phone,
+					   }
+					 
+					   this.tableData = res.data.self_huzi;
+					   this.getDelivered( this.tableData );
+				    }
+				});
+			},
 			createHuizi(){
 				uni.navigateTo({
 					url: '/pages/user/createhuizi/index?id='+ this.id,
@@ -128,9 +138,34 @@
 		}
 	}
 	.noData{
-		margin-top: 400rpx;
+		margin-top: 300rpx;
 		text-align: center;
 		color:#555555;
+		image{
+			width: 80upx;
+			height: 80upx;
+		}
+		&-hint{
+			line-height: 100upx;
+			height: 100upx;
+			.noData-text{
+				    color: #808080;
+				    font-size: 26upx;
+				    text-align: center;
+			}
+			.none-userData-img-button {
+				button {
+					width: 100%;
+					height: 100%;
+					font-size: 24upx;
+					color: #a6a6a6;
+				}
+				width: 160upx;
+				height: 60upx;
+				margin: 0 auto;
+			}
+		}
+
 	}
 	.create{
 		position: fixed;

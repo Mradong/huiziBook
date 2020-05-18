@@ -1,6 +1,6 @@
 <template>
 	<view class="">
-		<nav-bar fontColor="#000" backState="1000" :home="false" :titleCenter="true" type="fixed" title="添加用户"></nav-bar>
+		<nav-bar fontColor="#000" backState="1000" :home="false" :titleCenter="true" type="fixed" title="添加会头信息"></nav-bar>
 
 		<view class="form">
 			<view class="form-row">
@@ -40,7 +40,7 @@ export default {
 	onLoad() {},
 	methods: {
 		addData() {
-			if( this.name && this.description && this.phone && this.site){
+			if( this.name  && this.phone ){
 				try {
 					const keysArray = uni.getStorageSync('huizi_keys');
 					//非首次录入数据时
@@ -80,8 +80,6 @@ export default {
 					animationType: 'pop-in',
 					animationDuration: 200,
 				});
-				
-				
 			}
 			else{
 				console.log( ' 请完善资料')

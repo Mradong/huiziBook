@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<nav-bar fontColor="#000" backState="1000" :home="true" :titleCenter="true" type="fixed" title="项目名"></nav-bar>
+		<nav-bar fontColor="#000" backState="1000" :home="true" :titleCenter="true" type="fixed" title="子会详情"></nav-bar>
 		<view class="lists-top">
 			<view class="lists-top-title">
 				当前{{ huizi_arr.curr_index }}期 | 总{{ huizi_arr.subitems_periods }}期 | {{ huizi_arr.subitems_profit }}元 | {{ huizi_arr.start_time }} 至
@@ -65,85 +65,10 @@ export default {
 		};
 	},
 	onLoad: function(option) {
-		//获取具体用户ID，用于查询具体会子
-		let Userid = option.id.split('lyd')[0];
-		let tableData = [];
-		/* 取会的数据*/
-		let full_num = 0; //取会期数
-		let full_num_money = 0; //取会的金额
-		let death_money = 0; //取会前的已交总金额
-		let current_num = 0; //会子当月期数
-		/* 未取会的数据*/
-		let current_deposit = 0;
-		uni.getStorage({
-			key: Userid + '_key',
-			success: res => {
-				for (let i = 0; i < res.data.self_huzi.length; i++) {
-					if (res.data.self_huzi[i].id == option.id) {
-						let data_arr = res.data.self_huzi[i];
-						let payment_num = 0; //当前已缴期数（可能存在缴费时间已过，但未缴费情况）
-						let subitems_profit = Number(data_arr.subitems_profit); //死会金额
-						let subitems_periods = Number(data_arr.subitems_periods); //总期数
-						let first_money = Number(data_arr.first_money);
-						let cost = 0;
-						let len = data_arr.huizi_arr.length;
-						for (let j = 0; j < len; j++) {
-							payment_num = data_arr.huizi_arr[j].cost > 0 ? (payment_num += 1) : payment_num;
-							if (new Date(this.y + '/' + this.m + '/01').getTime() == new Date(data_arr.huizi_arr[j].year + '/' + data_arr.huizi_arr[j].month + '/01').getTime()) {
-								current_num = data_arr.huizi_arr[j].self_payment_num;
-								if (payment_num == 0) {
-									cost = first_money; 
-								} else {
-									cost = data_arr.huizi_arr[payment_num - 1].cost == 0 ? data_arr.huizi_arr[payment_num - 2].cost : data_arr.huizi_arr[payment_num - 1].cost; //当前的上一期缴费
-								}
-
-								break;
-							}
-						}
-						data_arr.payment_num = payment_num;
-						data_arr.curr_index = current_num;
-						if (data_arr.isfull) {
-							//死期情况下
-							for (let j = 0; j < current_num; j++) {
-								if (data_arr.huizi_arr[j].today_isfull) {
-									full_num = data_arr.huizi_arr[j].self_payment_num;
-									full_num_money = data_arr.huizi_arr[j].cost;
-									break;
-								}
-								death_money += Number(data_arr.huizi_arr[j].cost);
-							}
-							for (let j = full_num; j < current_num; j++) {
-								data_arr.huizi_arr[j].cost = subitems_profit;
-							}
-							for (let j = 0; j < current_num; j++) {
-								current_deposit += Number(data_arr.huizi_arr[j].cost);
-							}
-							this.delivered = current_deposit - Number(data_arr.huizi_arr[full_num - 1].cost);
-							//当前获益的公式( full_num -1 ) * 死会金额 - death_money  +  (已交期数- 取会期 ) * full_num_money - (已交期数- 取会期 ) * 死会金额
-							this.earned_surplus = (full_num - 1) * subitems_profit - death_money + (current_num - full_num) * (full_num_money - subitems_profit);
-							//预测取会时候 所获取的金额
-							//公式为（总期数 - 取会期） * 取会金额 + （取会期-1）*死会金额
-							this.anticipated_income = (subitems_periods - full_num) * full_num_money + (full_num - 1) * subitems_profit;
-						} else {
-							//活期情况下
-							for (let j = 0; j < payment_num; j++) {
-								current_deposit += Number(data_arr.huizi_arr[j].cost);
-							}
-							this.delivered = current_deposit;
-							this.earned_surplus = payment_num * subitems_profit - this.delivered;
-							this.anticipated_income = payment_num * subitems_profit + (subitems_periods - payment_num - 1) * Number(cost);
-						}
-						data_arr.earned_surplus = this.earned_surplus;
-						data_arr.delivered = this.delivered;
-						uni.setStorageSync(Userid + '_key', res.data);
-						this.huizi_arr = data_arr;
-						this.huizi_arr_list = res.data.self_huzi[i].huizi_arr.concat();
-						this.huizi_arr_list.reverse();
-						return;
-					}
-				}
-			}
-		});
+		this.id = option.id ;
+	},
+	onShow(){
+		this.getHuiziData( this.id );
 	},
 	methods: {
 		changData(id, num) {
@@ -157,6 +82,87 @@ export default {
 		isShow(data, index) {
 			let isShow = new Date(this.y + '/' + this.m + '/01').getTime() >= new Date(data.year + '/' + data.month + '/01').getTime() ? true : false;
 			return isShow;
+		},
+		getHuiziData( id ){
+			//获取具体用户ID，用于查询具体会子
+			let Userid = id.split('lyd')[0];
+			let tableData = [];
+			/* 取会的数据*/
+			let full_num = 0; //取会期数
+			let full_num_money = 0; //取会的金额
+			let death_money = 0; //取会前的已交总金额
+			let current_num = 0; //会子当月期数
+			/* 未取会的数据*/
+			let current_deposit = 0;
+			uni.getStorage({
+				key: Userid + '_key',
+				success: res => {
+					for (let i = 0; i < res.data.self_huzi.length; i++) {
+						if (res.data.self_huzi[i].id == id) {
+							let data_arr = res.data.self_huzi[i];
+							let payment_num = 0; //当前已缴期数（可能存在缴费时间已过，但未缴费情况）
+							let subitems_profit = Number(data_arr.subitems_profit); //死会金额
+							let subitems_periods = Number(data_arr.subitems_periods); //总期数
+							let first_money = Number(data_arr.first_money);
+							let cost = 0;
+							let len = data_arr.huizi_arr.length;
+							for (let j = 0; j < len; j++) {
+								payment_num = data_arr.huizi_arr[j].cost > 0 ? (payment_num += 1) : payment_num;
+								if (new Date(this.y + '/' + this.m + '/01').getTime() == new Date(data_arr.huizi_arr[j].year + '/' + data_arr.huizi_arr[j].month + '/01').getTime()) {
+									current_num = data_arr.huizi_arr[j].self_payment_num;
+									if (payment_num == 0) {
+										cost = first_money; 
+									} else {
+										cost = data_arr.huizi_arr[payment_num - 1].cost == 0 ? data_arr.huizi_arr[payment_num - 2].cost : data_arr.huizi_arr[payment_num - 1].cost; //当前的上一期缴费
+									}
+			
+									break;
+								}
+							}
+							data_arr.payment_num = payment_num;
+							data_arr.curr_index = current_num;
+							if (data_arr.isfull) {
+								//死期情况下
+								for (let j = 0; j < current_num; j++) {
+									if (data_arr.huizi_arr[j].today_isfull) {
+										full_num = data_arr.huizi_arr[j].self_payment_num;
+										full_num_money = data_arr.huizi_arr[j].cost;
+										break;
+									}
+									death_money += Number(data_arr.huizi_arr[j].cost);
+								}
+								for (let j = full_num; j < current_num; j++) {
+									data_arr.huizi_arr[j].cost = subitems_profit;
+								}
+								for (let j = 0; j < current_num; j++) {
+									current_deposit += Number(data_arr.huizi_arr[j].cost);
+								}
+								this.delivered = current_deposit - Number(data_arr.huizi_arr[full_num - 1].cost);
+								//当前获益的公式( full_num -1 ) * 死会金额 - death_money  +  (已交期数- 取会期 ) * full_num_money - (已交期数- 取会期 ) * 死会金额
+								this.earned_surplus = (full_num - 1) * subitems_profit - death_money + (current_num - full_num) * (full_num_money - subitems_profit);
+								//预测取会时候 所获取的金额
+								//公式为（总期数 - 取会期） * 取会金额 + （取会期-1）*死会金额
+								this.anticipated_income = (subitems_periods - full_num) * full_num_money + (full_num - 1) * subitems_profit;
+							} else {
+								//活期情况下
+								for (let j = 0; j < payment_num; j++) {
+									current_deposit += Number(data_arr.huizi_arr[j].cost);
+								}
+								this.delivered = current_deposit;
+								this.earned_surplus = payment_num * subitems_profit - this.delivered;
+								this.anticipated_income = payment_num * subitems_profit + (subitems_periods - payment_num - 1) * Number(cost);
+							}
+							data_arr.earned_surplus = this.earned_surplus;
+							data_arr.delivered = this.delivered;
+							uni.setStorageSync(Userid + '_key', res.data);
+							this.huizi_arr = data_arr;
+							this.huizi_arr_list = res.data.self_huzi[i].huizi_arr.concat();
+							this.huizi_arr_list.reverse();
+							return;
+						}
+					}
+				}
+			});
 		}
 	}
 };

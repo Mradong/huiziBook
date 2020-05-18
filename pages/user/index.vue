@@ -1,6 +1,6 @@
 <template>
 	<view class="data">
-		<nav-bar fontColor="#000" backState="1000" :shadow="true" :home="false" :titleCenter="true" type="fixed" title="数据中心">
+		<nav-bar fontColor="#000" backState="1000" :shadow="true" :home="false" :titleCenter="true" type="fixed" title="会子列表">
 			<view class="icon_setUp data-nav-add" slot="right" @click="add" :animation="animationData" v-if="userData.length != 0">
 				<image src="../../static/images/jiahao.svg" mode=""></image>
 			</view>
@@ -58,7 +58,8 @@ export default {
 						backgroundColor: '#dd524d'
 					}
 				}
-			]
+			],
+			show:true,
 		};
 	},
 	methods: {
@@ -113,7 +114,7 @@ export default {
 		onClick(id ) {
 			publicFnc.customFnc.remove(id);
 			uni.switchTab({
-				url: '/pages/user/index?id',
+				url: "/pages/index/index",
 				success: function(e) {
 					var page = getCurrentPages().pop();
 					if (page == undefined || page == null) return;
@@ -123,9 +124,12 @@ export default {
 						location.reload();
 						
 					}
-					
 				}
 			});
+			// uni.navigateTo({
+			// 	url: '/pages/user/blank/index',
+			// });
+			
 		},
 		change(open) {
 			console.log('当前开启状态：' + open);

@@ -11,7 +11,7 @@
 			<!-- #endif -->
 			
 			<!-- #ifdef H5 || APP-PLUS -->
-				(抱歉因为某些问题，暂不开放H5登录功能。将在下个版本开放)
+				(ps:抱歉因为某些问题，暂不开放H5登录功能,将在下个版本开放。您可以使用小程序，进行账号登录~)
 				<view class="form">
 					<view class="form-row">
 						<input type="text" maxlength="11" v-model="data1" placeholder="请输入手机号" class="form-row-input " />

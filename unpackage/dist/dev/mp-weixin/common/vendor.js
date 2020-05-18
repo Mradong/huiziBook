@@ -1673,9 +1673,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!***************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/store/index.js ***!
-  \***************************************************************/
+/*!****************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/store/index.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1718,10 +1718,10 @@ store;exports.default = _default;
 
 /***/ }),
 
-/***/ 150:
-/*!******************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/lb-picker/utils.js ***!
-  \******************************************************************************/
+/***/ 152:
+/*!*******************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/lb-picker/utils.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2688,15 +2688,15 @@ var index_esm = {
 
 /***/ }),
 
-/***/ 172:
-/*!******************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/popup.js ***!
-  \******************************************************************************/
+/***/ 174:
+/*!*******************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/popup.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 173));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = _interopRequireDefault(__webpack_require__(/*! ./message.js */ 175));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 // 定义 type 类型:弹出类型：top/bottom/center
 var config = {
   // 顶部弹出
@@ -2723,10 +2723,10 @@ var config = {
 
 /***/ }),
 
-/***/ 173:
-/*!********************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-popup/message.js ***!
-  \********************************************************************************/
+/***/ 175:
+/*!*********************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/uni-popup/message.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2761,10 +2761,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 195:
-/*!********************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/e-picker/e-picker.js ***!
-  \********************************************************************************/
+/***/ 197:
+/*!*********************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/e-picker/e-picker.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8825,9 +8825,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 23:
-/*!********************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/static/js/public.js ***!
-  \********************************************************************/
+/*!*********************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/static/js/public.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9600,9 +9600,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!***********************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json ***!
-  \***********************************************************/
+/*!************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9612,9 +9612,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 42:
-/*!******************************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/components/uni-swipe-action-item/mpwxs.js ***!
-  \******************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/components/uni-swipe-action-item/mpwxs.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10617,21 +10617,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ }),
 
 /***/ 7:
-/*!****************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"style"} ***!
-  \****************************************************************************/
+/*!*****************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"style"} ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子簿" }, "pages/user/index": { "navigationStyle": "custom" }, "pages/message/index": { "navigationStyle": "custom" }, "pages/user/adduser/index": { "navigationStyle": "custom" }, "pages/user/userdetail/index": { "navigationStyle": "custom" }, "pages/user/userdetail/lists/index": { "navigationStyle": "custom" }, "pages/user/userdetail/changehuizidetail/index": { "navigationStyle": "custom" }, "pages/user/createhuizi/index": { "navigationStyle": "custom" }, "pages/user/userdetail/changeUser/index": { "navigationStyle": "custom" }, "pages/calendar/index": { "navigationStyle": "custom" }, "pages/my/index": { "navigationBarTitleText": "用户中心" }, "pages/my/login/index": { "navigationStyle": "custom" }, "pages/my/personaldata/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子簿", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "会子簿", "usingComponents": { "uni-fab": "/components/uni-fab/uni-fab", "huizi-deatil": "/components/huizi-deatil/huizi-detail", "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": { "uni-fab": "/components/uni-fab/uni-fab" } }, "pages/user/index": { "navigationStyle": "custom", "usingComponents": { "nav-bar": "/components/zhouWei-navBar/index" }, "usingAutoImportComponents": { "uni-swipe-action": "/components/uni-swipe-action/uni-swipe-action", "uni-swipe-action-item": "/components/uni-swipe-action-item/uni-swipe-action-item" } }, "pages/message/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/adduser/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/lists/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/userdetail/changehuizidetail/index": { "navigationStyle": "custom", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/user/createhuizi/index": { "navigationStyle": "custom", "usingComponents": { "e-picker": "/components/e-picker/e-picker", "uni-popup": "/components/uni-popup/uni-popup", "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog", "uni-card": "/components/uni-card/uni-card" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup", "uni-card": "/components/uni-card/uni-card" } }, "pages/user/userdetail/changeUser/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/calendar/index": { "navigationStyle": "custom", "usingComponents": { "dark-calendar": "/components/dark-calendar/dark-calendar", "huizi-deatil": "/components/huizi-deatil/huizi-detail" }, "usingAutoImportComponents": { "dark-calendar": "/components/dark-calendar/dark-calendar" } }, "pages/my/index": { "navigationBarTitleText": "用户中心", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "uni-popup-dialog": "/components/uni-popup/uni-popup-dialog", "load-line": "/components/load-line/load-line" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup", "load-line": "/components/load-line/load-line" } }, "pages/my/login/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/my/personaldata/index": { "navigationStyle": "custom", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/blank/index": { "navigationStyle": "custom" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "会子簿", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!***************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
-  \***************************************************************************/
+/*!****************************************************************!*\
+  !*** C:/Users/mi/Desktop/huiziBook/pages.json?{"type":"stat"} ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
