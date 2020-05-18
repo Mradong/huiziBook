@@ -1,6 +1,8 @@
 {
   "navigationStyle": "custom",
   "usingComponents": {
+    "uni-swipe-action": "/components/uni-swipe-action/uni-swipe-action",
+    "uni-swipe-action-item": "/components/uni-swipe-action-item/uni-swipe-action-item",
     "nav-bar": "/components/zhouWei-navBar/index"
   }
 }

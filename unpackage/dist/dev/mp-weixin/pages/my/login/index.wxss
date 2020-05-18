@@ -12,10 +12,105 @@
           transform: translate(50%, -50%);
 }
 .login-button {
-  width: 90%;
+  width: 85%;
   margin: 0 auto;
 }
 .login-button button {
   margin: 20rpx 0;
+}
+.login-button .form .form-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 10rpx 20rpx;
+}
+.login-button .form .form-row-input {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+          flex: 2;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.3) inset, 0 2rpx 0 rgba(255, 255, 255, 0.2);
+  background: rgba(37, 33, 33, 0.01);
+  color: #1b1818;
+  text-shadow: 0 0 2rpx rgba(0, 0, 0, 0.4);
+  position: relative;
+  border: 2rpx solid #eee;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  line-height: 60rpx;
+  padding: 20rpx 40rpx;
+}
+.login-button .form .login-succes {
+  margin: 20rpx auto;
+  width: 94%;
+}
+.login-button .form .forget {
+  font-size: 28rpx;
+  color: #797373;
+  text-align: center;
+  text-decoration: underline;
+  display: block;
+  margin-top: 30rpx;
+}
+.login-button .form .seperator {
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 40rpx;
+  position: relative;
+  opacity: 0.7;
+}
+.login-button .form .seperator::after,
+.login-button .form .seperator::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 240rpx;
+  height: 2rpx;
+  background: #a5a4a4;
+}
+.login-button .form .seperator::after {
+  right: 0;
+}
+.login-button .form .seperator::before {
+  left: 0;
+}
+.login-button .form .wechat-btn {
+  position: relative;
+  color: #3eb74f;
+  border: 1px solid #3eb74f;
+  text-indent: 40rpx;
+}
+.login-button .form .hollow-btn {
+  opacity: 0.6;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  margin-top: 40rpx;
+}
+.login-button .form .hollow-btn.no-icon {
+  text-align: center;
+}
+.login-button .form .wechat-btn:before {
+  content: '';
+  position: absolute;
+  top: 20rpx;
+  left: 150rpx;
+  background-image: url(https://img.xiaopiu.com/images/images-abb0efe34b.png);
+  background-position: -822px -296px;
+  width: 64rpx;
+  height: 64rpx;
+}
+.login-button .form .base-btn,
+.login-button .form .hollow-btn {
+  width: 100%;
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  margin-top: 50rpx;
+}
+.login-button .form .hollow-btn:hover {
+  opacity: 1;
+  background: #f5faf5d4;
 }
 

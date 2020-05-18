@@ -108,12 +108,14 @@ export default {
 					//用户已登录或者授权的情况下
 					let user_code = uni.getStorageSync('wx_userCode');//获取用户code
 					let user_info = uni.getStorageSync( user_code );//获取用户信息
+					console.log( user_info )
 					let user = {
 						username:user_info.userInfo.nickName,
 						id: user_code,
 						logo :user_info.userInfo.avatarUrl,
 					}
 					this.login( user )
+					
 				}
 			} catch (e) {
 				console.log(e);
@@ -147,8 +149,8 @@ export default {
 				year:y
 			}
 			this.huiziData =[];
-			this.huiziData =  publicFnc.toDay.getToDayData( today_data );
-			let tomonth_money = publicFnc.toDay.getToMonthData( today_data );
+			this.huiziData =  publicFnc.customFnc.getToDayData( today_data );
+			let tomonth_money = publicFnc.customFnc.getToMonthData( today_data );
 			this.today_money = this.getMoney( this.huiziData);
 			this.tomonth_money = this.getMoney( tomonth_money );
 		},

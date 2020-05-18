@@ -49,34 +49,39 @@
 		},
 		methods: {
 			changeMoney(id, num) {
-				let Userid = id.slice(0, 1);
+				let Userid = id.split("lyd")[0];
+				let self_data = {};
 				uni.getStorage({
 					key: Userid + '_key',
 					success: res => {
 						for (let i = 0; i < res.data.self_huzi.length; i++) {
 							if (res.data.self_huzi[i].id == id) {
 								res.data.self_huzi[i].huizi_arr[num].cost = this.money;
+								self_data = res.data;
+								console.log(self_data )
 								if (res.data.self_huzi[i].isfull) {
-									res.data.self_huzi[i].huizi_arr[num].today_isfull = res.data.self_huzi[i].huizi_arr[num].today_isfull ?
-										true : false;
+									
+									
+									break ;
 								} else {
-									res.data.self_huzi[i].isfull = true;
-									res.data.self_huzi[i].huizi_arr[num].today_isfull = true;
+									res.data.self_huzi[i].isfull = this.isfull ;
+									res.data.self_huzi[i].huizi_arr[num].today_isfull = this.isfull;
 								}
-								uni.setStorageSync(Userid + '_key', res.data);
-								uni.navigateTo({
-									//唯一ID值传入userdetail页面
-									url: '/pages/user/userdetail/lists/index?id=' + id,
-									animationType: 'pop-in',
-									animationDuration: 200,
-								});
+								
 							}
 						}
+						uni.setStorageSync(Userid + '_key', self_data);
+						uni.navigateTo({
+							//唯一ID值传入userdetail页面
+							url: '/pages/user/userdetail/lists/index?id=' + id,
+							animationType: 'pop-in',
+							animationDuration: 200,
+						});
 					}
 				});
 			},
 			isFull(id, num) {
-				let Userid = id.slice(0, 1);
+				let Userid = id.split("lyd")[0];
 				uni.getStorage({
 					key: Userid + '_key',
 					success: res => {

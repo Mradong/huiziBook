@@ -82,7 +82,7 @@
 				}
 				this.delivered= delivered;
 				this.earned_surplus= earned_surplus;
-			}
+			},
 		},
 	}
 </script>

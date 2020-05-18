@@ -31,12 +31,16 @@
   width: 95%;
   margin: 30rpx auto;
   color: #505050;
-  background-color: white;
   font-size: 14px;
   line-height: 150%;
   text-align: center;
 }
-.custom-area .tc, .custom-area .td, .custom-area .tf {
+.custom-area-item {
+    width: 100%;
+}
+.custom-area .tc,
+  .custom-area .td,
+  .custom-area .tf {
     width: 100%;
     height: 60rpx;
     color: #a6a6a6;
@@ -48,14 +52,19 @@
     display: flex;
     padding: 0 30rpx;
     box-sizing: border-box;
+    background-color: white;
 }
-.custom-area .tc-r, .custom-area .td-r, .custom-area .tf-r {
+.custom-area .tc-r,
+    .custom-area .td-r,
+    .custom-area .tf-r {
       -webkit-box-flex: 2;
       -webkit-flex: 2;
               flex: 2;
       text-align: left;
 }
-.custom-area .tc-l, .custom-area .td-l, .custom-area .tf-l {
+.custom-area .tc-l,
+    .custom-area .td-l,
+    .custom-area .tf-l {
       -webkit-box-flex: 1;
       -webkit-flex: 1;
               flex: 1;
@@ -101,5 +110,16 @@
         font-size: 13px;
         line-height: 56rpx;
         text-align: center;
+}
+.custom-area .delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100rpx;
+    height: 340rpx;
+    background-color: #dd524d;
+    color: #fff;
+    font-size: 23px;
+    line-height: 76px;
 }
 

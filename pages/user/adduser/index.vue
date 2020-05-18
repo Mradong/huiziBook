@@ -57,10 +57,8 @@ export default {
 							site: this.site,
 							self_huzi:[]
 						};
-						try {
-							uni.setStorageSync('huizi_keys', keysArray); //创建本地会子KEY值数组，用于后续遍历查询
-							uni.setStorageSync(newId + '_key', huiziitem); //创建具体用户数据
-						} catch (e) {}
+						uni.setStorageSync('huizi_keys', keysArray); //创建本地会子KEY值数组，用于后续遍历查询
+						uni.setStorageSync(newId + '_key', huiziitem); //创建具体用户数据
 					} else {
 						//当为首次录入数据时
 						let id = 0;
@@ -73,11 +71,8 @@ export default {
 							site: this.site,
 							self_huzi:[]
 						};
-				
-						try {
-							uni.setStorageSync('huizi_keys', huiziKeys); //创建本地会子KEY值数组，用于后续遍历查询
-							uni.setStorageSync(id + '_key', huiziitem); //创建具体用户数据
-						} catch (e) {}
+						uni.setStorageSync('huizi_keys', huiziKeys); //创建本地会子KEY值数组，用于后续遍历查询
+						uni.setStorageSync(id + '_key', huiziitem); //创建具体用户数据
 					}
 				} catch (e) {
 					console.log(e);

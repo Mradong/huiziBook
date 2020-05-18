@@ -347,6 +347,7 @@ export default {
 	onLoad: function(option) {
 		//获取具体用户ID，用于关联创建的会子
 		this.id = option.id;
+		console.log(this.id )
 	},
 	methods: {
 		selectFixation() {
@@ -473,20 +474,13 @@ export default {
 					earned_surplus: this.earned_surplus, //已获益
 					isfull: false
 				};
-				console.log(dataArr);
 				let id_huizi = {};
 				uni.getStorage({
 					key: this.id + '_key',
 					success: res => {
-						if (res.data.self_huzi.length == 0) {
-							id_huizi = {
-								id: this.id + 'a2020b' + 1
-							};
-						} else {
-							id_huizi = {
-								id: this.id + 'a2020b' + (res.data.self_huzi.length + 1)
-							};
-						}
+						id_huizi = {
+							id: this.id + 'lyd' + Date.parse(new Date()),
+						};
 						res.data.self_huzi.push(Object.assign(id_huizi, dataArr));
 						uni.setStorageSync(this.id + '_key', res.data);
 						uni.navigateTo({

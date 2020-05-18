@@ -10,7 +10,8 @@
     "pages/user/createhuizi/index",
     "pages/calendar/index",
     "pages/my/index",
-    "pages/my/login/index"
+    "pages/my/login/index",
+    "pages/my/personaldata/index"
   ],
   "subPackages": [],
   "window": {
@@ -49,6 +50,5 @@
     "lb-picker": "/components/lb-picker/index",
     "nav-bar": "/components/zhouWei-navBar/index",
     "m-table": "/components/p-table/table/table"
-  },
-  "sitemapLocation": "sitemap66.json"
+  }
 }

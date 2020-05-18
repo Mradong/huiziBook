@@ -43,6 +43,7 @@
   right: 40rpx;
 }
 .my-top .my-login image.login-out {
+  top: 0;
   width: 68rpx;
   height: 68rpx;
 }
@@ -65,8 +66,8 @@
   margin-left: 30rpx;
 }
 .my-datas .my-data-img image {
-  width: 40rpx;
-  height: 28rpx;
+  width: 50rpx;
+  height: 40rpx;
 }
 .my-datas .my-data-go {
   -webkit-box-flex: 1;
@@ -84,6 +85,14 @@
   position: absolute;
   top: 40rpx;
   right: 40rpx;
+}
+.my-datas .up_popup {
+  position: relative;
+  top: -20rpx;
+  color: #fff;
+}
+.my-datas .up_popup text {
+  color: #dcdcdc;
 }
 .box-yx-b {
   box-shadow: 0 2px 5px #c3a3a32e;

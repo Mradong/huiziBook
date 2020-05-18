@@ -23,7 +23,7 @@ export default {
 	},
 	methods: {
 		getDayData(item) {
-			this.huiziData =  publicFnc.toDay.getToDayData( item );
+			this.huiziData =  publicFnc.customFnc.getToDayData( item );
 		}
 	},
 	components: {

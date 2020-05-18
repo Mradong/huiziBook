@@ -608,7 +608,7 @@ var calendar = {
 		return calendar.solar2lunar(cY, cM, cD);
 	}
 };
-var toDay = {
+var customFnc = {
 	//item格式
 	// {date: 7,
 	// 	day: 4,
@@ -690,7 +690,8 @@ var toDay = {
 									`${res.data.self_huzi[j].huizi_arr[index].year}-${res.data.self_huzi[j].huizi_arr[index].month -1 }`;
 								if (date == time) {
 									dateData = res.data.self_huzi[j].huizi_arr[index];
-									c_huizi_arr = { ...res.data.self_huzi[j]};
+									c_huizi_arr = { ...res.data.self_huzi[j]
+									};
 									c_huizi_arr.huizi_arr = [];
 									c_huizi_arr.huizi_arr.push(dateData);
 									self_day_data.push(c_huizi_arr);
@@ -702,10 +703,32 @@ var toDay = {
 			}
 			return self_day_data;
 		}
+	},
+	remove( id ) {
+		let len = id.length;
+		
+		if (len > 1) {
+			let Userid = id.split("lyd")[0];
+			uni.getStorage({
+				key: Userid + '_key',
+				success: res => {
+					for (let i = 0; i < res.data.self_huzi.length; i++) {
+						if (res.data.self_huzi[i].id == id) {
+							res.data.self_huzi.splice(i, 1);
+							// uni.removeStorageSync(user_code);
+							uni.setStorageSync(Userid + '_key', res.data);
+						}
+					}
+				}
+			});
+		} else {
+			uni.removeStorageSync(id + '_key');
+		}
 	}
+
 }
 
 export default {
 	calendar,
-	toDay
+	customFnc,
 }
